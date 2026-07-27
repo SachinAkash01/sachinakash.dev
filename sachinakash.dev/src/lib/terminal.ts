@@ -39,6 +39,7 @@ export const terminalCommands = [
   "theme system",
   "open github",
   "open linkedin",
+  "open instagram",
   "open email",
   "clear",
   "history",
@@ -50,7 +51,7 @@ const help = [
   "  whoami · about · experience · projects · project <slug>",
   "  skills · services · education · books · contact · social",
   "SYSTEM",
-  "  theme <dark|light|system> · open <github|linkedin|email>",
+  "  theme <dark|light|system> · open <github|linkedin|instagram|email>",
   "  resume · history · clear",
 ];
 
@@ -157,32 +158,27 @@ export function executeTerminalCommand(
     }
     case "open": {
       const target = args[0];
-      if (target === "github")
-        return {
-          output: ["Opening GitHub…"],
-          action: { type: "open", target: profile.socials[0].href },
-        };
-      if (target === "linkedin")
-        return {
-          output: ["LinkedIn URL is ready to update in src/data/portfolio.ts."],
-        };
+      if (target === "github" || target === "linkedin" || target === "instagram") {
+        const social = profile.socials.find(
+          (item) => item.label.toLowerCase() === target,
+        );
+        if (social)
+          return {
+            output: [`Opening ${social.label}…`],
+            action: { type: "open", target: social.href },
+          };
+      }
       if (target === "email")
         return {
-          output: [
-            profile.email === "YOUR_EMAIL_ADDRESS"
-              ? "Email address is ready to update in src/data/portfolio.ts."
-              : "Opening email client…",
-          ],
-          ...(profile.email === "YOUR_EMAIL_ADDRESS"
-            ? {}
-            : {
-                action: {
-                  type: "open",
-                  target: `mailto:${profile.email}`,
-                } as TerminalAction,
-              }),
+          output: ["Opening email client…"],
+          action: {
+            type: "open",
+            target: `mailto:${profile.email}`,
+          } as TerminalAction,
         };
-      return { output: ["Usage: open <github|linkedin|email>"] };
+      return {
+        output: ["Usage: open <github|linkedin|instagram|email>"],
+      };
     }
     case "clear":
       return { output: [], action: { type: "clear" } };

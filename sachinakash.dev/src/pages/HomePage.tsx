@@ -6,6 +6,7 @@ import {
   ArrowUpRight,
   BookOpen,
   BriefcaseBusiness,
+  Camera,
   Check,
   Clipboard,
   Download,
@@ -108,6 +109,8 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const [copied, setCopied] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const location = useLocation();
+  const socialUrl = (label: string) =>
+    profile.socials.find((social) => social.label === label)?.href ?? "#";
 
   useEffect(() => {
     if (location.hash)
@@ -163,7 +166,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             </div>
             <div className="hero-meta">
               <a
-                href="https://github.com/SachinAkash01"
+                href={socialUrl("GitHub")}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -605,7 +608,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
               </div>
               <a
                 className="contact-route"
-                href="https://github.com/SachinAkash01"
+                href={socialUrl("GitHub")}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -613,6 +616,32 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 <div>
                   <span>GitHub</span>
                   <strong>@SachinAkash01</strong>
+                </div>
+                <ArrowUpRight size={17} />
+              </a>
+              <a
+                className="contact-route"
+                href={socialUrl("LinkedIn")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BriefcaseBusiness size={19} />
+                <div>
+                  <span>LinkedIn</span>
+                  <strong>Sachin Akash</strong>
+                </div>
+                <ArrowUpRight size={17} />
+              </a>
+              <a
+                className="contact-route"
+                href={socialUrl("Instagram")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Camera size={19} />
+                <div>
+                  <span>Instagram</span>
+                  <strong>@sachinakash</strong>
                 </div>
                 <ArrowUpRight size={17} />
               </a>

@@ -17,8 +17,8 @@ export function ResumePage() {
       <p className="mono-label">DOCUMENT / RESUME</p>
       <h1>Résumé.</h1>
       <p>
-        Add the final PDF at public/documents/sachin-akash-resume.pdf to enable
-        this download.
+        Download my current CV for a detailed overview of my experience,
+        education, projects, and technical background.
       </p>
       <a className="button" href={profile.resumeUrl} download>
         <Download size={17} /> Download CV

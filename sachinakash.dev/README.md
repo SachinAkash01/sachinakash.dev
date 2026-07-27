@@ -46,13 +46,9 @@ public/
 
 ## Update personal information
 
-All primary personal details are in `src/data/portfolio.ts`, inside the `profile` object. Replace these explicit placeholders before publishing:
+All primary personal details are in `src/data/portfolio.ts`, inside the `profile` object. The public domain, email address, social profiles, experience dates, graduation year, and résumé are configured. The remaining optional placeholder is:
 
-- `YOUR_EMAIL_ADDRESS`
 - `YOUR_PHONE_NUMBER`
-- `YOUR_LINKEDIN_URL`
-- `https://YOUR_PRODUCTION_DOMAIN`
-- Experience dates and graduation year
 
 The same file contains experience, projects, skills, services, education, and reading data so repeated UI never needs manual editing.
 
@@ -60,7 +56,7 @@ The same file contains experience, projects, skills, services, education, and re
 
 The active image is `public/images/profile/sachin-profile.jpeg`. Replace it while keeping the same filename, or update `profile.profileImage`. The portrait crop is controlled by `profile.profileImagePosition`; for example, `50% 28%` moves the visible crop toward the subject’s face.
 
-The primary brand artwork is `public/images/brand/sachin-akash-logo.png`. Its path is stored as `profile.brandLogo` and is used by the navigation and footer; the same file is referenced by the browser icon, Apple touch icon, Open Graph, X, and structured metadata.
+The primary brand artwork is `public/images/brand/sachin-akash-logo.png`. Its path is stored as `profile.brandLogo` and is used by the navigation and footer. The browser tab uses the dedicated high-contrast `public/images/brand/favicon.png` asset.
 
 ## Project screenshots
 
@@ -83,7 +79,7 @@ Books live in the `books` array. Each cover uses the [Open Library Covers API](h
 
 ## Social links and résumé
 
-Update `profile.socials` in `src/data/portfolio.ts`. Add the final PDF at:
+Update `profile.socials` in `src/data/portfolio.ts`. The downloadable CV is stored at:
 
 ```text
 public/documents/sachin-akash-resume.pdf
@@ -105,7 +101,7 @@ Until configured, the form honestly reports that delivery is unavailable and dir
 
 ## SEO and deployment
 
-Replace `YOUR_PRODUCTION_DOMAIN` in `src/data/portfolio.ts`, `index.html`, `public/robots.txt`, and `public/sitemap.xml`. Static assets and client-side routes are compatible with common Vite hosting platforms. For Vercel, import the repository, keep the build command as `npm run build`, and use `dist` as the output directory. Add an SPA rewrite to `/index.html` for direct project-route visits.
+Production metadata, canonical URLs, robots, and sitemap entries use `https://www.sachinakash.dev`. Static assets and client-side routes are compatible with common Vite hosting platforms. For Vercel, import the repository, keep the build command as `npm run build`, and use `dist` as the output directory. Add an SPA rewrite to `/index.html` for direct project-route visits.
 
 Before publishing, add a bespoke social preview image and reference it with Open Graph and X metadata. The current metadata intentionally omits a generic image.
 

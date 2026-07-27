@@ -78,18 +78,22 @@ export const profile = {
   summary:
     "I’m a software engineer and Co-Founder & Director at Evantra Labs, with experience building web platforms, mobile applications, APIs, developer tools, cloud solutions, and production-ready software for businesses.",
   location: "Colombo, Sri Lanka",
-  email: "YOUR_EMAIL_ADDRESS",
+  email: "hello@sachinakash.dev",
   phone: "YOUR_PHONE_NUMBER",
   availability:
     "Open to thoughtful engineering roles and product collaborations",
-  websiteUrl: "https://YOUR_PRODUCTION_DOMAIN",
+  websiteUrl: "https://www.sachinakash.dev",
   resumeUrl: "/documents/sachin-akash-resume.pdf",
   brandLogo: "/images/brand/sachin-akash-logo.png",
   profileImage: "/images/profile/sachin-profile.jpeg",
   profileImagePosition: "50% 28%",
   socials: [
     { label: "GitHub", href: "https://github.com/SachinAkash01" },
-    { label: "LinkedIn", href: "YOUR_LINKEDIN_URL" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/sachin-akash-6514aa227/",
+    },
+    { label: "Instagram", href: "https://www.instagram.com/sachinakash" },
   ] satisfies SocialLink[],
 };
 
@@ -159,7 +163,7 @@ export const experiences: Experience[] = [
   {
     role: "Co-Founder & Director",
     company: "Evantra Labs",
-    period: "CURRENT · DATES TO ADD",
+    period: "2026 - Present",
     summary:
       "Leading the technical direction behind reliable digital products for organisations and growing businesses.",
     highlights: [
@@ -172,7 +176,7 @@ export const experiences: Experience[] = [
   {
     role: "Software Engineer",
     company: "WSO2",
-    period: "DATES TO ADD",
+    period: "2024 - 2026",
     summary:
       "Built developer-facing software in the Ballerina and API ecosystem with an emphasis on engineering quality.",
     highlights: [
@@ -185,7 +189,7 @@ export const experiences: Experience[] = [
   {
     role: "Software Engineering Intern",
     company: "WSO2",
-    period: "DATES TO ADD",
+    period: "2023 - 2024",
     summary:
       "Developed a strong foundation in production engineering practices and collaborative open-source workflows.",
     highlights: [
@@ -632,7 +636,7 @@ export const education = {
   degree: "BSc (Hons) Computer Science and Software Engineering",
   institution: "University of Bedfordshire, United Kingdom",
   result: "First-Class Honours",
-  year: "GRADUATION YEAR TO ADD",
+  year: "2024",
   leadership: [
     "Vice President · SLIIT City Uni Alumni Association",
     "Former Captain · SLIIT City UNI Athletics Team",

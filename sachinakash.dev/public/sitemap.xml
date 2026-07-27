@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://YOUR_PRODUCTION_DOMAIN/</loc></url>
-  <url><loc>https://YOUR_PRODUCTION_DOMAIN/projects</loc></url>
-  <url><loc>https://YOUR_PRODUCTION_DOMAIN/projects/sherees-cakes</loc></url>
-  <url><loc>https://YOUR_PRODUCTION_DOMAIN/projects/winchild</loc></url>
-  <url><loc>https://YOUR_PRODUCTION_DOMAIN/projects/capital-bridge</loc></url>
-  <url><loc>https://YOUR_PRODUCTION_DOMAIN/projects/nutri</loc></url>
-  <url><loc>https://YOUR_PRODUCTION_DOMAIN/resume</loc></url>
+  <url><loc>https://www.sachinakash.dev/</loc></url>
+  <url><loc>https://www.sachinakash.dev/projects</loc></url>
+  <url><loc>https://www.sachinakash.dev/projects/sherees-cakes</loc></url>
+  <url><loc>https://www.sachinakash.dev/projects/winchild</loc></url>
+  <url><loc>https://www.sachinakash.dev/projects/capital-bridge</loc></url>
+  <url><loc>https://www.sachinakash.dev/projects/nutri</loc></url>
+  <url><loc>https://www.sachinakash.dev/resume</loc></url>
 </urlset>

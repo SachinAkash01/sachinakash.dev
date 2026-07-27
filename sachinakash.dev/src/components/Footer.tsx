@@ -1,4 +1,11 @@
-import { ArrowUp, GitBranch, TerminalSquare } from "lucide-react";
+import {
+  ArrowUp,
+  BriefcaseBusiness,
+  Camera,
+  GitBranch,
+  Mail,
+  TerminalSquare,
+} from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { profile, services } from "../data/portfolio";
 import { useTheme } from "../hooks/useTheme";
@@ -9,6 +16,8 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const location = useLocation();
   const section = (id: string) =>
     location.pathname === "/" ? `#${id}` : `/#${id}`;
+  const socialUrl = (label: string) =>
+    profile.socials.find((social) => social.label === label)?.href ?? "#";
   return (
     <footer className="site-footer">
       <div className="shell footer-grid">
@@ -60,11 +69,28 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
           <h3>Connect</h3>
           <nav>
             <a
-              href="https://github.com/SachinAkash01"
+              href={socialUrl("GitHub")}
               target="_blank"
               rel="noopener noreferrer"
             >
               <GitBranch size={14} /> GitHub
+            </a>
+            <a
+              href={socialUrl("LinkedIn")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <BriefcaseBusiness size={14} /> LinkedIn
+            </a>
+            <a
+              href={socialUrl("Instagram")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Camera size={14} /> Instagram
+            </a>
+            <a href={`mailto:${profile.email}`}>
+              <Mail size={14} /> Email
             </a>
             <button onClick={onOpenTerminal}>
               <TerminalSquare size={14} /> Terminal
