@@ -37,6 +37,7 @@ src/
   pages/            Home, project index, case study, résumé, and 404 routes
   index.css         Tailwind import, visual system, and responsive styles
 public/
+  images/brand/     Primary navigation, favicon, and sharing logo
   images/profile/   Portrait asset
   documents/        Résumé PDF location
   robots.txt
@@ -58,6 +59,8 @@ The same file contains experience, projects, skills, services, education, and re
 ## Replace or adjust the profile image
 
 The active image is `public/images/profile/sachin-profile.jpeg`. Replace it while keeping the same filename, or update `profile.profileImage`. The portrait crop is controlled by `profile.profileImagePosition`; for example, `50% 28%` moves the visible crop toward the subject’s face.
+
+The primary brand artwork is `public/images/brand/sachin-akash-logo.png`. Its path is stored as `profile.brandLogo` and is used by the navigation and footer; the same file is referenced by the browser icon, Apple touch icon, Open Graph, X, and structured metadata.
 
 ## Project screenshots
 

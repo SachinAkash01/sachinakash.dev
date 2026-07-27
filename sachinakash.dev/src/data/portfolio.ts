@@ -81,6 +81,7 @@ export const profile = {
   availability: 'Open to thoughtful engineering roles and product collaborations',
   websiteUrl: 'https://YOUR_PRODUCTION_DOMAIN',
   resumeUrl: '/documents/sachin-akash-resume.pdf',
+  brandLogo: '/images/brand/sachin-akash-logo.png',
   profileImage: '/images/profile/sachin-profile.jpeg',
   profileImagePosition: '50% 28%',
   socials: [

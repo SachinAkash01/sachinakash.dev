@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Menu, Monitor, Moon, Sun, TerminalSquare, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme, type ThemePreference } from '../hooks/useTheme'
+import { BrandMark } from './BrandMark'
 
 const navigation = [
   ['About', 'about'], ['Experience', 'experience'], ['Projects', 'projects'], ['Skills', 'skills'],
@@ -45,7 +46,7 @@ export function Header({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   return (
     <header className={`site-header ${scrolled ? 'site-header--scrolled' : ''}`}>
       <div className="shell header-inner">
-        <Link to="/" className="brand" aria-label="Sachin Akash home"><span>SA</span><small>Sachin Akash</small></Link>
+        <Link to="/" className="brand" aria-label="Sachin Akash home"><BrandMark /><small>Sachin Akash</small></Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {navigation.map(([label, id]) => <a key={id} href={sectionHref(id)}>{label}</a>)}
         </nav>
