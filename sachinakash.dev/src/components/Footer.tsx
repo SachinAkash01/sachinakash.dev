@@ -1,11 +1,10 @@
 import {
   ArrowUp,
-  BriefcaseBusiness,
-  Camera,
-  GitBranch,
   Mail,
   TerminalSquare,
 } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa6";
+import { SiGithub, SiInstagram } from "react-icons/si";
 import { Link, useLocation } from "react-router-dom";
 import { profile, services } from "../data/portfolio";
 import { BrandMark } from "./BrandMark";
@@ -71,21 +70,21 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GitBranch size={14} /> GitHub
+              <SiGithub size={14} /> GitHub
             </a>
             <a
               href={socialUrl("LinkedIn")}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <BriefcaseBusiness size={14} /> LinkedIn
+              <FaLinkedin size={14} /> LinkedIn
             </a>
             <a
               href={socialUrl("Instagram")}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Camera size={14} /> Instagram
+              <SiInstagram size={14} /> Instagram
             </a>
             <a href={`mailto:${profile.email}`}>
               <Mail size={14} /> Email

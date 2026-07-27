@@ -6,17 +6,17 @@ import {
   ArrowUpRight,
   BookOpen,
   BriefcaseBusiness,
-  Camera,
   Check,
   Clipboard,
   Download,
-  GitBranch,
   GraduationCap,
   Mail,
   MapPin,
   TerminalSquare,
   X,
 } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa6";
+import { SiGithub, SiInstagram } from "react-icons/si";
 import { Link, useLocation } from "react-router-dom";
 import {
   books,
@@ -170,14 +170,14 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <GitBranch size={16} /> GitHub
+                <SiGithub size={16} /> GitHub
               </a>
               <a
                 href={socialUrl("LinkedIn")}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <BriefcaseBusiness size={16} /> LinkedIn
+                <FaLinkedin size={16} /> LinkedIn
               </a>
               <button onClick={onOpenTerminal}>
                 <TerminalSquare size={16} /> Open terminal
@@ -619,7 +619,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <GitBranch size={19} />
+                <SiGithub size={19} />
                 <div>
                   <span>GitHub</span>
                   <strong>@SachinAkash01</strong>
@@ -632,7 +632,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <BriefcaseBusiness size={19} />
+                <FaLinkedin size={19} />
                 <div>
                   <span>LinkedIn</span>
                   <strong>Sachin Akash</strong>
@@ -645,7 +645,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Camera size={19} />
+                <SiInstagram size={19} />
                 <div>
                   <span>Instagram</span>
                   <strong>@sachinakash</strong>
