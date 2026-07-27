@@ -60,14 +60,9 @@ The primary brand artwork is `public/images/brand/sachin-akash-logo.png`. Its pa
 
 ## Project screenshots
 
-The first release uses lightweight generated interface panels because approved screenshots were not supplied. When screenshots are ready:
+Approved, compressed website screenshots are stored in `public/images/projects/`. Their paths and descriptive alt text are defined on each project in `src/data/portfolio.ts`, while `ProjectVisual` provides the shared responsive browser-preview presentation.
 
-1. Put compressed WebP or AVIF files in `public/images/projects/<project-slug>/`.
-2. Add their paths and descriptive alt text to the matching project in `src/data/portfolio.ts`.
-3. Replace or extend `ProjectVisual` in `src/components/ProjectVisual.tsx` to render the approved image.
-4. Keep explicit dimensions and lazy-load images below the fold.
-
-Do not use unlicensed or unrelated stock images as project screenshots.
+Keep future screenshots compressed as WebP or AVIF, provide descriptive alt text, and use only approved project imagery.
 
 ## Add a project
 

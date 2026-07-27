@@ -364,7 +364,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             index="03"
             eyebrow="SELECTED WORK / 2026"
             title="Digital products designed to do real work."
-            copy="A selection of client platforms spanning commerce, education, finance, and food technology."
+            copy="A selection of platforms spanning commerce, education, finance, food technology, and software services."
             action={
               <Link className="text-link" to="/projects">
                 View all projects <ArrowUpRight size={16} />

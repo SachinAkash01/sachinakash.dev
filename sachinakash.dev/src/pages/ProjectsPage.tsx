@@ -13,12 +13,12 @@ export function ProjectsPage() {
         path="/projects"
       />
       <header className="shell page-hero">
-        <p className="mono-label">WORK INDEX / 04 PROJECTS</p>
+        <p className="mono-label">WORK INDEX / 05 PROJECTS</p>
         <h1>Products built for clear business outcomes.</h1>
         <p>
-          Selected client work across commerce, education, finance, and food
-          technology. Each case study explains the problem, product response,
-          and engineering approach.
+          Selected work across commerce, education, finance, food technology,
+          and software services. Each case study explains the problem, product
+          response, and engineering approach.
         </p>
       </header>
       <section className="shell all-projects">

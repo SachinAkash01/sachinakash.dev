@@ -10,17 +10,17 @@ export function ProjectVisual({
 }) {
   return (
     <div
-      className={`project-visual ${compact ? "project-visual--compact" : ""}`}
+      className={`project-visual project-visual--with-image ${compact ? "project-visual--compact" : ""}`}
       style={{ "--project-accent": project.accent } as React.CSSProperties}
-      aria-hidden="true"
     >
+      <img
+        className="project-visual__image"
+        src={project.image}
+        alt={project.imageAlt}
+        loading="lazy"
+        decoding="async"
+      />
       <div className="project-visual__grid" />
-      <div className="project-visual__chrome">
-        <span />
-        <span />
-        <span />
-        <small>{project.url.replace("https://", "").replace(/\/$/, "")}</small>
-      </div>
       <div className="project-visual__content">
         <span className="project-visual__index">
           PROJECT / {project.number}

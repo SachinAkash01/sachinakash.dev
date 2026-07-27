@@ -134,21 +134,11 @@ export function ProjectPage() {
       <section className="shell case-section outcome-section">
         <p className="mono-label">05 / OUTCOME</p>
         <blockquote>{project.outcome}</blockquote>
-        <p>
-          Project imagery can be replaced with approved production screenshots
-          from the central project data and public image folders.
-        </p>
       </section>
       <section
-        className="shell case-gallery"
-        aria-label="Project gallery placeholders"
+        className="shell case-gallery case-gallery--single"
+        aria-label={`${project.title} website preview`}
       >
-        <div>
-          <ProjectVisual project={project} compact />
-        </div>
-        <div>
-          <ProjectVisual project={project} compact />
-        </div>
         <div>
           <ProjectVisual project={project} compact />
         </div>

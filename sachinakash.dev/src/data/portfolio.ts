@@ -25,6 +25,8 @@ export type Project = {
   title: string;
   shortTitle: string;
   url: string;
+  image: string;
+  imageAlt: string;
   category: string;
   industry: string;
   summary: string;
@@ -208,6 +210,8 @@ export const projects: Project[] = [
     shortTitle: "Sheree’s Cakes",
     title: "Sheree’s Cakes E-Commerce Platform",
     url: "https://www.shereescakes.lk/",
+    image: "/images/projects/sherees-cakes.webp",
+    imageAlt: "Sheree's Cakes e-commerce website home page",
     category: "E-commerce · Food and Retail",
     industry: "Food, retail, and online ordering",
     summary:
@@ -256,6 +260,8 @@ export const projects: Project[] = [
     shortTitle: "Winchild",
     title: "Winchild Preschool and Daycare Website",
     url: "https://www.winchild.lk/",
+    image: "/images/projects/winchild.webp",
+    imageAlt: "Winchild preschool and daycare website home page",
     category: "Education · Institutional Website",
     industry: "Early education and childcare",
     summary:
@@ -304,6 +310,8 @@ export const projects: Project[] = [
     shortTitle: "Capital Bridge",
     title: "Capital Bridge Microfinance Company Website",
     url: "https://capitalbridge.lk/",
+    image: "/images/projects/capital-bridge.webp",
+    imageAlt: "Capital Bridge microfinance company website home page",
     category: "Finance · Corporate Website",
     industry: "Microfinance and financial services",
     summary:
@@ -352,6 +360,8 @@ export const projects: Project[] = [
     shortTitle: "Nutri",
     title: "Nutri High-Protein Meal Ordering Website",
     url: "https://nutri-seven-beta.vercel.app/",
+    image: "/images/projects/nutri.webp",
+    imageAlt: "Nutri high-protein meal ordering website home page",
     category: "Food Technology · E-commerce",
     industry: "Nutrition, food technology, and e-commerce",
     summary:
@@ -392,6 +402,56 @@ export const projects: Project[] = [
     outcome:
       "A modern, convenient storefront foundation that brings the brand’s high-protein proposition into a clear digital experience.",
     accent: "#88a861",
+  },
+  {
+    slug: "evantra-labs",
+    number: "05",
+    shortTitle: "Evantra Labs",
+    title: "Evantra Labs Official Website",
+    url: "https://www.evantralabs.com/",
+    image: "/images/projects/evantra-labs.webp",
+    imageAlt: "Evantra Labs software company website home page",
+    category: "Technology · Corporate Website",
+    industry: "Software services and digital product engineering",
+    summary:
+      "A clear, contemporary company website that presents Evantra Labs' engineering services and gives prospective clients a direct path to start a project.",
+    objective:
+      "Establish a credible digital home for Evantra Labs that communicates its capabilities, working style, and value to ambitious teams.",
+    problem:
+      "A broad service portfolio spanning websites, applications, custom software, SEO, and business systems needed to feel focused rather than fragmented.",
+    solution:
+      "A responsive corporate experience with concise positioning, structured service discovery, a visible technology stack, and strong project-enquiry paths.",
+    role: "Product direction, information architecture, interface engineering, content strategy, SEO foundations, and production delivery.",
+    features: [
+      "Company positioning and service overview",
+      "Detailed software service pathways",
+      "Technology stack presentation",
+      "Project enquiry calls to action",
+      "Responsive navigation and layouts",
+      "Search-friendly page structure",
+      "Accessible contact information",
+      "Production deployment",
+    ],
+    designApproach:
+      "A restrained white canvas, confident typography, and focused teal accents create a modern technical identity while keeping the service content easy to scan.",
+    technicalApproach:
+      "A component-led responsive frontend with semantic content structure, reusable service sections, optimised assets, and practical SEO and deployment foundations.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vite",
+      "SEO",
+      "Responsive UI",
+    ],
+    challenges: [
+      "Explaining a broad service portfolio without overwhelming visitors",
+      "Balancing company credibility with a direct conversion path",
+      "Keeping a highly visual identity fast and responsive",
+    ],
+    outcome:
+      "A professional digital front door that makes Evantra Labs' capabilities easier to understand and gives potential clients a clear route from interest to conversation.",
+    accent: "#1ca7b6",
   },
 ];
 

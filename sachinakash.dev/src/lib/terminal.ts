@@ -27,6 +27,7 @@ export const terminalCommands = [
   "project winchild",
   "project capital-bridge",
   "project nutri",
+  "project evantra-labs",
   "skills",
   "services",
   "education",
