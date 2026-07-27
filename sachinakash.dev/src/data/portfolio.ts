@@ -74,7 +74,7 @@ export const profile = {
   monogram: "SA",
   eyebrow: "Software Engineer · Product Builder · Entrepreneur",
   title:
-    "Software Engineer, Product Builder, and Co-Founder & Director at Evantra Labs",
+    "Software Engineer, Product Builder, and Entrepreneur ",
   headline:
     "I design and ship software that turns ideas into reliable digital products.",
   summary:

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-import { CornerDownLeft, TerminalSquare, X } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { TerminalSquare, X } from "lucide-react";
 import { completeTerminalInput, executeTerminalCommand } from "../lib/terminal";
 
 type Line = { type: "command" | "output"; text: string };
@@ -15,16 +14,14 @@ export default function PortfolioTerminal({
 }) {
   const [input, setInput] = useState("");
   const [lines, setLines] = useState<Line[]>([
-    { type: "output", text: "Sachin Portfolio Terminal" },
-    { type: "output", text: "Type “help” to explore. Try: projects" },
+    { type: "output", text: "Ubuntu 24.04 LTS — Sachin Portfolio Shell" },
+    { type: "output", text: "Type 'help' to explore. Try: projects" },
   ]);
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const outputRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     if (!open) return;
@@ -68,27 +65,14 @@ export default function PortfolioTerminal({
   ) => {
     if (!action) return;
     if (action.type === "clear") {
-      setLines([]);
+      setLines((current) => current.slice(0, 2));
       return;
     }
     if (action.type === "open") {
       window.open(action.target, "_blank", "noopener,noreferrer");
       return;
     }
-    if (action.type === "navigate") {
-      navigate(action.target);
-      onClose();
-      return;
-    }
-    if (action.type === "scroll") {
-      const scrollNow = () =>
-        document
-          .getElementById(action.target)
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-      if (location.pathname !== "/") {
-        navigate(`/#${action.target}`);
-        setTimeout(scrollNow, 80);
-      } else scrollNow();
+    if (action.type === "close") {
       onClose();
     }
   };
@@ -152,16 +136,23 @@ export default function PortfolioTerminal({
         aria-labelledby="terminal-title"
       >
         <div className="terminal__bar">
-          <div>
-            <TerminalSquare size={17} />
-            <span id="terminal-title">portfolio://command-panel</span>
+          <div className="terminal__window-controls" aria-hidden="true">
+            <span />
+            <span />
+            <span />
           </div>
-          <div className="terminal__status">
-            <i /> ONLINE{" "}
-            <button type="button" onClick={onClose} aria-label="Close terminal">
-              <X size={18} />
-            </button>
+          <div className="terminal__title">
+            <TerminalSquare size={15} />
+            <span id="terminal-title">Terminal — visitor@sachin: ~</span>
           </div>
+          <button
+            className="terminal__close"
+            type="button"
+            onClick={onClose}
+            aria-label="Close terminal"
+          >
+            <X size={17} />
+          </button>
         </div>
         <div
           className="terminal__output"
@@ -179,42 +170,34 @@ export default function PortfolioTerminal({
               <pre>{line.text}</pre>
             </div>
           ))}
-        </div>
-        <div className="terminal__suggestions" aria-label="Suggested commands">
-          {["help", "projects", "whoami", "nightwatch"].map((command) => (
-            <button
-              key={command}
-              type="button"
-              onClick={() => {
-                setInput(command);
-                inputRef.current?.focus();
-              }}
-            >
-              {command}
-            </button>
-          ))}
-        </div>
-        <div className="terminal__input-wrap">
-          <span aria-hidden="true">visitor@sachin:~$</span>
-          <label className="sr-only" htmlFor="terminal-input">
-            Terminal command
-          </label>
-          <input
-            id="terminal-input"
-            ref={inputRef}
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
-            onKeyDown={onInputKeyDown}
-            autoComplete="off"
-            spellCheck="false"
-          />
-          <button type="button" onClick={submit} aria-label="Run command">
-            <CornerDownLeft size={17} />
-          </button>
+          <form
+            className="terminal__prompt-line"
+            onSubmit={(event) => {
+              event.preventDefault();
+              submit();
+            }}
+          >
+            <span className="terminal__prompt-user">visitor@sachin</span>
+            <span className="terminal__prompt-path">:~$</span>
+            <label className="sr-only" htmlFor="terminal-input">
+              Terminal command
+            </label>
+            <input
+              id="terminal-input"
+              ref={inputRef}
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              onKeyDown={onInputKeyDown}
+              autoComplete="off"
+              autoCapitalize="none"
+              spellCheck="false"
+            />
+          </form>
         </div>
         <div className="terminal__footer">
-          <span>TAB complete</span>
-          <span>↑↓ history</span>
+          <span>bash</span>
+          <span>TAB autocomplete</span>
+          <span>UP/DOWN history</span>
           <span>ESC close</span>
         </div>
       </div>

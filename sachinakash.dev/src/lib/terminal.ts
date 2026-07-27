@@ -1,4 +1,5 @@
 import {
+  books,
   education,
   experiences,
   profile,
@@ -8,10 +9,9 @@ import {
 } from "../data/portfolio";
 
 export type TerminalAction =
-  | { type: "scroll"; target: string }
-  | { type: "navigate"; target: string }
   | { type: "open"; target: string }
-  | { type: "clear" };
+  | { type: "clear" }
+  | { type: "close" };
 
 export type TerminalResult = { output: string[]; action?: TerminalAction };
 
@@ -38,6 +38,7 @@ export const terminalCommands = [
   "open instagram",
   "open email",
   "clear",
+  "exit",
   "history",
   "nightwatch",
 ];
@@ -48,7 +49,7 @@ const help = [
   "  skills · services · education · books · contact · social",
   "SYSTEM",
   "  open <github|linkedin|instagram|email>",
-  "  resume · history · clear",
+  "  resume · history · clear · exit",
 ];
 
 export function executeTerminalCommand(
@@ -65,26 +66,25 @@ export function executeTerminalCommand(
       return { output: help };
     case "whoami":
       return {
-        output: [`${profile.name} — ${profile.title}`, profile.location],
+        output: [`${profile.name} — Software Engineer, Product Builder, and Co-Founder & Director at Evantra Labs`, profile.location],
       };
     case "about":
       return {
-        output: [profile.summary],
-        action: { type: "scroll", target: "about" },
+        output: [profile.title, profile.summary, `Location: ${profile.location}`],
       };
     case "experience":
       return {
-        output: experiences.map(
-          (item) => `${item.role} @ ${item.company} — ${item.period}`,
-        ),
-        action: { type: "scroll", target: "experience" },
+        output: experiences.flatMap((item) => [
+          `${item.period}  ${item.role} @ ${item.company}`,
+          `  ${item.summary}`,
+        ]),
       };
     case "projects":
       return {
-        output: projects.map(
-          (project) => `${project.slug.padEnd(16)} ${project.shortTitle}`,
-        ),
-        action: { type: "scroll", target: "projects" },
+        output: projects.flatMap((project) => [
+          `${project.number}  ${project.slug.padEnd(16)} ${project.shortTitle}`,
+          `    ${project.summary}`,
+        ]),
       };
     case "project": {
       const project = projects.find((item) => item.slug === args[0]);
@@ -97,9 +97,11 @@ export function executeTerminalCommand(
           project.title,
           project.category,
           project.summary,
-          `Opening /projects/${project.slug}…`,
+          `Objective: ${project.objective}`,
+          `Role: ${project.role}`,
+          `Stack: ${project.technologies.join(", ")}`,
+          `Website: ${project.url}`,
         ],
-        action: { type: "navigate", target: `/projects/${project.slug}` },
       };
     }
     case "skills":
@@ -107,30 +109,36 @@ export function executeTerminalCommand(
         output: skillGroups.map(
           (group) => `${group.label}: ${group.items.join(", ")}`,
         ),
-        action: { type: "scroll", target: "skills" },
       };
     case "services":
       return {
-        output: services.map((service) => service.title),
-        action: { type: "scroll", target: "services" },
+        output: services.map(
+          (service) => `${service.title}: ${service.description}`,
+        ),
       };
     case "education":
       return {
-        output: [education.degree, education.institution, education.result],
-        action: { type: "scroll", target: "education" },
+        output: [
+          `${education.degree} (${education.year})`,
+          education.institution,
+          `Result: ${education.result}`,
+          ...education.leadership,
+        ],
       };
     case "books":
       return {
         output: [
           "Books that shaped how I build, think, and lead.",
-          "Opening the reading shelf…",
+          ...books.map((book) => `- ${book.title} — ${book.author}`),
         ],
-        action: { type: "scroll", target: "books" },
       };
     case "contact":
       return {
-        output: [`Email: ${profile.email}`, `Location: ${profile.location}`],
-        action: { type: "scroll", target: "contact" },
+        output: [
+          `Email: ${profile.email}`,
+          `Location: ${profile.location}`,
+          `Website: ${profile.websiteUrl}`,
+        ],
       };
     case "social":
       return {
@@ -140,8 +148,7 @@ export function executeTerminalCommand(
       };
     case "resume":
       return {
-        output: ["Opening résumé…"],
-        action: { type: "open", target: profile.resumeUrl },
+        output: [`Resume: ${profile.websiteUrl}${profile.resumeUrl}`],
       };
     case "open": {
       const target = args[0];
@@ -169,6 +176,8 @@ export function executeTerminalCommand(
     }
     case "clear":
       return { output: [], action: { type: "clear" } };
+    case "exit":
+      return { output: [], action: { type: "close" } };
     case "history":
       return {
         output: history.length
@@ -180,10 +189,10 @@ export function executeTerminalCommand(
     case "nightwatch":
       return {
         output: [
-          "        ·     *",
-          "   ┌─┐    ╱╲       ·",
-          " ┌─┘ └─┐ ╱  ╲  ┌─┐",
-          "─┴─────┴───────┴─┴─",
+          "        .     *",
+          "   +--+    /\\       .",
+          " +-+  +-+ /  \\  +--+",
+          "-+------+--------+--+-",
           "Quiet systems. Clear signals. Software built after dark.",
         ],
       };

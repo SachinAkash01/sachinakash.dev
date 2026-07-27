@@ -54,12 +54,15 @@ export function Header({ onOpenTerminal }: { onOpenTerminal: () => void }) {
         </nav>
         <div className="header-actions">
           <button
-            className="icon-button"
+            className="terminal-launcher"
             type="button"
             onClick={onOpenTerminal}
             aria-label="Open portfolio terminal"
+            title="Open terminal (Ctrl or Command + K)"
           >
-            <TerminalSquare size={18} />
+            <TerminalSquare size={16} />
+            <span>Terminal</span>
+            <kbd>⌘K</kbd>
           </button>
           <a
             className="button button--small header-cta"
