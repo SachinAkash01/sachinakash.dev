@@ -93,7 +93,7 @@ export const profile = {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/sachin-akash-6514aa227/",
     },
-    { label: "Instagram", href: "https://www.instagram.com/sachinakash" },
+    { label: "Instagram", href: "https://www.instagram.com/sachinakash_" },
   ] satisfies SocialLink[],
 };
 

@@ -172,6 +172,13 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
               >
                 <GitBranch size={16} /> GitHub
               </a>
+              <a
+                href={socialUrl("LinkedIn")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BriefcaseBusiness size={16} /> LinkedIn
+              </a>
               <button onClick={onOpenTerminal}>
                 <TerminalSquare size={16} /> Open terminal
               </button>
