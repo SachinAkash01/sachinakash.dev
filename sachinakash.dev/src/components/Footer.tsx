@@ -8,11 +8,9 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { profile, services } from "../data/portfolio";
-import { useTheme } from "../hooks/useTheme";
 import { BrandMark } from "./BrandMark";
 
 export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
-  const { preference, setPreference } = useTheme();
   const location = useLocation();
   const section = (id: string) =>
     location.pathname === "/" ? `#${id}` : `/#${id}`;
@@ -105,19 +103,6 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
           with intent.
         </p>
         <div>
-          <label>
-            Theme{" "}
-            <select
-              value={preference}
-              onChange={(event) =>
-                setPreference(event.target.value as "dark" | "light" | "system")
-              }
-            >
-              <option value="dark">Dark</option>
-              <option value="light">Light</option>
-              <option value="system">System</option>
-            </select>
-          </label>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >

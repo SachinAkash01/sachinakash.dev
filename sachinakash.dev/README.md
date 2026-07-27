@@ -32,7 +32,6 @@ npm run build
 src/
   components/       Shared UI, header, terminal, forms, and project visuals
   data/             Typed portfolio content and central personal configuration
-  hooks/            Theme preference and persistence
   lib/              Terminal parser and contact service adapter
   pages/            Home, project index, case study, résumé, and 404 routes
   index.css         Tailwind import, visual system, and responsive styles

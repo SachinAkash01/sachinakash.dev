@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Menu, Monitor, Moon, Sun, TerminalSquare, X } from "lucide-react";
+import { Menu, TerminalSquare, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { useTheme, type ThemePreference } from "../hooks/useTheme";
 import { BrandMark } from "./BrandMark";
 
 const navigation = [
@@ -13,29 +12,6 @@ const navigation = [
   ["Books", "books"],
   ["Contact", "contact"],
 ];
-
-function ThemeControl() {
-  const { preference, setPreference } = useTheme();
-  const icons = { dark: Moon, light: Sun, system: Monitor };
-  const Icon = icons[preference];
-  return (
-    <label className="theme-control" title="Colour theme">
-      <Icon size={16} aria-hidden="true" />
-      <span className="sr-only">Colour theme</span>
-      <select
-        value={preference}
-        onChange={(event) =>
-          setPreference(event.target.value as ThemePreference)
-        }
-        aria-label="Colour theme"
-      >
-        <option value="dark">Dark</option>
-        <option value="light">Light</option>
-        <option value="system">System</option>
-      </select>
-    </label>
-  );
-}
 
 export function Header({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const [open, setOpen] = useState(false);
@@ -85,7 +61,6 @@ export function Header({ onOpenTerminal }: { onOpenTerminal: () => void }) {
           >
             <TerminalSquare size={18} />
           </button>
-          <ThemeControl />
           <a
             className="button button--small header-cta"
             href={sectionHref("contact")}

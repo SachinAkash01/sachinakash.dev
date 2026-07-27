@@ -6,12 +6,10 @@ import {
   services,
   skillGroups,
 } from "../data/portfolio";
-import type { ThemePreference } from "../hooks/useTheme";
 
 export type TerminalAction =
   | { type: "scroll"; target: string }
   | { type: "navigate"; target: string }
-  | { type: "theme"; value: ThemePreference }
   | { type: "open"; target: string }
   | { type: "clear" };
 
@@ -35,9 +33,6 @@ export const terminalCommands = [
   "contact",
   "social",
   "resume",
-  "theme dark",
-  "theme light",
-  "theme system",
   "open github",
   "open linkedin",
   "open instagram",
@@ -52,7 +47,7 @@ const help = [
   "  whoami · about · experience · projects · project <slug>",
   "  skills · services · education · books · contact · social",
   "SYSTEM",
-  "  theme <dark|light|system> · open <github|linkedin|instagram|email>",
+  "  open <github|linkedin|instagram|email>",
   "  resume · history · clear",
 ];
 
@@ -148,15 +143,6 @@ export function executeTerminalCommand(
         output: ["Opening résumé…"],
         action: { type: "open", target: profile.resumeUrl },
       };
-    case "theme": {
-      const value = args[0];
-      if (value !== "dark" && value !== "light" && value !== "system")
-        return { output: ["Usage: theme <dark|light|system>"] };
-      return {
-        output: [`Theme preference set to ${value}.`],
-        action: { type: "theme", value },
-      };
-    }
     case "open": {
       const target = args[0];
       if (target === "github" || target === "linkedin" || target === "instagram") {

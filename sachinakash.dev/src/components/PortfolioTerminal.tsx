@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import { CornerDownLeft, TerminalSquare, X } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { completeTerminalInput, executeTerminalCommand } from "../lib/terminal";
-import { useTheme } from "../hooks/useTheme";
 
 type Line = { type: "command" | "output"; text: string };
 
@@ -26,7 +25,6 @@ export default function PortfolioTerminal({
   const outputRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const { setPreference } = useTheme();
 
   useEffect(() => {
     if (!open) return;
@@ -71,10 +69,6 @@ export default function PortfolioTerminal({
     if (!action) return;
     if (action.type === "clear") {
       setLines([]);
-      return;
-    }
-    if (action.type === "theme") {
-      setPreference(action.value);
       return;
     }
     if (action.type === "open") {

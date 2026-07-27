@@ -29,29 +29,10 @@
     sans-serif;
   color: var(--text);
   background: var(--bg);
+  color-scheme: dark;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-}
-
-:root[data-theme="light"] {
-  --bg: #f3f1eb;
-  --bg-raised: #eeebe4;
-  --surface: #fbfaf7;
-  --surface-2: #e8e5de;
-  --surface-soft: rgba(33, 39, 41, 0.035);
-  --text: #1b2021;
-  --text-soft: #59615f;
-  --text-faint: #808784;
-  --line: rgba(28, 33, 34, 0.13);
-  --line-strong: rgba(28, 33, 34, 0.24);
-  --amber: #9a6d34;
-  --amber-bright: #815622;
-  --amber-soft: rgba(154, 109, 52, 0.1);
-  --blue: #577a97;
-  --danger: #a2453c;
-  --shadow: 0 24px 65px rgba(43, 42, 36, 0.13);
-  --header: rgba(243, 241, 235, 0.9);
 }
 
 * {
@@ -291,28 +272,6 @@ h3 {
   border-color: var(--line-strong);
   color: var(--amber-bright);
   background: var(--amber-soft);
-}
-.theme-control {
-  height: 40px;
-  min-width: 42px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 8px;
-  border: 1px solid var(--line);
-  background: var(--surface-soft);
-}
-.theme-control select {
-  width: 18px;
-  border: 0;
-  color: transparent;
-  background: transparent;
-  cursor: pointer;
-  outline: 0;
-}
-.theme-control select option {
-  color: #121517;
-  background: #f5f3ee;
 }
 .button {
   min-height: 46px;
@@ -608,10 +567,6 @@ h3 {
   filter: saturate(0.78) contrast(1.06);
   mix-blend-mode: luminosity;
 }
-:root[data-theme="light"] .portrait-frame img {
-  mix-blend-mode: multiply;
-  opacity: 0.94;
-}
 .portrait-glow {
   position: absolute;
   z-index: 3;
@@ -669,9 +624,6 @@ h3 {
   background: rgba(9, 11, 13, 0.9);
   border: 1px solid rgba(224, 183, 126, 0.26);
   backdrop-filter: blur(12px);
-}
-:root[data-theme="light"] .portrait-tag {
-  background: rgba(251, 250, 247, 0.92);
 }
 .portrait-tag span {
   display: block;
@@ -1678,9 +1630,6 @@ h3 {
   background: #07090a;
   color: #eef0ed;
 }
-:root[data-theme="light"] .site-footer {
-  background: #202525;
-}
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 0.7fr 1fr 0.7fr;
@@ -2436,9 +2385,6 @@ h3 {
   }
   .header-inner {
     height: 66px;
-  }
-  .theme-control {
-    display: none;
   }
   .hero-section {
     padding-top: 94px;
