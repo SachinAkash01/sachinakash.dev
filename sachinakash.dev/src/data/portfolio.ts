@@ -70,13 +70,13 @@ export type Book = {
 export const profile = {
   name: "Sachin Akash",
   monogram: "SA",
-  eyebrow: "Software Engineer · Product Builder · CTO",
+  eyebrow: "Software Engineer · Product Builder · Entrepreneur",
   title:
-    "Software Engineer, Product Builder, and Co-Founder & CTO at Evantra Labs",
+    "Software Engineer, Product Builder, and Co-Founder & Director at Evantra Labs",
   headline:
     "I design and ship software that turns ideas into reliable digital products.",
   summary:
-    "I’m a software engineer and Co-Founder & CTO at Evantra Labs, with experience building web platforms, mobile applications, APIs, developer tools, cloud solutions, and production-ready software for businesses.",
+    "I’m a software engineer and Co-Founder & Director at Evantra Labs, with experience building web platforms, mobile applications, APIs, developer tools, cloud solutions, and production-ready software for businesses.",
   location: "Colombo, Sri Lanka",
   email: "YOUR_EMAIL_ADDRESS",
   phone: "YOUR_PHONE_NUMBER",
@@ -157,7 +157,7 @@ export const expertise = [
 
 export const experiences: Experience[] = [
   {
-    role: "Co-Founder & CTO",
+    role: "Co-Founder & Director",
     company: "Evantra Labs",
     period: "CURRENT · DATES TO ADD",
     summary:

@@ -1,6 +1,6 @@
 # Sachin Akash — Personal Portfolio
 
-A production-oriented portfolio for Sachin Akash: software engineer, product builder, and Co-Founder & CTO at Evantra Labs. The site is designed as a quiet engineering observatory with an amber-on-graphite visual system, practical information architecture, reusable project case studies, and an accessible command terminal.
+A production-oriented portfolio for Sachin Akash: software engineer, product builder, and Co-Founder & Director at Evantra Labs. The site is designed as a quiet engineering observatory with an amber-on-graphite visual system, practical information architecture, reusable project case studies, and an accessible command terminal.
 
 ## Technology stack
 

@@ -128,7 +128,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
     <main id="main-content">
       <Seo
         title="Sachin Akash — Software Engineer & Product Builder"
-        description="Portfolio of Sachin Akash, software engineer, product builder, and Co-Founder & CTO at Evantra Labs in Colombo, Sri Lanka."
+        description="Portfolio of Sachin Akash, software engineer, product builder, and Co-Founder & Director at Evantra Labs in Colombo, Sri Lanka."
       />
       <section className="hero-section" id="home">
         <div className="hero-orbit hero-orbit--one" />
@@ -276,15 +276,15 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             </div>
             <div>
               <p>
-                Sachin is a software engineer, product builder, and entrepreneur
+                I'm a software engineer, product builder, and entrepreneur
                 who enjoys turning complex requirements into thoughtful,
-                well-designed software. His work spans developer tooling, APIs,
+                well-designed software. My work spans developer tooling, APIs,
                 open-source engineering, web and mobile products, cloud systems,
                 and production client solutions.
               </p>
               <p>
-                Today, he leads technical strategy and delivery as Co-Founder &
-                CTO at Evantra Labs, drawing on previous engineering experience
+                Today, I lead technical strategy and delivery as Co-Founder &
+                Director at Evantra Labs, drawing on previous engineering experience
                 at WSO2 and a practical bias toward software that is clear,
                 useful, and ready for the real world.
               </p>
