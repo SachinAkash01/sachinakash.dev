@@ -8,6 +8,7 @@ import {
   BriefcaseBusiness,
   Check,
   Clipboard,
+  Cog,
   Download,
   GraduationCap,
   Mail,
@@ -154,8 +155,16 @@ function ReadingFactDialog({
           <X size={19} />
         </button>
         <div className="reading-fact-emblem" aria-hidden="true">
-          <BookOpen size={34} />
-          <strong>400+</strong>
+          <span className="reading-fact-orbit">
+            <i />
+            <i />
+            <i />
+          </span>
+          <Cog className="reading-fact-gear reading-fact-gear--one" size={34} />
+          <Cog className="reading-fact-gear reading-fact-gear--two" size={23} />
+          <span className="reading-fact-core">
+            <BookOpen size={34} />
+          </span>
         </div>
         <div>
           <p className="mono-label">A NOTE FROM THE SHELF / 400+</p>

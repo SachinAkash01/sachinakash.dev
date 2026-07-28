@@ -37,12 +37,21 @@ export function Header({ onOpenTerminal }: { onOpenTerminal: () => void }) {
 
   const sectionHref = (id: string) =>
     location.pathname === "/" ? `#${id}` : `/#${id}`;
+  const scrollHomeToTop = () => {
+    if (location.pathname === "/")
+      window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <header
       className={`site-header ${scrolled ? "site-header--scrolled" : ""} ${open ? "site-header--menu-open" : ""}`}
     >
       <div className="shell header-inner">
-        <Link to="/" className="brand" aria-label="Sachin Akash home">
+        <Link
+          to="/"
+          className="brand"
+          aria-label="Sachin Akash home"
+          onClick={scrollHomeToTop}
+        >
           <BrandMark />
           <small>Sachin Akash</small>
         </Link>

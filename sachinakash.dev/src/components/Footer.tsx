@@ -15,6 +15,10 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
     location.pathname === "/" ? `#${id}` : `/#${id}`;
   const socialUrl = (label: string) =>
     profile.socials.find((social) => social.label === label)?.href ?? "#";
+  const scrollHomeToTop = () => {
+    if (location.pathname === "/")
+      window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <footer className="site-footer">
       <div className="shell footer-grid">
@@ -23,6 +27,7 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             className="brand brand--footer"
             to="/"
             aria-label="Sachin Akash home"
+            onClick={scrollHomeToTop}
           >
             <BrandMark />
             <small>Sachin Akash</small>

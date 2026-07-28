@@ -119,10 +119,18 @@ export function executeTerminalCommand(
     case "education":
       return {
         output: [
+          "UNIVERSITY EDUCATION",
           `${education.degree} (${education.year})`,
           education.institution,
           `Result: ${education.result}`,
-          ...education.leadership,
+          "University leadership:",
+          ...education.leadership.map((item) => `- ${item}`),
+          "",
+          "SCHOOL EDUCATION",
+          `${education.school.qualifications} (${education.school.year})`,
+          education.school.institution,
+          "School leadership:",
+          ...education.school.leadership.map((item) => `- ${item}`),
         ],
       };
     case "books":
