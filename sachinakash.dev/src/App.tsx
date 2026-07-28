@@ -18,10 +18,77 @@ function ScrollManager() {
   return null;
 }
 
+function useScrollReveal(pathname: string) {
+  useEffect(() => {
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    )
+      return;
+
+    const selectors = [
+      ".section-heading",
+      ".overview-grid > article",
+      ".about-panel > *",
+      ".expertise-grid > article",
+      ".timeline__item",
+      ".project-card",
+      ".skills-grid > article",
+      ".engineering-band",
+      ".services-grid > article",
+      ".education-grid > article",
+      ".book-card",
+      ".contact-heading",
+      ".contact-grid > *",
+      ".page-hero > *",
+      ".all-projects > article",
+      ".case-hero__grid > *",
+      ".case-brief > *",
+      ".case-title",
+      ".feature-grid > div",
+      ".approach-grid > article",
+      ".challenge-grid > *",
+      ".outcome-section > *",
+      ".case-gallery__item",
+      ".next-project > *",
+      ".case-contact > .shell",
+    ].join(",");
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>(selectors),
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("reveal-on-scroll--visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -7%", threshold: 0.08 },
+    );
+
+    elements.forEach((element) => {
+      const siblings = element.parentElement
+        ? Array.from(element.parentElement.children)
+        : [];
+      const siblingIndex = siblings.indexOf(element);
+      element.style.setProperty(
+        "--reveal-delay",
+        `${Math.min(Math.max(siblingIndex, 0), 4) * 55}ms`,
+      );
+      element.classList.add("reveal-on-scroll");
+      observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [pathname]);
+}
+
 function App() {
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const location = useLocation();
+  useScrollReveal(location.pathname);
   const openTerminal = useCallback(() => setTerminalOpen(true), []);
   const closeTerminal = useCallback(() => setTerminalOpen(false), []);
 

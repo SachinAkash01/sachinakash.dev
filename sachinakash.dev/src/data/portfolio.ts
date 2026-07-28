@@ -183,12 +183,12 @@ export const experiences: Experience[] = [
     company: "WSO2",
     period: "2024 - 2026",
     summary:
-      "Built developer-facing software in the Ballerina and API ecosystem with an emphasis on engineering quality.",
+      "Shipped developer tooling, runtime capabilities, and integration product experiences across Ballerina and Devant (now WSO2 Integration Platform), with a strong focus on reliability and adoption.",
     highlights: [
-      "Developer tooling and OpenAPI engineering",
-      "API development and open-source contribution",
-      "Testing and product quality",
-      "Cross-functional engineering collaboration",
+      "Delivered core capabilities across Ballerina HTTP, OpenAPI, JSON Schema, FTP, and VFS modules",
+      "Strengthened code generation, connector tooling, static analysis, testing, and release quality",
+      "Improved Devant product UX, integration workflows, architecture reliability, and onboarding guides",
+      "Led connector and documentation improvements while mentoring IIT engineering interns",
     ],
   },
   {
@@ -196,12 +196,11 @@ export const experiences: Experience[] = [
     company: "WSO2",
     period: "2023 - 2024",
     summary:
-      "Developed a strong foundation in production engineering practices and collaborative open-source workflows.",
+      "Contributed to the Ballerina OpenAPI Tool, improving specification generation and the maintainability of its service-to-OAS pipeline.",
     highlights: [
-      "Software engineering fundamentals",
-      "Testing and development workflows",
-      "Open-source practices",
-      "Team collaboration",
+      "Designed constraint and HATEOAS support for Ballerina service-to-OAS generation",
+      "Helped restructure the Ballerina to OpenAPI generator into a modular, component-based codebase",
+      "Collaborated with internal teams to align generation with existing developer workflows",
     ],
   },
 ];
@@ -773,9 +772,18 @@ export const education = {
   degree: "BSc (Hons) Computer Science & Software Engineering",
   institution: "University of Bedfordshire, United Kingdom",
   result: "First-Class Honours",
-  year: "2024",
+  year: "2021 - 2024",
   leadership: [
     "Vice President · SLIIT City UNI Alumni Association",
     "Former Captain · SLIIT City UNI Athletics Team",
   ],
+  school: {
+    qualifications: "GCE Ordinary Level / GCE Advanced Level",
+    institution: "St. Peter's College, Colombo 04, Sri Lanka",
+    year: "2007 - 2020",
+    leadership: [
+      "Vice President / Concertmaster - Peterite Orchestra & Choir",
+      "Assistant Secretary - Peterite Maths & Science Society",
+    ],
+  },
 };

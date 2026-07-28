@@ -9,6 +9,7 @@ const navigation = [
   ["Projects", "projects"],
   ["Skills", "skills"],
   ["Services", "services"],
+  ["Education", "education"],
   ["Books", "books"],
   ["Contact", "contact"],
 ];

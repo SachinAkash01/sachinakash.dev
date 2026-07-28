@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownRight,
@@ -104,11 +104,89 @@ function BookDialog({
   );
 }
 
+function ReadingFactDialog({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    requestAnimationFrame(() => closeRef.current?.focus());
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+      previousFocus?.focus();
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+  return (
+    <div
+      className="reading-fact-backdrop"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div
+        className="reading-fact-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="reading-fact-title"
+      >
+        <button
+          ref={closeRef}
+          className="icon-button reading-fact-dialog__close"
+          type="button"
+          onClick={onClose}
+          aria-label="Close reading fun fact"
+        >
+          <X size={19} />
+        </button>
+        <div className="reading-fact-emblem" aria-hidden="true">
+          <BookOpen size={34} />
+          <strong>400+</strong>
+        </div>
+        <div>
+          <p className="mono-label">A NOTE FROM THE SHELF / 400+</p>
+          <h2 id="reading-fact-title">
+            Read widely. Think deeply. Build deliberately.
+          </h2>
+          <p className="reading-fact-dialog__wisdom">
+            Knowledge compounds when ideas leave the page and enter the work.
+          </p>
+          <p>
+            More than 400 books later, the most valuable lesson is not how much
+            you remember. It is how thoughtfully you apply what changed your
+            perspective.
+          </p>
+          <button className="text-link" type="button" onClick={onClose}>
+            Return to the shelf <ArrowRight size={15} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const reducedMotion = useReducedMotion();
   const [copied, setCopied] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [readingFactOpen, setReadingFactOpen] = useState(false);
+  const [expandedExperience, setExpandedExperience] = useState<number | null>(0);
   const location = useLocation();
+  const closeReadingFact = useCallback(() => setReadingFactOpen(false), []);
   const socialUrl = (label: string) =>
     profile.socials.find((social) => social.label === label)?.href ?? "#";
 
@@ -330,30 +408,53 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             title="Experience shaped in product teams, open source, and client delivery."
           />
           <div className="timeline">
-            {experiences.map((experience, index) => (
-              <details
+            {experiences.map((experience, index) => {
+              const isExpanded = expandedExperience === index;
+              const detailId = `experience-detail-${index}`;
+              return (
+              <article
+                className={`timeline__item ${isExpanded ? "timeline__item--open" : ""}`}
                 key={`${experience.role}-${experience.company}`}
-                open={index === 0}
               >
-                <summary>
+                <button
+                  className="timeline__summary"
+                  type="button"
+                  aria-expanded={isExpanded}
+                  aria-controls={detailId}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setExpandedExperience((current) =>
+                      current === index ? null : index,
+                    );
+                  }}
+                >
                   <span className="timeline__number">0{index + 1}</span>
                   <div>
                     <p>{experience.period}</p>
                     <h3>{experience.role}</h3>
                     <strong>{experience.company}</strong>
                   </div>
-                  <span className="timeline__toggle">+</span>
-                </summary>
-                <div className="timeline__detail">
-                  <p>{experience.summary}</p>
-                  <ul>
-                    {experience.highlights.map((highlight) => (
-                      <li key={highlight}>{highlight}</li>
-                    ))}
-                  </ul>
+                  <span className="timeline__toggle" aria-hidden="true">+</span>
+                </button>
+                <div
+                  className="timeline__detail-shell"
+                  id={detailId}
+                  aria-hidden={!isExpanded}
+                >
+                  <div>
+                    <div className="timeline__detail">
+                      <p>{experience.summary}</p>
+                      <ul>
+                        {experience.highlights.map((highlight) => (
+                          <li key={highlight}>{highlight}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </details>
-            ))}
+              </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -513,9 +614,30 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             <article className="leadership-card">
               <div>
                 <BriefcaseBusiness size={24} />
-                <span className="mono-label">LEADERSHIP</span>
+                <span className="mono-label">UNIVERSITY LEADERSHIP</span>
               </div>
               {education.leadership.map((item, index) => (
+                <div key={item}>
+                  <span>0{index + 1}</span>
+                  <h3>{item}</h3>
+                </div>
+              ))}
+            </article>
+            <article className="school-card">
+              <div>
+                <GraduationCap size={26} />
+                <span className="mono-label">SCHOOL EDUCATION</span>
+              </div>
+              <h3>{education.school.qualifications}</h3>
+              <p>{education.school.institution}</p>
+              <small>{education.school.year}</small>
+            </article>
+            <article className="leadership-card">
+              <div>
+                <BriefcaseBusiness size={24} />
+                <span className="mono-label">SCHOOL LEADERSHIP</span>
+              </div>
+              {education.school.leadership.map((item, index) => (
                 <div key={item}>
                   <span>0{index + 1}</span>
                   <h3>{item}</h3>
@@ -532,7 +654,20 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             index="07"
             eyebrow="BEYOND THE CODE"
             title="Books that shaped how I build, think, and lead."
-            copy="A working shelf of ideas about craft, focus, leadership, discipline, and better systems."
+            copy="A small selection of favourites from more than 400 books I’ve read, titles that shaped how I approach craft, focus, leadership, discipline, and better systems."
+            action={
+              <button
+                className={`reading-stat ${readingFactOpen ? "reading-stat--activated" : ""}`}
+                type="button"
+                onClick={() => setReadingFactOpen(true)}
+                aria-haspopup="dialog"
+                aria-label="Fun fact: more than 400 books read"
+              >
+                <span>Fun fact</span>
+                <strong>400+</strong>
+                <small>books read</small>
+              </button>
+            }
           />
           <div className="book-shelf">
             {books.map((book, index) => (
@@ -665,6 +800,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
         </div>
       </section>
       <BookDialog book={selectedBook} onClose={() => setSelectedBook(null)} />
+      <ReadingFactDialog open={readingFactOpen} onClose={closeReadingFact} />
     </main>
   );
 }

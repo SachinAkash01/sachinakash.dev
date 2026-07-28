@@ -43,6 +43,7 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
               "Experience",
               "Projects",
               "Skills",
+              "Education",
               "Books",
               "Contact",
             ].map((item) => (
