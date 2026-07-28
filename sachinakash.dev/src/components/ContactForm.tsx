@@ -1,11 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { ArrowRight, LoaderCircle } from "lucide-react";
-import {
-  ContactEndpointMissingError,
-  submitContactForm,
-  type ContactPayload,
-} from "../lib/contact";
-import { profile } from "../data/portfolio";
+import { submitContactForm, type ContactPayload } from "../lib/contact";
 
 const inquiryTypes = [
   "Job Opportunity",
@@ -28,7 +23,7 @@ const initial: ContactPayload = {
 export function ContactForm() {
   const [values, setValues] = useState(initial);
   const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error" | "unconfigured"
+    "idle" | "loading" | "success" | "error"
   >("idle");
   const [errors, setErrors] = useState<
     Partial<Record<keyof ContactPayload, string>>
@@ -60,10 +55,8 @@ export function ContactForm() {
       await submitContactForm(values);
       setStatus("success");
       setValues(initial);
-    } catch (error) {
-      setStatus(
-        error instanceof ContactEndpointMissingError ? "unconfigured" : "error",
-      );
+    } catch {
+      setStatus("error");
     }
   };
 
@@ -142,16 +135,6 @@ export function ContactForm() {
             "Message sent. Thank you — I’ll get back to you soon."}
           {status === "error" &&
             "Delivery failed. Please try again or use the direct email option."}
-          {status === "unconfigured" && (
-            <>
-              The form is ready, but delivery is not connected yet.{" "}
-              {profile.email === "YOUR_EMAIL_ADDRESS" ? (
-                "Add the contact endpoint and email in the profile configuration."
-              ) : (
-                <a href={`mailto:${profile.email}`}>Email me directly.</a>
-              )}
-            </>
-          )}
         </p>
         <button className="button" disabled={status === "loading"}>
           {status === "loading" ? (

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/projects", "destination": "/index.html" },
+    { "source": "/projects/:path*", "destination": "/index.html" },
+    { "source": "/resume", "destination": "/index.html" },
+    { "source": "/404", "destination": "/index.html" }
+  ]
+}

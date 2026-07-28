@@ -83,15 +83,22 @@ The hero, terminal, résumé route, and footer use the central résumé URL.
 
 ## Contact form
 
-Copy `.env.example` to `.env.local` and set:
+The form posts to the server-side `/api/contact` function, which validates the
+request and sends the inquiry through Resend. Copy `.env.example` to
+`.env.local` for local development and configure the same values in Vercel:
 
 ```text
-VITE_CONTACT_FORM_ENDPOINT=https://your-secure-form-endpoint.example
+RESEND_API_KEY=re_xxxxxxxxx
+CONTACT_FROM_EMAIL="Sachin Akash Portfolio <noreply@sachinakash.dev>"
+CONTACT_TO_EMAIL=hello@sachinakash.dev
 ```
 
-The browser sends JSON containing `name`, `email`, `company`, `inquiryType`, and `message`. The endpoint should validate input, rate-limit requests, keep email-provider secrets server-side, and return a successful 2xx response. Resend can be connected through a Vercel Function, Cloudflare Worker, or another server-side adapter. Never expose a Resend API key in a `VITE_` variable.
+Before production use, add and verify `sachinakash.dev` in Resend. Run the Vite
+development server after creating `.env.local`; its local middleware uses the
+same validated delivery handler as the production Vercel Function.
 
-Until configured, the form honestly reports that delivery is unavailable and directs the owner to update the central contact configuration.
+The API key is never included in the browser bundle. Do not rename it with a
+`VITE_` prefix or commit `.env.local`.
 
 ## SEO and deployment
 
