@@ -27,6 +27,10 @@ export type Project = {
   url: string;
   image: string;
   imageAlt: string;
+  gallery?: Array<{
+    image: string;
+    imageAlt: string;
+  }>;
   category: string;
   industry: string;
   summary: string;
@@ -211,6 +215,18 @@ export const projects: Project[] = [
     url: "https://www.shereescakes.lk/",
     image: "/images/projects/sherees-cakes.webp",
     imageAlt: "Sheree's Cakes e-commerce website home page",
+    gallery: [
+      {
+        image: "/images/projects/sherees-cakes-shop.png",
+        imageAlt:
+          "Sheree's Cakes online shop with product filters and birthday cake catalogue",
+      },
+      {
+        image: "/images/projects/sherees-cakes-cart.png",
+        imageAlt:
+          "Sheree's Cakes shopping cart showing an item, subtotal, and checkout actions",
+      },
+    ],
     category: "E-commerce · Food and Retail",
     industry: "Food, retail, and online ordering",
     summary:
@@ -261,6 +277,18 @@ export const projects: Project[] = [
     url: "https://www.winchild.lk/",
     image: "/images/projects/winchild.webp",
     imageAlt: "Winchild preschool and daycare website home page",
+    gallery: [
+      {
+        image: "/images/projects/winchild-about.png",
+        imageAlt:
+          "Winchild about page presenting the preschool's story and community",
+      },
+      {
+        image: "/images/projects/winchild-programs.png",
+        imageAlt:
+          "Winchild programmes page showing play group, lower nursery, and upper nursery",
+      },
+    ],
     category: "Education · Institutional Website",
     industry: "Early education and childcare",
     summary:
@@ -311,6 +339,18 @@ export const projects: Project[] = [
     url: "https://capitalbridge.lk/",
     image: "/images/projects/capital-bridge.webp",
     imageAlt: "Capital Bridge microfinance company website home page",
+    gallery: [
+      {
+        image: "/images/projects/capital-bridge-about.png",
+        imageAlt:
+          "Capital Bridge about page explaining the company's mission and approach to responsible finance",
+      },
+      {
+        image: "/images/projects/capital-bridge-services.png",
+        imageAlt:
+          "Capital Bridge services page presenting micro loans and financial solutions",
+      },
+    ],
     category: "Finance · Corporate Website",
     industry: "Microfinance and financial services",
     summary:
@@ -361,6 +401,18 @@ export const projects: Project[] = [
     url: "https://nutri-seven-beta.vercel.app/",
     image: "/images/projects/nutri.webp",
     imageAlt: "Nutri high-protein meal ordering website home page",
+    gallery: [
+      {
+        image: "/images/projects/nutri-menu.png",
+        imageAlt:
+          "Nutri meal catalogue displaying four high-protein meals and their nutritional information",
+      },
+      {
+        image: "/images/projects/nutri-meal-detail.png",
+        imageAlt:
+          "Nutri meal detail dialog for chicken bolognese with macros, price, and ordering action",
+      },
+    ],
     category: "Food Technology · E-commerce",
     industry: "Nutrition, food technology, and e-commerce",
     summary:
@@ -410,6 +462,18 @@ export const projects: Project[] = [
     url: "https://www.evantralabs.com/",
     image: "/images/projects/evantra-labs.webp",
     imageAlt: "Evantra Labs software company website home page",
+    gallery: [
+      {
+        image: "/images/projects/evantra-labs-services.png",
+        imageAlt:
+          "Evantra Labs services page presenting website, web application, and mobile application development",
+      },
+      {
+        image: "/images/projects/evantra-labs-tools.png",
+        imageAlt:
+          "Evantra Labs contact page with project enquiry form and company contact information",
+      },
+    ],
     category: "Technology · Corporate Website",
     industry: "Software services and digital product engineering",
     summary:
