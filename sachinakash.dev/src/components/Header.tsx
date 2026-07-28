@@ -38,7 +38,7 @@ export function Header({ onOpenTerminal }: { onOpenTerminal: () => void }) {
     location.pathname === "/" ? `#${id}` : `/#${id}`;
   return (
     <header
-      className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}
+      className={`site-header ${scrolled ? "site-header--scrolled" : ""} ${open ? "site-header--menu-open" : ""}`}
     >
       <div className="shell header-inner">
         <Link to="/" className="brand" aria-label="Sachin Akash home">
@@ -75,6 +75,7 @@ export function Header({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             type="button"
             onClick={() => setOpen(true)}
             aria-label="Open navigation"
+            aria-expanded={open}
           >
             <Menu size={20} />
           </button>
