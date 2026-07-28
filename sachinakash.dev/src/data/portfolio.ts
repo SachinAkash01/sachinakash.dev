@@ -73,12 +73,11 @@ export const profile = {
   name: "Sachin Akash",
   monogram: "SA",
   eyebrow: "Software Engineer · Product Builder · Entrepreneur",
-  title:
-    "Software Engineer, Product Builder, and Entrepreneur ",
+  title: "Software Engineer, Product Builder, and Entrepreneur ",
   headline:
     "I design and ship software that turns ideas into reliable digital products.",
   summary:
-    "I’m a software engineer and Co-Founder & Director at Evantra Labs, with experience building web platforms, mobile applications, APIs, developer tools, cloud solutions, and production-ready software for businesses.",
+    "I’m a Software Engineer and Co-Founder & Director at Evantra Labs, with experience building web platforms, mobile applications, APIs, developer tools, cloud solutions, and production-ready software for businesses.",
   location: "Colombo, Sri Lanka",
   email: "hello@sachinakash.dev",
   phone: "YOUR_PHONE_NUMBER",
@@ -503,7 +502,7 @@ export const skillGroups = [
     icon: Database,
     description:
       "Practical data models and managed services selected for the product.",
-    items: ["PostgreSQL", "MongoDB", "Firebase"],
+    items: ["MongoDB", "PostgreSQL", "Firebase", "MySQL", "MSSQL",],
   },
   {
     label: "Cloud & delivery",
@@ -518,6 +517,7 @@ export const skillGroups = [
       "Docker",
       "Kubernetes",
       "GitHub Actions",
+      "Git/GitHub",
       "CI/CD",
     ],
   },
@@ -693,12 +693,12 @@ export const books: Book[] = [
 );
 
 export const education = {
-  degree: "BSc (Hons) Computer Science and Software Engineering",
+  degree: "BSc (Hons) Computer Science & Software Engineering",
   institution: "University of Bedfordshire, United Kingdom",
   result: "First-Class Honours",
   year: "2024",
   leadership: [
-    "Vice President · SLIIT City Uni Alumni Association",
+    "Vice President · SLIIT City UNI Alumni Association",
     "Former Captain · SLIIT City UNI Athletics Team",
   ],
 };

@@ -260,7 +260,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             index="01"
             eyebrow="PROFILE / CAPABILITIES"
             title="Software built with product sense and engineering discipline."
-            copy="I translate complex requirements into practical systems—balancing the experience people see with the architecture that keeps the product reliable."
+            copy="I translate complex requirements into practical systems, balancing the experience people see with the architecture that keeps the product reliable."
           />
           <div className="overview-grid">
             {overview.map(({ icon: Icon, title, text }, i) => (
@@ -422,7 +422,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             index="04"
             eyebrow="TECHNICAL SYSTEMS"
             title="A pragmatic toolkit for product delivery."
-            copy="Technologies are selected for the problem, the people maintaining the product, and the path to production—not for novelty."
+            copy="Technologies are selected for the problem, the people maintaining the product, and the path to production, not for novelty."
           />
           <div className="skills-grid">
             {skillGroups.map(({ icon: Icon, label, description, items }) => (
@@ -465,7 +465,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             index="05"
             eyebrow="SERVICES / EVANTRA LABS"
             title="From early direction to production software."
-            copy="For teams that need a thoughtful technical partner—not just another implementation hand-off."
+            copy="For teams that need a thoughtful technical partner, not just another implementation hand-off."
           />
           <div className="services-grid">
             {services.map(
@@ -648,7 +648,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 <SiInstagram size={19} />
                 <div>
                   <span>Instagram</span>
-                  <strong>@sachinakash</strong>
+                  <strong>@sachinakash_</strong>
                 </div>
                 <ArrowUpRight size={17} />
               </a>
