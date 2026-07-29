@@ -220,7 +220,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
         title="Sachin Akash — Software Engineer & Product Builder"
         description="Portfolio of Sachin Akash, software engineer, product builder, and Co-Founder & Director at Evantra Labs in Colombo, Sri Lanka."
       />
-      <section className="hero-section" id="home">
+      <section className="hero-section -mt-4" id="home">
         <div className="hero-orbit hero-orbit--one" />
         <div className="hero-orbit hero-orbit--two" />
         <div className="shell hero-grid">
@@ -231,9 +231,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             variants={reveal}
             transition={{ duration: 0.55 }}
           >
-            <div className="status-line">
-              <i /> <span>{profile.availability}</span>
-            </div>
             <p className="hero-eyebrow">{profile.eyebrow}</p>
             <h1>
               <span>{profile.name}</span>
