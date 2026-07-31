@@ -644,8 +644,19 @@ export const services: Service[] = [
   },
 ];
 
-const openLibraryCover = (title: string) =>
-  `https://covers.openlibrary.org/b/title/${encodeURIComponent(title)}-L.jpg?default=false`;
+const bookCoverPaths: Record<string, string> = {
+  "pragmatic-programmer": "/images/books/pragmatic-programmer.jpg",
+  "clean-code": "/images/books/clean-code.jpg",
+  "deep-work": "/images/books/deep-work.jpg",
+  "diary-of-a-ceo": "/images/books/diary-ceo.jpg",
+  "power-subconscious": "/images/books/power-of-mind.jpg",
+  "leaders-eat-last": "/images/books/leaders-eat-last.jpg",
+  "atomic-habits": "/images/books/atomic habits.jpg",
+  "five-am-club": "/images/books/5am-club.jpg",
+  "four-hour-workweek": "/images/books/work-week.jpg",
+  "make-your-bed": "/images/books/make-your-bed.jpg",
+  "win-inner-battles": "/images/books/win-inner-battles.jpg",
+};
 
 export const books: Book[] = [
   [
@@ -764,7 +775,7 @@ export const books: Book[] = [
     description: String(description),
     personalTakeaway: String(personalTakeaway),
     featured: Boolean(featured),
-    coverUrl: openLibraryCover(String(title)),
+    coverUrl: bookCoverPaths[String(slug)],
   }),
 );
 

@@ -69,7 +69,12 @@ Add one typed object to the `projects` array in `src/data/portfolio.ts`. The pro
 
 ## Books and cover sources
 
-Books live in the `books` array. Each cover uses the [Open Library Covers API](https://openlibrary.org/dev/docs/api/covers) by title. If the remote cover is missing, the card falls back to the site’s CSS-generated geometric cover, including title and author; no random image hosts are used. All summaries and takeaways in the repository are original portfolio copy.
+Books live in the `books` array, with their locally hosted cover paths mapped by
+slug in `src/data/portfolio.ts`. Cover images are stored in
+`public/images/books/`, avoiding remote image requests and keeping loading
+predictable. If a local cover cannot be loaded, the card falls back to the
+site’s CSS-generated geometric cover with the title and author. All summaries
+and takeaways in the repository are original portfolio copy.
 
 ## Social links and résumé
 
