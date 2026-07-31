@@ -71,6 +71,7 @@ export function ContactForm() {
         <label>
           Name{" "}
           <input
+            placeholder="Your full name"
             value={values.name}
             onChange={(e) => set("name", e.target.value)}
             aria-invalid={Boolean(errors.name)}
@@ -81,6 +82,7 @@ export function ContactForm() {
           Email{" "}
           <input
             type="email"
+            placeholder="you@example.com"
             value={values.email}
             onChange={(e) => set("email", e.target.value)}
             aria-invalid={Boolean(errors.email)}
@@ -88,8 +90,9 @@ export function ContactForm() {
           {errors.email && <small>{errors.email}</small>}
         </label>
         <label>
-          Company / organisation{" "}
+          Company / Organisation{" "}
           <input
+            placeholder="Company or Organisation name (optional)"
             value={values.company}
             onChange={(e) => set("company", e.target.value)}
           />
