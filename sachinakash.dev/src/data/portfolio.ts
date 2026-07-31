@@ -274,7 +274,7 @@ export const projects: Project[] = [
     slug: "winchild",
     number: "02",
     shortTitle: "Winchild",
-    title: "Winchild Preschool and Daycare Website",
+    title: "Winchild Daycare and Preschool Website",
     url: "https://www.winchild.lk/",
     image: "/images/projects/winchild.webp",
     imageAlt: "Winchild preschool and daycare website home page",
