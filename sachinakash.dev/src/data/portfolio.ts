@@ -782,8 +782,8 @@ export const education = {
     institution: "St. Peter's College, Colombo 04, Sri Lanka",
     year: "2007 - 2020",
     leadership: [
-      "Vice President / Concertmaster - Peterite Orchestra & Choir",
-      "Assistant Secretary - Peterite Maths & Science Society",
+      "Vice President / Concertmaster · Peterite Orchestra & Choir",
+      "Assistant Secretary · Peterite Maths & Science Society",
     ],
   },
 };

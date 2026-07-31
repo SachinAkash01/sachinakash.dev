@@ -190,7 +190,7 @@ h3 {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   color: var(--amber);
 }
 
@@ -563,7 +563,7 @@ h3 {
 .hero-eyebrow {
   margin-bottom: 18px;
   color: var(--amber-bright);
-  font: 0.72rem/1.5 monospace;
+  font: 0.88rem/1.5 monospace;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -761,8 +761,8 @@ h3 {
   display: flex;
   align-items: center;
   gap: 16px;
-  font: 0.57rem monospace;
-  letter-spacing: 0.15em;
+  font: 0.8rem/1.4 monospace;
+  letter-spacing: 0.13em;
   color: var(--text-faint);
 }
 .hero-foot div {
@@ -786,14 +786,14 @@ h3 {
   gap: 13px;
   border-right: 1px solid var(--line);
   color: var(--text-soft);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
 }
 .signal-strip span:first-child {
   border-left: 1px solid var(--line);
 }
 .signal-strip small {
   color: var(--amber);
-  font: 0.57rem monospace;
+  font: 0.87rem monospace;
 }
 
 .section {
@@ -987,7 +987,7 @@ h3 {
 }
 .timeline__summary p {
   margin-bottom: 8px;
-  font: 0.62rem monospace;
+  font: 0.94rem/1.4 monospace;
   letter-spacing: 0.12em;
   color: var(--text-faint);
 }
@@ -999,7 +999,7 @@ h3 {
 }
 .timeline__summary strong {
   color: var(--text-soft);
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 .timeline__toggle {
@@ -1226,10 +1226,10 @@ h3 {
 }
 .tag-list span,
 .service-card small {
-  padding: 6px 9px;
+  padding: 7px 10px;
   border: 1px solid var(--line);
   color: var(--text-faint);
-  font: 0.59rem monospace;
+  font: 0.82rem/1.25 monospace;
 }
 .project-card__links {
   display: flex;
@@ -1308,7 +1308,7 @@ h3 {
 }
 .engineering-band > div span {
   color: var(--text-soft);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 .engineering-band > div span::before {
   content: "·";
@@ -1382,7 +1382,7 @@ h3 {
 }
 .services-grid small {
   color: var(--text-faint);
-  font: 0.58rem monospace;
+  font: 0.77rem/1.3 monospace;
 }
 .services-grid a {
   position: absolute;
@@ -1392,7 +1392,7 @@ h3 {
   align-items: center;
   gap: 8px;
   color: var(--text);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
 }
 .services-grid a:hover {
   color: var(--amber-bright);
@@ -1426,8 +1426,8 @@ h3 {
 .degree-card h3,
 .school-card h3 {
   max-width: 690px;
-  margin: 68px 0 14px;
-  font-size: clamp(1.7rem, 3.5vw, 3.2rem);
+  margin: 38px 0 14px;
+  font-size: clamp(2.7rem, 2.5vw, 2.2rem);
   line-height: 1.08;
   font-weight: 520;
 }
@@ -1440,23 +1440,23 @@ h3 {
   padding: 7px 10px;
   border: 1px solid var(--amber);
   color: var(--amber-bright);
-  font: 0.66rem monospace;
+  font: 0.96rem monospace;
 }
 .degree-card > small,
 .school-card > small {
   display: block;
   margin-top: 18px;
   color: var(--text-faint);
-  font: 0.57rem monospace;
+  font: 0.97rem monospace;
 }
 .leadership-card > div:not(:first-child) {
-  margin-top: 48px;
+  margin-top: 38px;
   padding-top: 16px;
   border-top: 1px solid var(--line);
 }
 .leadership-card > div:not(:first-child) span {
   color: var(--amber);
-  font: 0.58rem monospace;
+  font: 0.78rem monospace;
 }
 .leadership-card h3 {
   max-width: 330px;
@@ -1820,14 +1820,14 @@ h3 {
 }
 .book-card > div:last-child span {
   color: var(--text-faint);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
 }
 .shelf-hint {
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 10px 0 0;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 .book-dialog-backdrop {
   position: fixed;
@@ -1941,7 +1941,7 @@ h3 {
 }
 .contact-route span {
   color: var(--text-faint);
-  font: 0.57rem monospace;
+  font: 0.67rem monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
@@ -1949,7 +1949,7 @@ h3 {
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--text);
-  font-size: 0.76rem;
+  font-size: 0.80rem;
   font-weight: 550;
 }
 .contact-route button,
@@ -2020,7 +2020,7 @@ h3 {
   display: grid;
   gap: 8px;
   color: var(--text-soft);
-  font-size: 0.67rem;
+  font-size: 0.88rem;
   font-weight: 650;
 }
 .contact-form input,
@@ -2032,10 +2032,17 @@ h3 {
   padding: 12px 13px;
   color: var(--text);
   background: var(--bg);
+  font-size: 0.88rem;
+  line-height: 1.5;
   outline: 0;
   transition:
     border-color var(--motion-fast) ease,
     box-shadow var(--motion-fast) ease;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-faint);
+  opacity: 1;
 }
 .contact-form input,
 .contact-form select {
@@ -2075,7 +2082,7 @@ h3 {
 }
 .contact-form__end p {
   margin: 0;
-  font-size: 0.68rem;
+  font-size: 0.76rem;
   line-height: 1.55;
 }
 .contact-form__end p a {
@@ -2227,20 +2234,20 @@ h3 {
   max-width: 310px;
   margin: 25px 0 18px;
   color: #979f9b;
-  font-size: 0.78rem;
+  font-size: 0.80rem;
 }
 .footer-signal {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #747c79;
-  font: 0.58rem monospace;
+  color: #8b9490;
+  font: 0.8rem/1.4 monospace;
   letter-spacing: 0.1em;
 }
 .footer-grid h3 {
   margin: 8px 0 20px;
-  color: #747c79;
-  font: 0.58rem monospace;
+  color: #8b9490;
+  font: 0.7rem/1.4 monospace;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -2258,7 +2265,7 @@ h3 {
   border: 0;
   background: transparent;
   color: #afb5b2;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 .footer-grid nav a:hover,
@@ -2275,8 +2282,8 @@ h3 {
 }
 .footer-bottom p {
   margin: 0;
-  color: #747c79;
-  font-size: 0.6rem;
+  color: #8b9490;
+  font-size: 0.72rem;
 }
 .footer-bottom > div {
   display: flex;
@@ -2284,8 +2291,8 @@ h3 {
   gap: 22px;
 }
 .footer-bottom button {
-  color: #747c79;
-  font-size: 0.6rem;
+  color: #8b9490;
+  font-size: 0.72rem;
 }
 .project-card > a,
 .all-projects article > a {
@@ -2535,13 +2542,13 @@ h3 {
 }
 .case-meta span {
   color: var(--text-faint);
-  font: 0.57rem monospace;
+  font: 0.7rem/1.4 monospace;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 .case-meta strong {
   color: var(--text-soft);
-  font-size: 0.72rem;
+  font-size: 0.84rem;
   font-weight: 500;
   line-height: 1.5;
 }
@@ -2569,7 +2576,7 @@ h3 {
 }
 .case-copy article > span {
   color: var(--amber);
-  font: 0.6rem monospace;
+  font: 0.72rem/1.4 monospace;
   text-transform: uppercase;
 }
 .case-copy p {
@@ -3171,7 +3178,7 @@ h3 {
   .status-line {
     width: 100%;
     margin-bottom: 24px;
-    font-size: 0.58rem;
+    font-size: 0.7rem;
     white-space: normal;
   }
   .hero-copy h1 {
@@ -3211,7 +3218,7 @@ h3 {
   .hero-meta button,
   .hero-meta span {
     min-width: 0;
-    font-size: 0.71rem;
+    font-size: 0.78rem;
   }
   .portrait-stage {
     width: 100%;
@@ -3239,7 +3246,7 @@ h3 {
   .signal-strip span {
     min-width: 0;
     padding: 0 14px;
-    font-size: 0.65rem;
+    font-size: 0.72rem;
     overflow-wrap: anywhere;
   }
   .section {
@@ -3347,7 +3354,7 @@ h3 {
     line-height: 1.15;
   }
   .timeline__summary strong {
-    font-size: 0.76rem;
+    font-size: 0.82rem;
     line-height: 1.45;
   }
   .timeline__detail {
@@ -3437,7 +3444,7 @@ h3 {
     gap: 11px;
   }
   .contact-route strong {
-    font-size: 0.72rem;
+    font-size: 0.8rem;
   }
   .contact-form__end {
     align-items: stretch;
