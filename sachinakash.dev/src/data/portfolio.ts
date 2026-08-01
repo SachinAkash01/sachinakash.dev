@@ -90,8 +90,8 @@ export const profile = {
   websiteUrl: "https://www.sachinakash.dev",
   resumeUrl: "/documents/sachin-akash-resume.pdf",
   brandLogo: "/images/brand/sachin-akash-logo.png",
-  profileImage: "/images/profile/sachin-profile.jpeg",
-  profileImagePosition: "50% 28%",
+  profileImage: "/images/profile/sachin-self-portrait.png",
+  profileImagePosition: "53% center",
   socials: [
     { label: "GitHub", href: "https://github.com/SachinAkash01" },
     {
