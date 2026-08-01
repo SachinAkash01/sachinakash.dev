@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownRight,
@@ -16,8 +22,31 @@ import {
   TerminalSquare,
   X,
 } from "lucide-react";
-import { FaLinkedin } from "react-icons/fa6";
-import { SiGithub, SiInstagram } from "react-icons/si";
+import type { IconType } from "react-icons";
+import { FaAws, FaJava, FaLinkedin } from "react-icons/fa6";
+import {
+  SiCloudflare,
+  SiDocker,
+  SiFirebase,
+  SiGo,
+  SiGithub,
+  SiInstagram,
+  SiJavascript,
+  SiKubernetes,
+  SiMongodb,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiSelenium,
+  SiSwagger,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+} from "react-icons/si";
+import { VscAzure } from "react-icons/vsc";
 import { Link, useLocation } from "react-router-dom";
 import {
   books,
@@ -37,6 +66,95 @@ import { SectionHeading } from "../components/SectionHeading";
 import { Seo } from "../components/Seo";
 
 const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } };
+
+type OrbitPlanet = {
+  label: string;
+  color: string;
+  iconRotation?: number;
+  Icon?: IconType;
+  image?: string;
+};
+
+const innerOrbitPlanets: OrbitPlanet[] = [
+  { label: "React", color: "#61dafb", Icon: SiReact },
+  { label: "Java", color: "#f89820", Icon: FaJava },
+  { label: "Node.js", color: "#5fa04e", Icon: SiNodedotjs },
+  { label: "Tailwind CSS", color: "#06b6d4", Icon: SiTailwindcss },
+  { label: "Python", color: "#ffd43b", Icon: SiPython },
+  { label: "Go", color: "#00add8", iconRotation: 180, Icon: SiGo },
+  {
+    label: "Next.js",
+    color: "#ffffff",
+    iconRotation: 180,
+    Icon: SiNextdotjs,
+  },
+];
+
+const outerOrbitPlanets: OrbitPlanet[] = [
+  { label: "GitHub", color: "#f0f6fc", Icon: SiGithub },
+  { label: "AWS", color: "#ff9900", Icon: FaAws },
+  {
+    label: "Ballerina",
+    color: "#52c3c2",
+    image: "/images/brand/ballerina-logo-white.svg",
+  },
+  { label: "MongoDB", color: "#47a248", Icon: SiMongodb },
+  { label: "Docker", color: "#2496ed", Icon: SiDocker },
+  { label: "JavaScript", color: "#f7df1e", Icon: SiJavascript },
+  { label: "TypeScript", color: "#3178c6", Icon: SiTypescript },
+  { label: "Cloudflare", color: "#f38020", Icon: SiCloudflare },
+  { label: "PostgreSQL", color: "#4169e1", Icon: SiPostgresql },
+  { label: "Firebase", color: "#ffca28", Icon: SiFirebase },
+  { label: "Swagger", color: "#85ea2d", Icon: SiSwagger },
+  { label: "MySQL", color: "#4479a1", Icon: SiMysql },
+  { label: "Kubernetes", color: "#326ce5", Icon: SiKubernetes },
+  { label: "Azure", color: "#0078d4", Icon: VscAzure },
+  { label: "Selenium", color: "#43b02a", Icon: SiSelenium },
+  { label: "Vercel", color: "#ffffff", Icon: SiVercel },
+];
+
+function TechnologyOrbit({
+  planets,
+  orbit,
+}: {
+  planets: OrbitPlanet[];
+  orbit: "inner" | "outer";
+}) {
+  return (
+    <div
+      className={`hero-orbit hero-orbit--${orbit}`}
+      aria-hidden="true"
+    >
+      {planets.map((planet, index) => {
+        const PlanetIcon = planet.Icon;
+        return (
+          <span
+            className="orbit-planet"
+            key={planet.label}
+            style={
+              {
+                "--orbit-angle": `${(360 / planets.length) * index}deg`,
+                "--orbit-angle-negative": `${(-360 / planets.length) * index}deg`,
+                "--planet-color": planet.color,
+                "--icon-rotation": `${planet.iconRotation ?? 0}deg`,
+              } as CSSProperties
+            }
+          >
+            <span
+              className={`orbit-planet__face${planet.image ? " orbit-planet__face--wordmark" : ""}`}
+            >
+              {PlanetIcon ? (
+                <PlanetIcon />
+              ) : (
+                <img src={planet.image} alt="" />
+              )}
+            </span>
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
 function BookDialog({
   book,
@@ -221,8 +339,8 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
         description="Portfolio of Sachin Akash, software engineer, product builder, and Co-Founder & Director at Evantra Labs in Colombo, Sri Lanka."
       />
       <section className="hero-section" id="home">
-        <div className="hero-orbit hero-orbit--one" />
-        <div className="hero-orbit hero-orbit--two" />
+        <TechnologyOrbit planets={outerOrbitPlanets} orbit="outer" />
+        <TechnologyOrbit planets={innerOrbitPlanets} orbit="inner" />
         <div className="shell hero-grid">
           <motion.div
             className="hero-copy"
