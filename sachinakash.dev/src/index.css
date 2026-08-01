@@ -3003,6 +3003,14 @@ h3 {
   }
 }
 
+/* Use the wider, more compact headline treatment only on short laptops. */
+@media (min-width: 821px) and (max-height: 850px) {
+  .hero-copy h1 {
+    margin-right: -200px;
+    font-size: clamp(2.55rem, 5.3vw, 3.9rem);
+  }
+}
+
 @media (max-width: 820px) {
   .shell {
     width: min(calc(100% - 32px), var(--max));
