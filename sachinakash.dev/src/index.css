@@ -575,12 +575,51 @@ h3 {
   letter-spacing: -0.062em;
   font-weight: 560;
 }
-.hero-copy h1 > span {
+.hero-name {
   display: block;
   margin-bottom: 14px;
   font: 650 clamp(0.95rem, 1.4vw, 1.2rem)/1.3 inherit;
   letter-spacing: 0.05em;
   color: var(--text-soft);
+}
+.hero-headline {
+  display: block;
+}
+.hero-headline__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.hero-headline__word:not(:last-child) {
+  margin-right: 0.24em;
+}
+.hero-typing-character {
+  position: relative;
+  opacity: 0;
+  transition: opacity 90ms ease-out;
+}
+.hero-typing-character--visible {
+  opacity: 1;
+}
+.hero-typing-cursor {
+  position: absolute;
+  z-index: 1;
+  left: calc(100% + 0.075em);
+  bottom: 0.08em;
+  width: 0.075em;
+  height: 0.78em;
+  background: var(--amber-bright);
+  box-shadow: 0 0 12px rgba(224, 183, 126, 0.48);
+  animation: hero-cursor-blink 0.82s steps(1, end) infinite;
+}
+@keyframes hero-cursor-blink {
+  0%,
+  46% {
+    opacity: 1;
+  }
+  47%,
+  100% {
+    opacity: 0;
+  }
 }
 .hero-summary {
   max-width: 680px;
@@ -3205,7 +3244,7 @@ h3 {
     line-height: 1.01;
     letter-spacing: -0.052em;
   }
-  .hero-copy h1 > span {
+  .hero-name {
     margin-bottom: 14px;
     font-size: clamp(1.22rem, 5.7vw, 1.42rem);
     line-height: 1.2;

@@ -38,6 +38,19 @@ import { Seo } from "../components/Seo";
 
 const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } };
 
+let headlineCharacterIndex = 0;
+const headlineTypingWords = profile.headline.split(" ").map((word) => ({
+  key: `${word}-${headlineCharacterIndex}`,
+  characters: Array.from(word).map((character, characterIndex, characters) => ({
+    character,
+    index: headlineCharacterIndex++,
+    pauseAfter: characterIndex === characters.length - 1 ? 75 : 35,
+  })),
+}));
+const headlineTypingCharacters = headlineTypingWords.flatMap(
+  (word) => word.characters,
+);
+
 function BookDialog({
   book,
   onClose,
@@ -194,6 +207,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [readingFactOpen, setReadingFactOpen] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(0);
+  const [visibleHeadlineCharacters, setVisibleHeadlineCharacters] = useState(0);
   const location = useLocation();
   const closeReadingFact = useCallback(() => setReadingFactOpen(false), []);
   const socialUrl = (label: string) =>
@@ -206,6 +220,33 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
         0,
       );
   }, [location.hash]);
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    let characterIndex = 0;
+    let typingTimer: number;
+    const revealNextCharacter = () => {
+      characterIndex += 1;
+      setVisibleHeadlineCharacters(characterIndex);
+
+      if (characterIndex < headlineTypingCharacters.length) {
+        const currentCharacter = headlineTypingCharacters[characterIndex - 1];
+        typingTimer = window.setTimeout(
+          revealNextCharacter,
+          currentCharacter.pauseAfter,
+        );
+      }
+    };
+    const startTimer = window.setTimeout(() => {
+      revealNextCharacter();
+    }, 680);
+
+    return () => {
+      window.clearTimeout(startTimer);
+      window.clearTimeout(typingTimer);
+    };
+  }, [reducedMotion]);
 
   const copyEmail = async () => {
     if (profile.email === "YOUR_EMAIL_ADDRESS") return;
@@ -232,9 +273,32 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             transition={{ duration: 0.55 }}
           >
             <p className="hero-eyebrow">{profile.eyebrow}</p>
-            <h1>
-              <span>{profile.name}</span>
-              {profile.headline}
+            <h1 aria-label={`${profile.name}. ${profile.headline}`}>
+              <span className="hero-name" aria-hidden="true">
+                {profile.name}
+              </span>
+              <span className="hero-headline" aria-hidden="true">
+                {headlineTypingWords.map((word) => (
+                  <span className="hero-headline__word" key={word.key}>
+                    {word.characters.map(({ character, index }) => {
+                      const isVisible =
+                        reducedMotion || index < visibleHeadlineCharacters;
+                      const isCurrent =
+                        !reducedMotion &&
+                        index === visibleHeadlineCharacters - 1;
+                      return (
+                        <span
+                          className={`hero-typing-character${isVisible ? " hero-typing-character--visible" : ""}`}
+                          key={`${character}-${index}`}
+                        >
+                          {character}
+                          {isCurrent && <i className="hero-typing-cursor" />}
+                        </span>
+                      );
+                    })}
+                  </span>
+                ))}
+              </span>
             </h1>
             <p className="hero-summary">{profile.summary}</p>
             <div className="hero-actions">
