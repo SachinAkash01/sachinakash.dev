@@ -3023,8 +3023,7 @@ h3 {
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  .header-cta,
-  .brand small {
+  .header-cta {
     display: none;
   }
   .hero-section {
@@ -3158,6 +3157,17 @@ h3 {
     height: 66px;
     gap: 10px;
   }
+  .brand {
+    gap: 8px;
+  }
+  .brand small {
+    font-size: 0.74rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .brand--footer small {
+    font-size: 0.82rem;
+  }
   .brand-mark {
     width: 48px;
     height: 35px;
@@ -3196,8 +3206,11 @@ h3 {
     letter-spacing: -0.052em;
   }
   .hero-copy h1 > span {
-    margin-bottom: 11px;
-    font-size: 0.9rem;
+    margin-bottom: 14px;
+    font-size: clamp(1.22rem, 5.7vw, 1.42rem);
+    line-height: 1.2;
+    letter-spacing: 0.025em;
+    font-weight: 700;
   }
   .hero-summary {
     margin-bottom: 25px;
@@ -3627,10 +3640,22 @@ h3 {
     width: 44px;
     flex-basis: 44px;
   }
+  .brand {
+    gap: 7px;
+  }
+  .brand small {
+    font-size: 0.68rem;
+  }
+  .brand--footer small {
+    font-size: 0.8rem;
+  }
   .terminal-launcher {
     gap: 6px;
     padding-inline: 8px;
     font-size: 0.66rem;
+  }
+  .terminal-launcher > span {
+    display: none;
   }
   .hero-actions .button {
     flex-basis: 100%;
