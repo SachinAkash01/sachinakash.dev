@@ -61,7 +61,7 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
         <div>
           <h3>Services</h3>
           <nav>
-            {services.slice(0, 4).map((service) => (
+            {services.slice(0, 6).map((service) => (
               <a key={service.title} href={section("services")}>
                 {service.title}
               </a>
