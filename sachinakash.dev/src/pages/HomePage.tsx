@@ -118,13 +118,17 @@ const portraitTechnologies: PortraitTechnology[] = [
 ];
 
 function PortraitTechnologyOrbit() {
+  const entryAngle = 212;
+
   return (
     <div className="portrait-tech-orbit" aria-hidden="true">
       <div className="portrait-tech-orbit__plane">
         <div className="portrait-tech-orbit__track">
           {portraitTechnologies.map((technology, index) => {
             const TechnologyIcon = technology.Icon;
-            const angle = (360 / portraitTechnologies.length) * index;
+            const orbitStep = 360 / portraitTechnologies.length;
+            const angle = entryAngle + 360 - orbitStep * (index + 1);
+            const startAngle = entryAngle - index * 0.65;
             return (
               <span
                 className="portrait-tech-orbit__planet"
@@ -133,6 +137,10 @@ function PortraitTechnologyOrbit() {
                   {
                     "--portrait-orbit-angle": `${angle}deg`,
                     "--portrait-orbit-angle-negative": `${-angle}deg`,
+                    "--portrait-orbit-start-angle": `${startAngle}deg`,
+                    "--portrait-orbit-start-angle-negative": `${-startAngle}deg`,
+                    "--portrait-orbit-stack-order":
+                      portraitTechnologies.length - index,
                     "--portrait-planet-color": technology.color,
                   } as CSSProperties
                 }

@@ -680,6 +680,7 @@ h3 {
   --portrait-orbit-size: 370px;
   --portrait-orbit-radius: -148px;
   --portrait-planet-size: 40px;
+  --portrait-orbit-build-duration: 2.35s;
   position: absolute;
   z-index: 5;
   top: 35%;
@@ -722,9 +723,8 @@ h3 {
 .portrait-tech-orbit__track {
   transform-origin: center;
   will-change: transform;
-  animation:
-    portrait-orbit-intro 2.6s cubic-bezier(0.16, 1, 0.3, 1) both,
-    portrait-orbit-loop 52s linear 2.6s infinite;
+  animation: portrait-orbit-loop 52s linear var(--portrait-orbit-build-duration)
+    infinite;
 }
 .portrait-tech-orbit__planet {
   position: absolute;
@@ -732,19 +732,23 @@ h3 {
   left: 50%;
   width: var(--portrait-planet-size);
   height: var(--portrait-planet-size);
+  z-index: var(--portrait-orbit-stack-order);
   translate: -50% -50%;
   transform: rotate(var(--portrait-orbit-angle))
     translateY(var(--portrait-orbit-radius))
     rotate(var(--portrait-orbit-angle-negative));
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: portrait-orbit-build var(--portrait-orbit-build-duration)
+    cubic-bezier(0.16, 0.84, 0.34, 0.98) both;
 }
 .portrait-tech-orbit__face {
   display: block;
   width: 100%;
   height: 100%;
   transform-origin: center;
-  animation:
-    portrait-orbit-face-intro 2.6s cubic-bezier(0.16, 1, 0.3, 1) both,
-    portrait-orbit-face-loop 52s linear 2.6s infinite;
+  animation: portrait-orbit-face-loop 52s linear
+    var(--portrait-orbit-build-duration) infinite;
 }
 .portrait-tech-orbit__core {
   display: grid;
@@ -774,12 +778,21 @@ h3 {
 .portrait-tech-orbit__core--wordmark {
   padding: 6px;
 }
-@keyframes portrait-orbit-intro {
-  from {
-    transform: rotate(-210deg);
+@keyframes portrait-orbit-build {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--portrait-orbit-start-angle))
+      translateY(var(--portrait-orbit-radius))
+      rotate(var(--portrait-orbit-start-angle-negative)) scale(0.72);
   }
-  to {
-    transform: rotate(0deg);
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(var(--portrait-orbit-angle))
+      translateY(var(--portrait-orbit-radius))
+      rotate(var(--portrait-orbit-angle-negative)) scale(1);
   }
 }
 @keyframes portrait-orbit-loop {
@@ -788,14 +801,6 @@ h3 {
   }
   to {
     transform: rotate(360deg);
-  }
-}
-@keyframes portrait-orbit-face-intro {
-  from {
-    transform: rotate(210deg);
-  }
-  to {
-    transform: rotate(0deg);
   }
 }
 @keyframes portrait-orbit-face-loop {
@@ -3875,6 +3880,10 @@ h3 {
   .portrait-tech-orbit__face {
     animation: none !important;
     transform: rotate(0deg);
+  }
+  .portrait-tech-orbit__planet {
+    animation: none !important;
+    opacity: 1;
   }
   *,
   *::before,
