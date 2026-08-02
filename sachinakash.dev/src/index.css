@@ -664,6 +664,7 @@ h3 {
 }
 .portrait-frame {
   position: absolute;
+  z-index: 2;
   inset: 0 22px 0 18px;
   overflow: hidden;
   background:
@@ -674,6 +675,136 @@ h3 {
     ),
     linear-gradient(160deg, #171c21, #080a0c 70%);
   clip-path: polygon(7% 0, 100% 0, 100% 87%, 89% 100%, 0 100%, 0 8%);
+}
+.portrait-tech-orbit {
+  --portrait-orbit-size: 370px;
+  --portrait-orbit-radius: -148px;
+  --portrait-planet-size: 40px;
+  position: absolute;
+  z-index: 5;
+  top: 35%;
+  left: 51%;
+  width: var(--portrait-orbit-size);
+  height: var(--portrait-orbit-size);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  -webkit-mask-image: conic-gradient(
+    from 0deg at 50% 50%,
+    #000 0deg,
+    #000 104deg,
+    rgba(0, 0, 0, 0.68) 110deg,
+    transparent 120deg,
+    transparent 196deg,
+    rgba(0, 0, 0, 0.68) 204deg,
+    #000 212deg,
+    #000 360deg
+  );
+  mask-image: conic-gradient(
+    from 0deg at 50% 50%,
+    #000 0deg,
+    #000 104deg,
+    rgba(0, 0, 0, 0.68) 110deg,
+    transparent 120deg,
+    transparent 196deg,
+    rgba(0, 0, 0, 0.68) 204deg,
+    #000 212deg,
+    #000 360deg
+  );
+}
+.portrait-tech-orbit__plane,
+.portrait-tech-orbit__track {
+  position: absolute;
+  inset: 0;
+}
+.portrait-tech-orbit__plane {
+  transform: scaleX(0.85);
+}
+.portrait-tech-orbit__track {
+  transform-origin: center;
+  will-change: transform;
+  animation:
+    portrait-orbit-intro 2.6s cubic-bezier(0.16, 1, 0.3, 1) both,
+    portrait-orbit-loop 52s linear 2.6s infinite;
+}
+.portrait-tech-orbit__planet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--portrait-planet-size);
+  height: var(--portrait-planet-size);
+  translate: -50% -50%;
+  transform: rotate(var(--portrait-orbit-angle))
+    translateY(var(--portrait-orbit-radius))
+    rotate(var(--portrait-orbit-angle-negative));
+}
+.portrait-tech-orbit__face {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  animation:
+    portrait-orbit-face-intro 2.6s cubic-bezier(0.16, 1, 0.3, 1) both,
+    portrait-orbit-face-loop 52s linear 2.6s infinite;
+}
+.portrait-tech-orbit__core {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: var(--portrait-planet-color);
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.13), transparent 38%),
+    rgba(8, 11, 13, 0.94);
+  border: 1px solid color-mix(in srgb, var(--portrait-planet-color) 42%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 3px rgba(7, 9, 11, 0.56),
+    0 0 18px color-mix(in srgb, var(--portrait-planet-color) 22%, transparent);
+  transform: scaleX(1.282);
+}
+.portrait-tech-orbit__core svg {
+  width: 52%;
+  height: 52%;
+}
+.portrait-tech-orbit__core img {
+  display: block;
+  width: 94%;
+  height: auto;
+}
+.portrait-tech-orbit__core--wordmark {
+  padding: 6px;
+}
+@keyframes portrait-orbit-intro {
+  from {
+    transform: rotate(-210deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+@keyframes portrait-orbit-loop {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes portrait-orbit-face-intro {
+  from {
+    transform: rotate(210deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+@keyframes portrait-orbit-face-loop {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 .portrait-frame::before {
   content: "";
@@ -3004,6 +3135,12 @@ h3 {
   .portrait-stage {
     min-height: 520px;
   }
+  .portrait-tech-orbit {
+    --portrait-orbit-size: 330px;
+    --portrait-orbit-radius: -130px;
+    --portrait-planet-size: 34px;
+    top: 35%;
+  }
   .section-heading {
     grid-template-columns: 160px 1fr;
   }
@@ -3082,6 +3219,13 @@ h3 {
     min-height: 570px;
     width: min(100%, 520px);
     margin: auto;
+  }
+  .portrait-tech-orbit {
+    --portrait-orbit-size: 370px;
+    --portrait-orbit-radius: -148px;
+    --portrait-planet-size: 36px;
+    top: 35%;
+    left: 51.5%;
   }
   .portrait-tag {
     left: -3px;
@@ -3283,6 +3427,12 @@ h3 {
   .portrait-stage {
     width: 100%;
     min-height: 455px;
+  }
+  .portrait-tech-orbit {
+    --portrait-orbit-size: 300px;
+    --portrait-orbit-radius: -116px;
+    --portrait-planet-size: 28px;
+    top: 35%;
   }
   .portrait-frame {
     inset-inline: 0;
@@ -3702,6 +3852,11 @@ h3 {
   .hero-meta {
     grid-template-columns: 1fr;
   }
+  .portrait-tech-orbit {
+    --portrait-orbit-size: 265px;
+    --portrait-orbit-radius: -100px;
+    --portrait-planet-size: 25px;
+  }
   .signal-strip .shell {
     grid-template-columns: 1fr;
   }
@@ -3716,6 +3871,11 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .portrait-tech-orbit__track,
+  .portrait-tech-orbit__face {
+    animation: none !important;
+    transform: rotate(0deg);
+  }
   *,
   *::before,
   *::after {
