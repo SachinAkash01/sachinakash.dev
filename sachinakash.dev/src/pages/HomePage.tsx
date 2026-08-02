@@ -412,6 +412,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const [readingFactOpen, setReadingFactOpen] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(0);
   const [visibleHeadlineCharacters, setVisibleHeadlineCharacters] = useState(0);
+  const [portraitReady, setPortraitReady] = useState(false);
   const location = useLocation();
   const closeReadingFact = useCallback(() => setReadingFactOpen(false), []);
   const socialUrl = (label: string) =>
@@ -557,12 +558,23 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 width="1024"
                 height="1024"
                 alt="Sachin Akash in professional attire"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 style={{ objectPosition: profile.profileImagePosition }}
+                onLoad={(event) => {
+                  const image = event.currentTarget;
+                  void image
+                    .decode()
+                    .catch(() => undefined)
+                    .finally(() => setPortraitReady(true));
+                }}
                 onError={(event) => {
                   event.currentTarget.style.display = "none";
                   const fallback = event.currentTarget
                     .nextElementSibling as HTMLElement | null;
                   if (fallback) fallback.style.display = "grid";
+                  setPortraitReady(true);
                 }}
               />
               <div className="portrait-fallback">
@@ -570,7 +582,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 <small>Portrait asset pending</small>
               </div>
             </div>
-            <PortraitTechnologyOrbit />
+            {portraitReady && <PortraitTechnologyOrbit />}
             <div className="portrait-tag">
               <span>ROLE / 01</span>
               <strong>
