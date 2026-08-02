@@ -47,6 +47,7 @@ import {
   SiVercel,
 } from "react-icons/si";
 import { VscAzure } from "react-icons/vsc";
+import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 import {
   books,
@@ -87,6 +88,14 @@ type PortraitTechnology = {
   image?: string;
 };
 
+type PortraitTechnologyTooltip = {
+  label: string;
+  color: string;
+  x: number;
+  y: number;
+  side: "bottom" | "left" | "right" | "top";
+};
+
 const portraitTechnologies: PortraitTechnology[] = [
   { label: "React", color: "#61dafb", Icon: SiReact },
   { label: "Java", color: "#f89820", Icon: FaJava },
@@ -119,49 +128,130 @@ const portraitTechnologies: PortraitTechnology[] = [
 
 function PortraitTechnologyOrbit() {
   const entryAngle = 212;
+  const [tooltip, setTooltip] = useState<PortraitTechnologyTooltip | null>(null);
+
+  const showTooltip = (
+    element: HTMLElement,
+    technology: PortraitTechnology,
+  ) => {
+    const rect = element.getBoundingClientRect();
+    const orbitElement = element.closest(".portrait-tech-orbit") as HTMLElement;
+    const orbitRect = orbitElement.getBoundingClientRect();
+    const iconCenterX = rect.left + rect.width / 2;
+    const iconCenterY = rect.top + rect.height / 2;
+    const orbitCenterX = orbitRect.left + orbitRect.width / 2;
+    const orbitCenterY = orbitRect.top + orbitRect.height / 2;
+    const offsetX = iconCenterX - orbitCenterX;
+    const offsetY = iconCenterY - orbitCenterY;
+    let side: PortraitTechnologyTooltip["side"];
+
+    if (Math.abs(offsetX) > Math.abs(offsetY) * 0.75) {
+      side = offsetX < 0 ? "left" : "right";
+    } else {
+      side = offsetY < 0 ? "top" : "bottom";
+    }
+
+    if (side === "right" && rect.right + 120 > window.innerWidth - 12) {
+      side = "left";
+    } else if (side === "left" && rect.left - 120 < 12) {
+      side = "right";
+    } else if (side === "top" && rect.top - 36 < 12) {
+      side = "bottom";
+    } else if (
+      side === "bottom" &&
+      rect.bottom + 36 > window.innerHeight - 12
+    ) {
+      side = "top";
+    }
+
+    const x =
+      side === "left"
+        ? rect.left - 10
+        : side === "right"
+          ? rect.right + 10
+          : Math.min(Math.max(iconCenterX, 60), window.innerWidth - 60);
+    const y =
+      side === "top"
+        ? rect.top - 10
+        : side === "bottom"
+          ? rect.bottom + 10
+          : Math.min(Math.max(iconCenterY, 24), window.innerHeight - 24);
+
+    setTooltip({
+      label: technology.label,
+      color: technology.color,
+      x,
+      y,
+      side,
+    });
+  };
 
   return (
-    <div className="portrait-tech-orbit" aria-hidden="true">
-      <div className="portrait-tech-orbit__plane">
-        <div className="portrait-tech-orbit__track">
-          {portraitTechnologies.map((technology, index) => {
-            const TechnologyIcon = technology.Icon;
-            const orbitStep = 360 / portraitTechnologies.length;
-            const angle = entryAngle + 360 - orbitStep * (index + 1);
-            const startAngle = entryAngle - index * 0.65;
-            return (
-              <span
-                className="portrait-tech-orbit__planet"
-                key={technology.label}
-                style={
-                  {
-                    "--portrait-orbit-angle": `${angle}deg`,
-                    "--portrait-orbit-angle-negative": `${-angle}deg`,
-                    "--portrait-orbit-start-angle": `${startAngle}deg`,
-                    "--portrait-orbit-start-angle-negative": `${-startAngle}deg`,
-                    "--portrait-orbit-stack-order":
-                      portraitTechnologies.length - index,
-                    "--portrait-planet-color": technology.color,
-                  } as CSSProperties
-                }
-              >
-                <span className="portrait-tech-orbit__face">
-                  <span
-                    className={`portrait-tech-orbit__core${technology.image ? " portrait-tech-orbit__core--wordmark" : ""}`}
-                  >
-                    {TechnologyIcon ? (
-                      <TechnologyIcon />
-                    ) : (
-                      <img src={technology.image} alt="" />
-                    )}
+    <>
+      <div className="portrait-tech-orbit" aria-hidden="true">
+        <div className="portrait-tech-orbit__plane">
+          <div className="portrait-tech-orbit__track">
+            {portraitTechnologies.map((technology, index) => {
+              const TechnologyIcon = technology.Icon;
+              const orbitStep = 360 / portraitTechnologies.length;
+              const angle = entryAngle + 360 - orbitStep * (index + 1);
+              const startAngle = entryAngle - index * 0.65;
+              return (
+                <span
+                  className="portrait-tech-orbit__planet"
+                  key={technology.label}
+                  onMouseEnter={(event) =>
+                    showTooltip(event.currentTarget, technology)
+                  }
+                  onMouseLeave={() => setTooltip(null)}
+                  style={
+                    {
+                      "--portrait-orbit-angle": `${angle}deg`,
+                      "--portrait-orbit-angle-negative": `${-angle}deg`,
+                      "--portrait-orbit-start-angle": `${startAngle}deg`,
+                      "--portrait-orbit-start-angle-negative": `${-startAngle}deg`,
+                      "--portrait-orbit-stack-order":
+                        portraitTechnologies.length - index,
+                      "--portrait-planet-color": technology.color,
+                    } as CSSProperties
+                  }
+                >
+                  <span className="portrait-tech-orbit__face">
+                    <span
+                      className={`portrait-tech-orbit__core${technology.image ? " portrait-tech-orbit__core--wordmark" : ""}`}
+                    >
+                      {TechnologyIcon ? (
+                        <TechnologyIcon />
+                      ) : (
+                        <img src={technology.image} alt="" />
+                      )}
+                    </span>
                   </span>
                 </span>
-              </span>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+      {tooltip &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <span
+            aria-hidden="true"
+            className={`portrait-tech-tooltip portrait-tech-tooltip--${tooltip.side}`}
+            style={
+              {
+                left: tooltip.x,
+                top: tooltip.y,
+                "--portrait-tooltip-color": tooltip.color,
+              } as CSSProperties
+            }
+          >
+            {tooltip.label}
+          </span>,
+          document.body,
+        )}
+    </>
   );
 }
 
