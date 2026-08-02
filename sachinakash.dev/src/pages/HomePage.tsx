@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownRight,
@@ -22,32 +16,8 @@ import {
   TerminalSquare,
   X,
 } from "lucide-react";
-import type { IconType } from "react-icons";
-import { FaAws, FaJava, FaLinkedin } from "react-icons/fa6";
-import {
-  SiCloudflare,
-  SiDocker,
-  SiFirebase,
-  SiGo,
-  SiGithub,
-  SiInstagram,
-  SiJavascript,
-  SiKubernetes,
-  SiMongodb,
-  SiMysql,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPostgresql,
-  SiPython,
-  SiReact,
-  SiSelenium,
-  SiSwagger,
-  SiTailwindcss,
-  SiTypescript,
-  SiVercel,
-} from "react-icons/si";
-import { VscAzure } from "react-icons/vsc";
-import { createPortal } from "react-dom";
+import { FaLinkedin } from "react-icons/fa6";
+import { SiGithub, SiInstagram } from "react-icons/si";
 import { Link, useLocation } from "react-router-dom";
 import {
   books,
@@ -80,180 +50,6 @@ const headlineTypingWords = profile.headline.split(" ").map((word) => ({
 const headlineTypingCharacters = headlineTypingWords.flatMap(
   (word) => word.characters,
 );
-
-type PortraitTechnology = {
-  label: string;
-  color: string;
-  Icon?: IconType;
-  image?: string;
-};
-
-type PortraitTechnologyTooltip = {
-  label: string;
-  color: string;
-  x: number;
-  y: number;
-  side: "bottom" | "left" | "right" | "top";
-};
-
-const portraitTechnologies: PortraitTechnology[] = [
-  { label: "React", color: "#61dafb", Icon: SiReact },
-  { label: "Java", color: "#f89820", Icon: FaJava },
-  { label: "Node.js", color: "#5fa04e", Icon: SiNodedotjs },
-  { label: "Next.js", color: "#ffffff", Icon: SiNextdotjs },
-  { label: "Tailwind CSS", color: "#06b6d4", Icon: SiTailwindcss },
-  { label: "Python", color: "#ffd43b", Icon: SiPython },
-  { label: "Go", color: "#00add8", Icon: SiGo },
-  { label: "GitHub", color: "#f0f6fc", Icon: SiGithub },
-  { label: "AWS", color: "#ff9900", Icon: FaAws },
-  {
-    label: "Ballerina",
-    color: "#52c3c2",
-    image: "/images/brand/ballerina-logo-white.svg",
-  },
-  { label: "MongoDB", color: "#47a248", Icon: SiMongodb },
-  { label: "Docker", color: "#2496ed", Icon: SiDocker },
-  { label: "JavaScript", color: "#f7df1e", Icon: SiJavascript },
-  { label: "TypeScript", color: "#3178c6", Icon: SiTypescript },
-  { label: "Cloudflare", color: "#f38020", Icon: SiCloudflare },
-  { label: "PostgreSQL", color: "#4169e1", Icon: SiPostgresql },
-  { label: "Firebase", color: "#ffca28", Icon: SiFirebase },
-  { label: "Swagger", color: "#85ea2d", Icon: SiSwagger },
-  { label: "MySQL", color: "#4479a1", Icon: SiMysql },
-  { label: "Kubernetes", color: "#326ce5", Icon: SiKubernetes },
-  { label: "Azure", color: "#0078d4", Icon: VscAzure },
-  { label: "Selenium", color: "#43b02a", Icon: SiSelenium },
-  { label: "Vercel", color: "#ffffff", Icon: SiVercel },
-];
-
-function PortraitTechnologyOrbit() {
-  const entryAngle = 212;
-  const [tooltip, setTooltip] = useState<PortraitTechnologyTooltip | null>(null);
-
-  const showTooltip = (
-    element: HTMLElement,
-    technology: PortraitTechnology,
-  ) => {
-    const rect = element.getBoundingClientRect();
-    const orbitElement = element.closest(".portrait-tech-orbit") as HTMLElement;
-    const orbitRect = orbitElement.getBoundingClientRect();
-    const iconCenterX = rect.left + rect.width / 2;
-    const iconCenterY = rect.top + rect.height / 2;
-    const orbitCenterX = orbitRect.left + orbitRect.width / 2;
-    const orbitCenterY = orbitRect.top + orbitRect.height / 2;
-    const offsetX = iconCenterX - orbitCenterX;
-    const offsetY = iconCenterY - orbitCenterY;
-    let side: PortraitTechnologyTooltip["side"];
-
-    if (Math.abs(offsetX) > Math.abs(offsetY) * 0.75) {
-      side = offsetX < 0 ? "left" : "right";
-    } else {
-      side = offsetY < 0 ? "top" : "bottom";
-    }
-
-    if (side === "right" && rect.right + 120 > window.innerWidth - 12) {
-      side = "left";
-    } else if (side === "left" && rect.left - 120 < 12) {
-      side = "right";
-    } else if (side === "top" && rect.top - 36 < 12) {
-      side = "bottom";
-    } else if (
-      side === "bottom" &&
-      rect.bottom + 36 > window.innerHeight - 12
-    ) {
-      side = "top";
-    }
-
-    const x =
-      side === "left"
-        ? rect.left - 10
-        : side === "right"
-          ? rect.right + 10
-          : Math.min(Math.max(iconCenterX, 60), window.innerWidth - 60);
-    const y =
-      side === "top"
-        ? rect.top - 10
-        : side === "bottom"
-          ? rect.bottom + 10
-          : Math.min(Math.max(iconCenterY, 24), window.innerHeight - 24);
-
-    setTooltip({
-      label: technology.label,
-      color: technology.color,
-      x,
-      y,
-      side,
-    });
-  };
-
-  return (
-    <>
-      <div className="portrait-tech-orbit" aria-hidden="true">
-        <div className="portrait-tech-orbit__plane">
-          <div className="portrait-tech-orbit__track">
-            {portraitTechnologies.map((technology, index) => {
-              const TechnologyIcon = technology.Icon;
-              const orbitStep = 360 / portraitTechnologies.length;
-              const angle = entryAngle + 360 - orbitStep * (index + 1);
-              const startAngle = entryAngle - index * 0.65;
-              return (
-                <span
-                  className="portrait-tech-orbit__planet"
-                  key={technology.label}
-                  onMouseEnter={(event) =>
-                    showTooltip(event.currentTarget, technology)
-                  }
-                  onMouseLeave={() => setTooltip(null)}
-                  style={
-                    {
-                      "--portrait-orbit-angle": `${angle}deg`,
-                      "--portrait-orbit-angle-negative": `${-angle}deg`,
-                      "--portrait-orbit-start-angle": `${startAngle}deg`,
-                      "--portrait-orbit-start-angle-negative": `${-startAngle}deg`,
-                      "--portrait-orbit-stack-order":
-                        portraitTechnologies.length - index,
-                      "--portrait-planet-color": technology.color,
-                    } as CSSProperties
-                  }
-                >
-                  <span className="portrait-tech-orbit__face">
-                    <span
-                      className={`portrait-tech-orbit__core${technology.image ? " portrait-tech-orbit__core--wordmark" : ""}`}
-                    >
-                      {TechnologyIcon ? (
-                        <TechnologyIcon />
-                      ) : (
-                        <img src={technology.image} alt="" />
-                      )}
-                    </span>
-                  </span>
-                </span>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-      {tooltip &&
-        typeof document !== "undefined" &&
-        createPortal(
-          <span
-            aria-hidden="true"
-            className={`portrait-tech-tooltip portrait-tech-tooltip--${tooltip.side}`}
-            style={
-              {
-                left: tooltip.x,
-                top: tooltip.y,
-                "--portrait-tooltip-color": tooltip.color,
-              } as CSSProperties
-            }
-          >
-            {tooltip.label}
-          </span>,
-          document.body,
-        )}
-    </>
-  );
-}
 
 function BookDialog({
   book,
@@ -412,7 +208,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const [readingFactOpen, setReadingFactOpen] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(0);
   const [visibleHeadlineCharacters, setVisibleHeadlineCharacters] = useState(0);
-  const [portraitReady, setPortraitReady] = useState(false);
   const location = useLocation();
   const closeReadingFact = useCallback(() => setReadingFactOpen(false), []);
   const socialUrl = (label: string) =>
@@ -558,23 +353,12 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 width="1024"
                 height="1024"
                 alt="Sachin Akash in professional attire"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
                 style={{ objectPosition: profile.profileImagePosition }}
-                onLoad={(event) => {
-                  const image = event.currentTarget;
-                  void image
-                    .decode()
-                    .catch(() => undefined)
-                    .finally(() => setPortraitReady(true));
-                }}
                 onError={(event) => {
                   event.currentTarget.style.display = "none";
                   const fallback = event.currentTarget
                     .nextElementSibling as HTMLElement | null;
                   if (fallback) fallback.style.display = "grid";
-                  setPortraitReady(true);
                 }}
               />
               <div className="portrait-fallback">
@@ -582,7 +366,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 <small>Portrait asset pending</small>
               </div>
             </div>
-            {portraitReady && <PortraitTechnologyOrbit />}
             <div className="portrait-tag">
               <span>ROLE / 01</span>
               <strong>
