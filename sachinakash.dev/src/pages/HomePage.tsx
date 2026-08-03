@@ -16,8 +16,16 @@ import {
   TerminalSquare,
   X,
 } from "lucide-react";
-import { FaLinkedin } from "react-icons/fa6";
-import { SiGithub, SiInstagram } from "react-icons/si";
+import type { IconType } from "react-icons";
+import { FaAws, FaJava, FaLinkedin } from "react-icons/fa6";
+import {
+  SiCloudflare,
+  SiGithub,
+  SiInstagram,
+  SiMongodb,
+  SiNodedotjs,
+  SiReact,
+} from "react-icons/si";
 import { Link, useLocation } from "react-router-dom";
 import {
   books,
@@ -50,6 +58,88 @@ const headlineTypingWords = profile.headline.split(" ").map((word) => ({
 const headlineTypingCharacters = headlineTypingWords.flatMap(
   (word) => word.characters,
 );
+
+type PortraitExpertise = {
+  label: string;
+  note: string;
+  slug: string;
+  Icon?: IconType;
+  image?: string;
+};
+
+const portraitExpertise: PortraitExpertise[] = [
+  {
+    label: "Java",
+    note: "Production integrations and backend engineering.",
+    slug: "java",
+    Icon: FaJava,
+  },
+  {
+    label: "Ballerina",
+    note: "Built developer tools and standard libraries.",
+    slug: "ballerina",
+    image: "/images/brand/ballerina-logo-white.svg",
+  },
+  {
+    label: "React",
+    note: "Responsive product interfaces with strong UX.",
+    slug: "react",
+    Icon: SiReact,
+  },
+  {
+    label: "Node.js",
+    note: "APIs, tooling, and reliable web services.",
+    slug: "node",
+    Icon: SiNodedotjs,
+  },
+  {
+    label: "MongoDB",
+    note: "Document models for practical product workflows.",
+    slug: "mongodb",
+    Icon: SiMongodb,
+  },
+  {
+    label: "GitHub",
+    note: "Open-source collaboration, reviews, and releases.",
+    slug: "github",
+    Icon: SiGithub,
+  },
+  {
+    label: "AWS",
+    note: "Production cloud infrastructure and deployment.",
+    slug: "aws",
+    Icon: FaAws,
+  },
+  {
+    label: "Cloudflare",
+    note: "Edge delivery, DNS, security, and performance.",
+    slug: "cloudflare",
+    Icon: SiCloudflare,
+  },
+];
+
+function PortraitExpertiseCloud() {
+  return (
+    <div className="portrait-expertise" aria-label="Core technical expertise">
+      {portraitExpertise.map(({ label, note, slug, Icon, image }) => (
+        <button
+          className={`portrait-expertise__item portrait-expertise__item--${slug}`}
+          type="button"
+          aria-label={`${label}: ${note}`}
+          key={label}
+        >
+          <span className="portrait-expertise__node" aria-hidden="true">
+            {Icon ? <Icon /> : <img src={image} alt="" />}
+          </span>
+          <span className="portrait-expertise__tooltip" role="tooltip">
+            <strong>{label}</strong>
+            <span>{note}</span>
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
 
 function BookDialog({
   book,
@@ -366,6 +456,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 <small>Portrait asset pending</small>
               </div>
             </div>
+            <PortraitExpertiseCloud />
             <div className="portrait-tag">
               <span>ROLE / 01</span>
               <strong>
