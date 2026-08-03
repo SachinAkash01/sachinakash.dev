@@ -683,7 +683,6 @@ h3 {
 }
 .portrait-expertise__item {
   --tech-color: var(--amber-bright);
-  --portrait-float-duration: 5.8s;
   position: absolute;
   display: grid;
   width: 42px;
@@ -696,11 +695,17 @@ h3 {
   border-radius: 50%;
   pointer-events: auto;
   isolation: isolate;
-  animation:
-    portrait-expertise-pop 320ms cubic-bezier(0.2, 0.9, 0.32, 1.24)
-      var(--tech-reveal-delay) both,
-    portrait-expertise-float var(--portrait-float-duration) ease-in-out
-      var(--tech-float-delay) infinite;
+  animation: portrait-expertise-pop 320ms
+    cubic-bezier(0.2, 0.9, 0.32, 1.24) var(--tech-reveal-delay) both;
+}
+.portrait-expertise__float {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  animation: portrait-expertise-float var(--tech-float-duration) ease-in-out
+    var(--tech-float-phase) infinite;
 }
 .portrait-expertise__node {
   position: relative;
@@ -784,6 +789,10 @@ h3 {
 .portrait-expertise__item:focus-visible {
   z-index: 10;
   outline: none;
+}
+.portrait-expertise__item:hover .portrait-expertise__float,
+.portrait-expertise__item:focus-visible .portrait-expertise__float {
+  animation-play-state: paused;
 }
 .portrait-expertise__item:hover .portrait-expertise__node,
 .portrait-expertise__item:focus-visible .portrait-expertise__node {
@@ -924,10 +933,10 @@ h3 {
 @keyframes portrait-expertise-float {
   0%,
   100% {
-    transform: translate3d(0, -2px, 0);
+    transform: translate3d(var(--tech-float-from), 0);
   }
   50% {
-    transform: translate3d(2px, 3px, 0);
+    transform: translate3d(var(--tech-float-to), 0);
   }
 }
 .portrait-frame::before {
@@ -3578,7 +3587,6 @@ h3 {
   .portrait-expertise__item {
     width: 35px;
     height: 35px;
-    --portrait-float-duration: 7.5s;
   }
   .portrait-expertise__node {
     width: 31px;
@@ -4149,10 +4157,13 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   .portrait-expertise__item {
     --tech-reveal-delay: 0ms !important;
-    --tech-float-delay: 0ms !important;
     opacity: 1;
     transform: none;
     filter: none;
+  }
+  .portrait-expertise__float {
+    animation: none !important;
+    transform: none;
   }
   *,
   *::before,

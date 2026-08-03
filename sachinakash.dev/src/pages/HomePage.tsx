@@ -125,6 +125,16 @@ const portraitExpertise: PortraitExpertise[] = [
 ];
 
 const portraitExpertiseRevealOrder = [3, 0, 6, 2, 7, 4, 1, 5];
+const portraitExpertiseFloatProfiles = [
+  { duration: "6.2s", phase: "-1.2s", from: "-6px, -8px", to: "7px, 6px" },
+  { duration: "7s", phase: "-4.9s", from: "7px, -7px", to: "-6px, 8px" },
+  { duration: "5.7s", phase: "-2.7s", from: "-8px, 4px", to: "6px, -7px" },
+  { duration: "7.4s", phase: "-6.2s", from: "6px, 6px", to: "-7px, -8px" },
+  { duration: "6.5s", phase: "-3.8s", from: "-5px, -9px", to: "8px, 5px" },
+  { duration: "6.8s", phase: "-0.8s", from: "8px, -4px", to: "-6px, 8px" },
+  { duration: "5.9s", phase: "-5.3s", from: "-7px, 6px", to: "7px, -7px" },
+  { duration: "7.2s", phase: "-2.1s", from: "6px, -8px", to: "-8px, 6px" },
+];
 
 function PortraitExpertiseCloud() {
   return (
@@ -138,16 +148,22 @@ function PortraitExpertiseCloud() {
           style={
             {
               "--tech-reveal-delay": `${portraitExpertiseRevealOrder[index] * 60}ms`,
-              "--tech-float-delay": `${520 + portraitExpertiseRevealOrder[index] * 60}ms`,
+              "--tech-float-duration":
+                portraitExpertiseFloatProfiles[index].duration,
+              "--tech-float-phase": portraitExpertiseFloatProfiles[index].phase,
+              "--tech-float-from": portraitExpertiseFloatProfiles[index].from,
+              "--tech-float-to": portraitExpertiseFloatProfiles[index].to,
             } as CSSProperties
           }
         >
-          <span className="portrait-expertise__node" aria-hidden="true">
-            {Icon ? <Icon /> : <img src={image} alt="" />}
-          </span>
-          <span className="portrait-expertise__tooltip" role="tooltip">
-            <strong>{label}</strong>
-            <span>{note}</span>
+          <span className="portrait-expertise__float">
+            <span className="portrait-expertise__node" aria-hidden="true">
+              {Icon ? <Icon /> : <img src={image} alt="" />}
+            </span>
+            <span className="portrait-expertise__tooltip" role="tooltip">
+              <strong>{label}</strong>
+              <span>{note}</span>
+            </span>
           </span>
         </button>
       ))}
