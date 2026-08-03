@@ -458,6 +458,9 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 width="1024"
                 height="1024"
                 alt="Sachin Akash in professional attire"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 style={{ objectPosition: profile.profileImagePosition }}
                 onLoad={(event) => {
                   const image = event.currentTarget;
