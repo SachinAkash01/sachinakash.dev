@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownRight,
@@ -118,15 +124,23 @@ const portraitExpertise: PortraitExpertise[] = [
   },
 ];
 
+const portraitExpertiseRevealOrder = [3, 0, 6, 2, 7, 4, 1, 5];
+
 function PortraitExpertiseCloud() {
   return (
     <div className="portrait-expertise" aria-label="Core technical expertise">
-      {portraitExpertise.map(({ label, note, slug, Icon, image }) => (
+      {portraitExpertise.map(({ label, note, slug, Icon, image }, index) => (
         <button
           className={`portrait-expertise__item portrait-expertise__item--${slug}`}
           type="button"
           aria-label={`${label}: ${note}`}
           key={label}
+          style={
+            {
+              "--tech-reveal-delay": `${portraitExpertiseRevealOrder[index] * 60}ms`,
+              "--tech-float-delay": `${520 + portraitExpertiseRevealOrder[index] * 60}ms`,
+            } as CSSProperties
+          }
         >
           <span className="portrait-expertise__node" aria-hidden="true">
             {Icon ? <Icon /> : <img src={image} alt="" />}
@@ -298,6 +312,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const [readingFactOpen, setReadingFactOpen] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(0);
   const [visibleHeadlineCharacters, setVisibleHeadlineCharacters] = useState(0);
+  const [portraitReady, setPortraitReady] = useState(false);
   const location = useLocation();
   const closeReadingFact = useCallback(() => setReadingFactOpen(false), []);
   const socialUrl = (label: string) =>
@@ -444,11 +459,19 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 height="1024"
                 alt="Sachin Akash in professional attire"
                 style={{ objectPosition: profile.profileImagePosition }}
+                onLoad={(event) => {
+                  const image = event.currentTarget;
+                  void image
+                    .decode()
+                    .catch(() => undefined)
+                    .finally(() => setPortraitReady(true));
+                }}
                 onError={(event) => {
                   event.currentTarget.style.display = "none";
                   const fallback = event.currentTarget
                     .nextElementSibling as HTMLElement | null;
                   if (fallback) fallback.style.display = "grid";
+                  setPortraitReady(true);
                 }}
               />
               <div className="portrait-fallback">
@@ -456,7 +479,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 <small>Portrait asset pending</small>
               </div>
             </div>
-            <PortraitExpertiseCloud />
+            {portraitReady && <PortraitExpertiseCloud />}
             <div className="portrait-tag">
               <span>ROLE / 01</span>
               <strong>

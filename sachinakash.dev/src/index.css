@@ -683,6 +683,7 @@ h3 {
 }
 .portrait-expertise__item {
   --tech-color: var(--amber-bright);
+  --portrait-float-duration: 5.8s;
   position: absolute;
   display: grid;
   width: 42px;
@@ -695,7 +696,11 @@ h3 {
   border-radius: 50%;
   pointer-events: auto;
   isolation: isolate;
-  animation: portrait-expertise-float 5.8s ease-in-out infinite;
+  animation:
+    portrait-expertise-pop 320ms cubic-bezier(0.2, 0.9, 0.32, 1.24)
+      var(--tech-reveal-delay) both,
+    portrait-expertise-float var(--portrait-float-duration) ease-in-out
+      var(--tech-float-delay) infinite;
 }
 .portrait-expertise__node {
   position: relative;
@@ -804,43 +809,36 @@ h3 {
   --tech-color: #52c3c2;
   top: 10%;
   right: 25%;
-  animation-delay: -0.9s;
 }
 .portrait-expertise__item--react {
   --tech-color: #61dafb;
   top: 25%;
   left: 15%;
-  animation-delay: -1.8s;
 }
 .portrait-expertise__item--node {
   --tech-color: #5fa04e;
   top: 30%;
   right: 12%;
-  animation-delay: -2.7s;
 }
 .portrait-expertise__item--mongodb {
   --tech-color: #47a248;
   top: 45%;
   left: 12%;
-  animation-delay: -3.6s;
 }
 .portrait-expertise__item--aws {
   --tech-color: #ff9900;
   top: 52%;
   right: 7%;
-  animation-delay: -6.3s;
 }
 .portrait-expertise__item--github {
   --tech-color: #f0f6fc;
   top: 74%;
   right: 10%;
-  animation-delay: -4.5s;
 }
 .portrait-expertise__item--cloudflare {
   --tech-color: #f38020;
   top: 65%;
   right: 76%;
-  animation-delay: -5.4s;
 }
 .portrait-expertise__item--react .portrait-expertise__tooltip,
 .portrait-expertise__item--mongodb .portrait-expertise__tooltip,
@@ -906,6 +904,23 @@ h3 {
   transform: translate(-50%, 0);
 }
 
+@keyframes portrait-expertise-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.35);
+    filter: blur(5px);
+  }
+  68% {
+    opacity: 1;
+    transform: scale(1.12);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
 @keyframes portrait-expertise-float {
   0%,
   100% {
@@ -3563,7 +3578,7 @@ h3 {
   .portrait-expertise__item {
     width: 35px;
     height: 35px;
-    animation-duration: 7.5s;
+    --portrait-float-duration: 7.5s;
   }
   .portrait-expertise__node {
     width: 31px;
@@ -4132,6 +4147,13 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .portrait-expertise__item {
+    --tech-reveal-delay: 0ms !important;
+    --tech-float-delay: 0ms !important;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
   *,
   *::before,
   *::after {
