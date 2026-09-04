@@ -192,7 +192,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    role: "Software Engineering Intern",
+    role: "Software Engineer Intern",
     company: "WSO2",
     period: "2023 - 2024",
     summary:
