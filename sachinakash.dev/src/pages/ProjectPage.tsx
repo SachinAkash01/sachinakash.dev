@@ -14,6 +14,8 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { Seo } from "../components/Seo";
 import { projects } from "../data/portfolio";
+import { servicePages } from "../data/services";
+import { PERSON_ID, absoluteUrl, breadcrumbSchema } from "../lib/seo";
 
 export function ProjectPage() {
   const { slug } = useParams();
@@ -27,6 +29,16 @@ export function ProjectPage() {
         ...(project.gallery ?? []),
       ]
     : [];
+  // Thumbnails below the hero sit in pairs; with an odd count the last three
+  // share a row of thirds, so no thumbnail is left on its own.
+  const thumbnailCount = galleryImages.length - 1;
+  const thumbnailClass = (index: number) => {
+    if (index === 0) return "";
+    if (thumbnailCount === 1) return " case-gallery__item--full";
+    if (thumbnailCount % 2 === 1 && index > thumbnailCount - 3)
+      return " case-gallery__item--third";
+    return "";
+  };
   const lightboxOpen = activeImageIndex !== null;
   const activeImage =
     activeImageIndex === null ? null : galleryImages[activeImageIndex];
@@ -62,12 +74,44 @@ export function ProjectPage() {
 
   if (!project) return <Navigate to="/404" replace />;
   const nextProject = projects[(projectIndex + 1) % projects.length];
+  const relatedServices = servicePages.filter((service) =>
+    service.relatedProjects.includes(project.slug),
+  );
+  const path = `/projects/${project.slug}`;
   return (
     <main id="main-content" className="case-study">
       <Seo
-        title={`${project.title} — Sachin Akash`}
+        title={`${project.title} — Case Study by Sachin Akash`}
         description={project.summary}
-        path={`/projects/${project.slug}`}
+        path={path}
+        type="article"
+        image={`/images/og/${project.slug}.jpg`}
+        imageAlt={project.imageAlt}
+        jsonLd={[
+          {
+            "@type": "CreativeWork",
+            "@id": `${absoluteUrl(path)}#work`,
+            name: project.title,
+            headline: project.title,
+            description: project.summary,
+            url: absoluteUrl(path),
+            image: absoluteUrl(project.image),
+            dateCreated: project.year,
+            genre: project.category,
+            keywords: project.technologies.join(", "),
+            creator: { "@id": PERSON_ID },
+            author: { "@id": PERSON_ID },
+            sameAs: project.url,
+            about: project.industry,
+            locationCreated: { "@type": "Place", name: "Colombo, Sri Lanka" },
+            spatialCoverage: project.market,
+          },
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Projects", path: "/projects" },
+            { name: project.shortTitle, path },
+          ]),
+        ]}
       />
       <header className="shell case-hero">
         <Link className="back-link" to="/projects">
@@ -86,6 +130,14 @@ export function ProjectPage() {
               <div>
                 <span>Role</span>
                 <strong>{project.role}</strong>
+              </div>
+              <div>
+                <span>Client market</span>
+                <strong>{project.market}</strong>
+              </div>
+              <div>
+                <span>Year</span>
+                <strong>{project.year}</strong>
               </div>
             </div>
             <a
@@ -182,11 +234,14 @@ export function ProjectPage() {
         <blockquote>{project.outcome}</blockquote>
       </section>
       <section
-        className={`shell case-gallery ${galleryImages.length === 1 ? "case-gallery--single" : ""}`}
+        className="shell case-gallery"
         aria-label={`${project.title} website preview`}
       >
         {galleryImages.map((image, index) => (
-          <figure className="case-gallery__item" key={image.image}>
+          <figure
+            className={`case-gallery__item${thumbnailClass(index)}`}
+            key={image.image}
+          >
             <button
               className="case-gallery__trigger"
               type="button"
@@ -196,7 +251,7 @@ export function ProjectPage() {
               <img
                 src={image.image}
                 alt={image.imageAlt}
-                loading="lazy"
+                loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
               />
             </button>
@@ -205,7 +260,32 @@ export function ProjectPage() {
             </figcaption>
           </figure>
         ))}
+        <div className="case-gallery__live">
+          <p>
+            See the full {project.shortTitle} website in action.
+          </p>
+          <a
+            className="button"
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit live website <ExternalLink size={17} />
+          </a>
+        </div>
       </section>
+      {relatedServices.length > 0 && (
+        <section className="shell case-section other-services">
+          <p className="mono-label">RELATED SERVICES</p>
+          <nav aria-label="Related services">
+            {relatedServices.map((service) => (
+              <Link key={service.slug} to={`/services/${service.slug}`}>
+                {service.name} <ArrowRight size={15} />
+              </Link>
+            ))}
+          </nav>
+        </section>
+      )}
       <section className="shell next-project">
         <div>
           <p className="mono-label">NEXT PROJECT / {nextProject.number}</p>

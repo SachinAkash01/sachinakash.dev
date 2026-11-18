@@ -12,6 +12,8 @@ export function NotFoundPage({
       <Seo
         title="Signal lost — Sachin Akash"
         description="The requested route could not be located."
+        path="/404"
+        noindex
       />
       <div className="not-found__radar">
         <i />

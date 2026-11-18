@@ -19,7 +19,6 @@ import {
   GraduationCap,
   Mail,
   MapPin,
-  TerminalSquare,
   X,
 } from "lucide-react";
 import type { IconType } from "react-icons";
@@ -49,21 +48,9 @@ import { ContactForm } from "../components/ContactForm";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { SectionHeading } from "../components/SectionHeading";
 import { Seo } from "../components/Seo";
+import { PERSON_ID, SITE_URL, WEBSITE_ID } from "../lib/seo";
 
 const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } };
-
-let headlineCharacterIndex = 0;
-const headlineTypingWords = profile.headline.split(" ").map((word) => ({
-  key: `${word}-${headlineCharacterIndex}`,
-  characters: Array.from(word).map((character, characterIndex, characters) => ({
-    character,
-    index: headlineCharacterIndex++,
-    pauseAfter: characterIndex === characters.length - 1 ? 75 : 35,
-  })),
-}));
-const headlineTypingCharacters = headlineTypingWords.flatMap(
-  (word) => word.characters,
-);
 
 type PortraitExpertise = {
   label: string;
@@ -321,16 +308,16 @@ function ReadingFactDialog({
   );
 }
 
-export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
+export function HomePage() {
   const reducedMotion = useReducedMotion();
   const [copied, setCopied] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [readingFactOpen, setReadingFactOpen] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(0);
-  const [visibleHeadlineCharacters, setVisibleHeadlineCharacters] = useState(0);
   const [portraitReady, setPortraitReady] = useState(false);
   const location = useLocation();
   const closeReadingFact = useCallback(() => setReadingFactOpen(false), []);
+
   const socialUrl = (label: string) =>
     profile.socials.find((social) => social.label === label)?.href ?? "#";
 
@@ -342,33 +329,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
       );
   }, [location.hash]);
 
-  useEffect(() => {
-    if (reducedMotion) return;
-
-    let characterIndex = 0;
-    let typingTimer: number;
-    const revealNextCharacter = () => {
-      characterIndex += 1;
-      setVisibleHeadlineCharacters(characterIndex);
-
-      if (characterIndex < headlineTypingCharacters.length) {
-        const currentCharacter = headlineTypingCharacters[characterIndex - 1];
-        typingTimer = window.setTimeout(
-          revealNextCharacter,
-          currentCharacter.pauseAfter,
-        );
-      }
-    };
-    const startTimer = window.setTimeout(() => {
-      revealNextCharacter();
-    }, 680);
-
-    return () => {
-      window.clearTimeout(startTimer);
-      window.clearTimeout(typingTimer);
-    };
-  }, [reducedMotion]);
-
   const copyEmail = async () => {
     if (profile.email === "YOUR_EMAIL_ADDRESS") return;
     await navigator.clipboard.writeText(profile.email);
@@ -379,8 +339,18 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   return (
     <main id="main-content">
       <Seo
-        title="Sachin Akash — Software Engineer & Product Builder"
-        description="Portfolio of Sachin Akash, software engineer, product builder, and Co-Founder & Director at Evantra Labs in Colombo, Sri Lanka."
+        title="Sachin Akash — Software Engineer & Freelance Web Developer in Sri Lanka"
+        description="Sachin Akash is a software engineer and freelance full-stack web developer in Colombo, Sri Lanka, building websites, web apps, mobile apps, e-commerce stores, and APIs for businesses worldwide. Ex-WSO2, Co-Founder of Evantra Labs."
+        jsonLd={[
+          {
+            "@type": "ProfilePage",
+            "@id": `${SITE_URL}/`,
+            url: `${SITE_URL}/`,
+            name: "Sachin Akash — Software Engineer & Freelance Web Developer",
+            mainEntity: { "@id": PERSON_ID },
+            isPartOf: { "@id": WEBSITE_ID },
+          },
+        ]}
       />
       <section className="hero-section" id="home">
         <div className="hero-orbit hero-orbit--one" />
@@ -393,35 +363,14 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             variants={reveal}
             transition={{ duration: 0.55 }}
           >
-            <p className="hero-eyebrow">{profile.eyebrow}</p>
-            <h1 aria-label={`${profile.name}. ${profile.headline}`}>
-              <span className="hero-name" aria-hidden="true">
-                {profile.name}
-              </span>
-              <span className="hero-headline" aria-hidden="true">
-                {headlineTypingWords.map((word) => (
-                  <span className="hero-headline__word" key={word.key}>
-                    {word.characters.map(({ character, index }) => {
-                      const isVisible =
-                        reducedMotion || index < visibleHeadlineCharacters;
-                      const isCurrent =
-                        !reducedMotion &&
-                        index === visibleHeadlineCharacters - 1;
-                      return (
-                        <span
-                          className={`hero-typing-character${isVisible ? " hero-typing-character--visible" : ""}`}
-                          key={`${character}-${index}`}
-                        >
-                          {character}
-                          {isCurrent && <i className="hero-typing-cursor" />}
-                        </span>
-                      );
-                    })}
-                  </span>
-                ))}
-              </span>
+            {/* The role label sits inside the h1 so search engines read the
+                job title as part of the main heading; it looks unchanged. */}
+            <h1>
+              <span className="hero-eyebrow">{profile.eyebrow}</span>
+              <span className="hero-name">{profile.name}</span>
+              <span className="hero-headline">{profile.headline}</span>
             </h1>
-            <p className="hero-summary">{profile.summary}</p>
+            <p className="hero-summary">{profile.intro}</p>
             <div className="hero-actions">
               <a className="button" href="#projects">
                 View my work <ArrowDownRight size={18} />
@@ -429,31 +378,37 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
               <a className="button button--ghost" href="#contact">
                 Contact me <ArrowRight size={18} />
               </a>
-              <a className="text-link" href={profile.resumeUrl} download>
-                Download CV <Download size={16} />
-              </a>
             </div>
-            <div className="hero-meta">
-              <a
-                href={socialUrl("GitHub")}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SiGithub size={16} /> GitHub
-              </a>
-              <a
-                href={socialUrl("LinkedIn")}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin size={16} /> LinkedIn
-              </a>
-              <button onClick={onOpenTerminal}>
-                <TerminalSquare size={16} /> Open terminal
-              </button>
-              <span>
-                <MapPin size={16} /> {profile.location}
-              </span>
+            <ul className="hero-proof" aria-label="Highlights">
+              <li>
+                <strong>20+</strong>
+                <span>Live Client Projects</span>
+              </li>
+              <li>
+                <strong>Ex-WSO2</strong>
+                <span>Software Engineer</span>
+              </li>
+              <li>
+                <strong>First Class</strong>
+                <span>BSc (Hons) CS & SE</span>
+              </li>
+              <li>
+                <strong>Co-Founder</strong>
+                <span>Evantra Labs</span>
+              </li>
+            </ul>
+            <div className="hero-paths">
+              <p>
+                <span>Hiring?</span>
+                <Link to="/resume">View my résumé</Link>
+                <a href={profile.resumeUrl} download>
+                  Download CV <Download size={14} />
+                </a>
+              </p>
+              <p>
+                <span>Need a website?</span>
+                <Link to="/services">See my services</Link>
+              </p>
             </div>
           </motion.div>
           <motion.div
@@ -462,10 +417,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.75, delay: 0.15 }}
           >
-            <div className="portrait-coordinates portrait-coordinates--top">
-              06.9271° N<br />
-              79.8612° E
-            </div>
             <div className="portrait-frame">
               <div className="portrait-scan" />
               <div className="portrait-glow" />
@@ -506,9 +457,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 <br />
                 from idea to production.
               </strong>
-            </div>
-            <div className="portrait-status">
-              <i /> SYSTEMS ONLINE
             </div>
           </motion.div>
         </div>
@@ -668,7 +616,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             index="03"
             eyebrow="SELECTED WORK / 2026"
             title="Digital products designed to do real work."
-            copy="A selection of platforms spanning commerce, education, finance, food technology, and software services."
+            copy="Travel platforms, e-commerce stores, and corporate, education, finance, and entertainment websites for clients in Sri Lanka, Australia, and Europe."
             action={
               <Link className="text-link" to="/projects">
                 View all projects <ArrowUpRight size={16} />
@@ -770,25 +718,32 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             eyebrow="SERVICES / EVANTRA LABS"
             title="From early direction to production software."
             copy="For teams that need a thoughtful technical partner, not just another implementation hand-off."
+            action={
+              <Link className="text-link" to="/services">
+                All services <ArrowUpRight size={16} />
+              </Link>
+            }
           />
           <div className="services-grid">
             {services.map(
-              ({ icon: Icon, title, description, skills }, index) => (
+              ({ icon: Icon, slug, title, description, skills }, index) => (
                 <article key={title}>
                   <div className="service-icon">
                     <Icon size={22} />
                   </div>
                   <span>0{index + 1}</span>
-                  <h3>{title}</h3>
+                  <h3>
+                    <Link to={`/services/${slug}`}>{title}</Link>
+                  </h3>
                   <p>{description}</p>
                   <div>
                     {skills.map((skill) => (
                       <small key={skill}>{skill}</small>
                     ))}
                   </div>
-                  <a href="#contact">
-                    Discuss a project <ArrowRight size={16} />
-                  </a>
+                  <Link to={`/services/${slug}`}>
+                    Learn more <ArrowRight size={16} />
+                  </Link>
                 </article>
               ),
             )}

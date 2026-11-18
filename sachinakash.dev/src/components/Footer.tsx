@@ -6,7 +6,8 @@ import {
 import { FaLinkedin } from "react-icons/fa6";
 import { SiGithub, SiInstagram } from "react-icons/si";
 import { Link, useLocation } from "react-router-dom";
-import { profile, services } from "../data/portfolio";
+import { profile } from "../data/portfolio";
+import { servicePages } from "../data/services";
 import { BrandMark } from "./BrandMark";
 
 export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
@@ -33,8 +34,9 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             <small>Sachin Akash</small>
           </Link>
           <p>
-            Software engineer and product builder creating useful, reliable
-            digital systems.
+            Software engineer and freelance full-stack web developer in
+            Colombo, Sri Lanka, building websites, web apps, and mobile apps
+            for businesses worldwide.
           </p>
           <span className="footer-signal">
             <i /> {profile.location}
@@ -43,28 +45,22 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
         <div>
           <h3>Navigate</h3>
           <nav>
-            {[
-              "About",
-              "Experience",
-              "Projects",
-              "Skills",
-              "Education",
-              "Books",
-              "Contact",
-            ].map((item) => (
-              <a key={item} href={section(item.toLowerCase())}>
-                {item}
-              </a>
-            ))}
+            <a href={section("about")}>About</a>
+            <a href={section("experience")}>Experience</a>
+            <Link to="/projects">Projects</Link>
+            <Link to="/services">Services</Link>
+            <Link to="/resume">Résumé</Link>
+            <a href={section("books")}>Books</a>
+            <a href={section("contact")}>Contact</a>
           </nav>
         </div>
         <div>
           <h3>Services</h3>
           <nav>
-            {services.slice(0, 6).map((service) => (
-              <a key={service.title} href={section("services")}>
-                {service.title}
-              </a>
+            {servicePages.map((service) => (
+              <Link key={service.slug} to={`/services/${service.slug}`}>
+                {service.name}
+              </Link>
             ))}
           </nav>
         </div>
