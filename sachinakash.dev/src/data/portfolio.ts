@@ -528,15 +528,20 @@ export const projects: Project[] = ([
     title: "Sheree’s Cakes E-Commerce Platform",
     url: "https://www.shereescakes.lk/",
     image: "/images/projects/sherees-cakes.webp",
-    imageAlt: "Sheree's Cakes e-commerce website home page",
+    imageAlt: "Sheree's Cakes home page hero: A slice of happiness delivered to your door",
     gallery: [
       {
-        image: "/images/projects/sherees-cakes-shop.png",
+        image: "/images/projects/sherees-cakes-shop.webp",
         imageAlt:
-          "Sheree's Cakes online shop with product filters and birthday cake catalogue",
+          "Sheree's Cakes Shop All Treats page with product search and category filters",
       },
       {
-        image: "/images/projects/sherees-cakes-cart.png",
+        image: "/images/projects/sherees-cakes-birthday-cakes.webp",
+        imageAlt:
+          "Sheree's Cakes birthday cake catalogue with product codes, prices, and add-to-cart buttons",
+      },
+      {
+        image: "/images/projects/sherees-cakes-cart.webp",
         imageAlt:
           "Sheree's Cakes shopping cart showing an item, subtotal, and checkout actions",
       },
