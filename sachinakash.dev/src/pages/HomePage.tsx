@@ -49,21 +49,9 @@ import { ContactForm } from "../components/ContactForm";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { SectionHeading } from "../components/SectionHeading";
 import { Seo } from "../components/Seo";
+import { PERSON_ID, SITE_URL, WEBSITE_ID } from "../lib/seo";
 
 const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } };
-
-let headlineCharacterIndex = 0;
-const headlineTypingWords = profile.headline.split(" ").map((word) => ({
-  key: `${word}-${headlineCharacterIndex}`,
-  characters: Array.from(word).map((character, characterIndex, characters) => ({
-    character,
-    index: headlineCharacterIndex++,
-    pauseAfter: characterIndex === characters.length - 1 ? 75 : 35,
-  })),
-}));
-const headlineTypingCharacters = headlineTypingWords.flatMap(
-  (word) => word.characters,
-);
 
 type PortraitExpertise = {
   label: string;
@@ -327,7 +315,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [readingFactOpen, setReadingFactOpen] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(0);
-  const [visibleHeadlineCharacters, setVisibleHeadlineCharacters] = useState(0);
   const [portraitReady, setPortraitReady] = useState(false);
   const location = useLocation();
   const closeReadingFact = useCallback(() => setReadingFactOpen(false), []);
@@ -342,33 +329,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
       );
   }, [location.hash]);
 
-  useEffect(() => {
-    if (reducedMotion) return;
-
-    let characterIndex = 0;
-    let typingTimer: number;
-    const revealNextCharacter = () => {
-      characterIndex += 1;
-      setVisibleHeadlineCharacters(characterIndex);
-
-      if (characterIndex < headlineTypingCharacters.length) {
-        const currentCharacter = headlineTypingCharacters[characterIndex - 1];
-        typingTimer = window.setTimeout(
-          revealNextCharacter,
-          currentCharacter.pauseAfter,
-        );
-      }
-    };
-    const startTimer = window.setTimeout(() => {
-      revealNextCharacter();
-    }, 680);
-
-    return () => {
-      window.clearTimeout(startTimer);
-      window.clearTimeout(typingTimer);
-    };
-  }, [reducedMotion]);
-
   const copyEmail = async () => {
     if (profile.email === "YOUR_EMAIL_ADDRESS") return;
     await navigator.clipboard.writeText(profile.email);
@@ -379,8 +339,18 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   return (
     <main id="main-content">
       <Seo
-        title="Sachin Akash — Software Engineer & Product Builder"
-        description="Portfolio of Sachin Akash, software engineer, product builder, and Co-Founder & Director at Evantra Labs in Colombo, Sri Lanka."
+        title="Sachin Akash — Software Engineer & Freelance Web Developer in Sri Lanka"
+        description="Sachin Akash is a software engineer and freelance full-stack web developer in Colombo, Sri Lanka, building websites, web apps, mobile apps, e-commerce stores, and APIs for businesses worldwide. Ex-WSO2, Co-Founder of Evantra Labs."
+        jsonLd={[
+          {
+            "@type": "ProfilePage",
+            "@id": `${SITE_URL}/`,
+            url: `${SITE_URL}/`,
+            name: "Sachin Akash — Software Engineer & Freelance Web Developer",
+            mainEntity: { "@id": PERSON_ID },
+            isPartOf: { "@id": WEBSITE_ID },
+          },
+        ]}
       />
       <section className="hero-section" id="home">
         <div className="hero-orbit hero-orbit--one" />
@@ -394,32 +364,9 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             transition={{ duration: 0.55 }}
           >
             <p className="hero-eyebrow">{profile.eyebrow}</p>
-            <h1 aria-label={`${profile.name}. ${profile.headline}`}>
-              <span className="hero-name" aria-hidden="true">
-                {profile.name}
-              </span>
-              <span className="hero-headline" aria-hidden="true">
-                {headlineTypingWords.map((word) => (
-                  <span className="hero-headline__word" key={word.key}>
-                    {word.characters.map(({ character, index }) => {
-                      const isVisible =
-                        reducedMotion || index < visibleHeadlineCharacters;
-                      const isCurrent =
-                        !reducedMotion &&
-                        index === visibleHeadlineCharacters - 1;
-                      return (
-                        <span
-                          className={`hero-typing-character${isVisible ? " hero-typing-character--visible" : ""}`}
-                          key={`${character}-${index}`}
-                        >
-                          {character}
-                          {isCurrent && <i className="hero-typing-cursor" />}
-                        </span>
-                      );
-                    })}
-                  </span>
-                ))}
-              </span>
+            <h1>
+              <span className="hero-name">{profile.name}</span>
+              <span className="hero-headline">{profile.headline}</span>
             </h1>
             <p className="hero-summary">{profile.summary}</p>
             <div className="hero-actions">
@@ -668,7 +615,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             index="03"
             eyebrow="SELECTED WORK / 2026"
             title="Digital products designed to do real work."
-            copy="A selection of platforms spanning commerce, education, finance, food technology, and software services."
+            copy="Travel platforms, e-commerce stores, and corporate, education, finance, and entertainment websites for clients in Sri Lanka, Australia, and Europe."
             action={
               <Link className="text-link" to="/projects">
                 View all projects <ArrowUpRight size={16} />
@@ -770,25 +717,32 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             eyebrow="SERVICES / EVANTRA LABS"
             title="From early direction to production software."
             copy="For teams that need a thoughtful technical partner, not just another implementation hand-off."
+            action={
+              <Link className="text-link" to="/services">
+                All services <ArrowUpRight size={16} />
+              </Link>
+            }
           />
           <div className="services-grid">
             {services.map(
-              ({ icon: Icon, title, description, skills }, index) => (
+              ({ icon: Icon, slug, title, description, skills }, index) => (
                 <article key={title}>
                   <div className="service-icon">
                     <Icon size={22} />
                   </div>
                   <span>0{index + 1}</span>
-                  <h3>{title}</h3>
+                  <h3>
+                    <Link to={`/services/${slug}`}>{title}</Link>
+                  </h3>
                   <p>{description}</p>
                   <div>
                     {skills.map((skill) => (
                       <small key={skill}>{skill}</small>
                     ))}
                   </div>
-                  <a href="#contact">
-                    Discuss a project <ArrowRight size={16} />
-                  </a>
+                  <Link to={`/services/${slug}`}>
+                    Learn more <ArrowRight size={16} />
+                  </Link>
                 </article>
               ),
             )}

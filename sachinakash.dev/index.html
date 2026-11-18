@@ -2,6 +2,7 @@
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="icon"
       type="image/png"
@@ -12,62 +13,86 @@
     <link
       rel="preload"
       as="image"
-      type="image/png"
-      href="/images/profile/sachin-self-portrait.png"
+      type="image/webp"
+      href="/images/profile/sachin-self-portrait.webp"
       fetchpriority="high"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#090b0d" />
+    <meta name="author" content="Sachin Akash" />
+    <meta name="geo.region" content="LK-11" />
+    <meta name="geo.placename" content="Colombo" />
+    <!--seo:start-->
+    <title>Sachin Akash — Software Engineer & Freelance Web Developer in Sri Lanka</title>
     <meta
       name="description"
-      content="Portfolio of Sachin Akash, software engineer, product builder, and Co-Founder & Director at Evantra Labs."
-    />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Sachin Akash — Software Engineer & Product Builder"
-    />
-    <meta
-      property="og:description"
-      content="Software engineer and product builder creating reliable digital products across web, mobile, APIs, and cloud systems."
-    />
-    <meta property="og:url" content="https://www.sachinakash.dev/" />
-    <meta
-      property="og:image"
-      content="https://www.sachinakash.dev/images/brand/sachin-akash-logo.png"
-    />
-    <meta property="og:image:alt" content="Sachin Akash monogram logo" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Sachin Akash — Software Engineer & Product Builder"
-    />
-    <meta
-      name="twitter:description"
-      content="Software engineer and product builder creating reliable digital products."
-    />
-    <meta
-      name="twitter:image"
-      content="https://www.sachinakash.dev/images/brand/sachin-akash-logo.png"
+      content="Sachin Akash is a software engineer and freelance full-stack web developer in Colombo, Sri Lanka, building websites, web apps, mobile apps, e-commerce stores, and APIs for businesses worldwide."
     />
     <link rel="canonical" href="https://www.sachinakash.dev/" />
-    <title>Sachin Akash — Software Engineer & Product Builder</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sachin Akash — Software Engineer & Freelance Web Developer in Sri Lanka" />
+    <meta property="og:url" content="https://www.sachinakash.dev/" />
+    <meta property="og:image" content="https://www.sachinakash.dev/images/brand/og-sachin-akash.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!--seo:end-->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "Person",
+            "@id": "https://www.sachinakash.dev/#person",
             "name": "Sachin Akash",
             "url": "https://www.sachinakash.dev/",
             "email": "mailto:hello@sachinakash.dev",
             "image": "https://www.sachinakash.dev/images/profile/sachin-profile.jpeg",
-            "logo": "https://www.sachinakash.dev/images/brand/sachin-akash-logo.png",
-            "jobTitle": "Software Engineer, Product Builder, and Co-Founder & Director",
+            "jobTitle": "Software Engineer",
+            "description": "Software engineer, full-stack web developer, and Co-Founder & Director of Evantra Labs, based in Colombo, Sri Lanka.",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Evantra Labs",
+              "url": "https://www.evantralabs.com/"
+            },
+            "alumniOf": [
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "University of Bedfordshire"
+              },
+              {
+                "@type": "EducationalOrganization",
+                "name": "SLIIT City UNI"
+              }
+            ],
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "Software Engineer",
+              "occupationLocation": {
+                "@type": "City",
+                "name": "Colombo, Sri Lanka"
+              },
+              "skills": "React, TypeScript, JavaScript, Node.js, Java, Spring Boot, Ballerina, React Native, WordPress, REST APIs, OpenAPI, AWS, Azure, Docker, Kubernetes"
+            },
+            "knowsAbout": [
+              "Software engineering",
+              "Full-stack web development",
+              "Website development",
+              "Web application development",
+              "Mobile app development",
+              "E-commerce development",
+              "WordPress development",
+              "API development",
+              "System integration",
+              "Technical SEO",
+              "React",
+              "TypeScript",
+              "Node.js",
+              "Java",
+              "Ballerina",
+              "React Native"
+            ],
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Colombo",
-              "addressCountry": "Sri Lanka"
+              "addressCountry": "LK"
             },
             "sameAs": [
               "https://github.com/SachinAkash01",
@@ -77,23 +102,315 @@
           },
           {
             "@type": "WebSite",
-            "name": "Sachin Akash Portfolio",
+            "@id": "https://www.sachinakash.dev/#website",
+            "name": "Sachin Akash",
+            "alternateName": "Sachin Akash Portfolio",
             "url": "https://www.sachinakash.dev/",
-            "image": "https://www.sachinakash.dev/images/brand/sachin-akash-logo.png"
+            "publisher": { "@id": "https://www.sachinakash.dev/#person" },
+            "inLanguage": "en"
           },
           {
             "@type": "ProfessionalService",
-            "name": "Sachin Akash — Software Engineering",
-            "areaServed": "Worldwide",
-            "url": "https://www.sachinakash.dev/",
-            "email": "mailto:hello@sachinakash.dev"
+            "@id": "https://www.sachinakash.dev/#service",
+            "name": "Sachin Akash — Freelance Software & Web Development",
+            "url": "https://www.sachinakash.dev/services",
+            "image": "https://www.sachinakash.dev/images/brand/og-sachin-akash.png",
+            "email": "hello@sachinakash.dev",
+            "founder": { "@id": "https://www.sachinakash.dev/#person" },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Colombo",
+              "addressCountry": "LK"
+            },
+            "areaServed": [
+              { "@type": "Country", "name": "Sri Lanka" },
+              { "@type": "Country", "name": "Australia" },
+              { "@type": "Place", "name": "Worldwide" }
+            ],
+            "serviceType": [
+              "Website development",
+              "Web application development",
+              "Mobile app development",
+              "E-commerce development",
+              "WordPress development",
+              "API and system integration",
+              "Software consulting"
+            ]
           }
         ]
       }
     </script>
+    <!-- Intro loader: shown on every full page load (first visit or reload), not on in-app navigation. -->
+    <style>
+      #intro {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 50% 46%, rgba(198, 154, 97, 0.13), transparent 34%),
+          #090b0d;
+        color: #edf0ee;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+        clip-path: inset(0 0 0 0);
+        transition: clip-path 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+      .intro-active { overflow: hidden; }
+      #intro::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(235, 226, 208, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(235, 226, 208, 0.045) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: radial-gradient(circle at 50% 46%, #000 0, transparent 62%);
+        -webkit-mask-image: radial-gradient(circle at 50% 46%, #000 0, transparent 62%);
+        pointer-events: none;
+      }
+      .intro__center {
+        position: relative;
+        display: grid;
+        justify-items: center;
+        gap: 26px;
+        transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.6s ease;
+      }
+      .intro__logo {
+        position: relative;
+        width: min(150px, 38vw);
+        aspect-ratio: 1;
+        border-radius: 24%;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(235, 226, 208, 0.12),
+          0 30px 80px rgba(0, 0, 0, 0.6),
+          0 0 60px rgba(224, 183, 126, 0.12);
+        opacity: 0;
+        transform: scale(0.86);
+        filter: blur(8px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.7s ease;
+      }
+      .intro__logo.is-loaded { opacity: 1; transform: none; filter: none; }
+      .intro__logo img { display: block; width: 100%; height: 100%; }
+      /* A light sheen sweeps across the logo, like light catching metal. */
+      .intro__logo::after {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        background: linear-gradient(
+          105deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.22) 48%,
+          rgba(224, 183, 126, 0.28) 51%,
+          transparent 58%
+        );
+        transform: translateX(-70%);
+        animation: intro-sheen 2.2s cubic-bezier(0.45, 0, 0.2, 1) 0.6s infinite;
+      }
+      .intro__halo {
+        position: absolute;
+        /* Centred on the logo, which is the first row of .intro__center. */
+        top: calc(min(150px, 38vw) / 2);
+        left: 50%;
+        width: min(260px, 64vw);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 1px solid rgba(224, 183, 126, 0.18);
+        transform: translate(-50%, -50%) scale(0.9);
+        animation: intro-pulse 2.2s ease-out 0.4s infinite;
+        pointer-events: none;
+      }
+      .intro__name {
+        margin: 0;
+        font: 500 0.72rem/1 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.42em;
+        text-transform: uppercase;
+        color: #a2aaa7;
+        opacity: 0;
+        animation: intro-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+      }
+      .intro__name b { color: #e0b77e; font-weight: 500; }
+      .intro__footer {
+        position: absolute;
+        left: clamp(18px, 5vw, 64px);
+        right: clamp(18px, 5vw, 64px);
+        bottom: clamp(22px, 6vh, 56px);
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        transition: opacity 0.4s ease;
+      }
+      .intro__status { margin: 0; font-size: 0.72rem; letter-spacing: 0.08em; color: #6f7774; }
+      .intro__status span { color: #e0b77e; }
+      .intro__status::after {
+        content: "_";
+        margin-left: 2px;
+        color: #e0b77e;
+        animation: intro-blink 1s steps(1) infinite;
+      }
+      .intro__count {
+        font-size: clamp(2.4rem, 7vw, 4.6rem);
+        line-height: 0.8;
+        letter-spacing: -0.04em;
+        color: #edf0ee;
+        font-variant-numeric: tabular-nums;
+      }
+      .intro__count b { font-weight: 300; }
+      .intro__count small { font-size: 0.4em; color: #c69a61; margin-left: 4px; }
+      .intro__progress {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        background: rgba(235, 226, 208, 0.08);
+      }
+      .intro__progress i {
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, #c69a61, #e0b77e);
+        box-shadow: 0 0 18px rgba(224, 183, 126, 0.7);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      #intro.intro--exit { clip-path: inset(0 0 100% 0); }
+      #intro.intro--exit .intro__center { transform: translateY(-60px); opacity: 0; }
+      #intro.intro--exit .intro__footer { opacity: 0; }
+      @keyframes intro-sheen { 0% { transform: translateX(-70%); } 60%, 100% { transform: translateX(70%); } }
+      @keyframes intro-pulse {
+        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.75); }
+        30% { opacity: 1; }
+        100% { opacity: 0; transform: translate(-50%, -50%) scale(1.25); }
+      }
+      @keyframes intro-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+      @keyframes intro-blink { 50% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) {
+        #intro.intro--exit { clip-path: inset(0 0 0 0); opacity: 0; transition: opacity 0.3s ease; }
+        .intro__center { transition-duration: 0.3s; }
+        .intro__logo, .intro__logo.is-loaded { transform: none; filter: none; transition: opacity 0.3s ease; }
+        .intro__logo::after, .intro__halo { display: none; }
+        .intro__name, .intro__status::after { animation: none; opacity: 1; }
+      }
+    </style>
+    <noscript><style>#intro { display: none; }</style></noscript>
+    <script>
+      (function () {
+        var html = document.documentElement;
+        var finish;
+        var intro = (window.__intro = {
+          done: new Promise(function (resolve) { finish = resolve; }),
+          appLoaded: function () { intro.loaded = true; },
+          loaded: false,
+        });
+        html.classList.add("intro-active");
+
+        var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var minTime = reduce ? 500 : 1900;
+        var start = performance.now();
+        var fontsReady = false;
+        var steps = [
+          [0, "booting <span>sachinakash.dev</span>"],
+          [28, "loading <span>case studies</span>"],
+          [58, "compiling <span>ideas</span>"],
+          [86, "shipping <span>pixels</span>"],
+          [100, "<span>ready</span>"],
+        ];
+        var progress = 0;
+        var exiting = false;
+
+        function ready() {
+          var el = document.getElementById("intro");
+          if (!el) { finish(); return; }
+          if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(function () { fontsReady = true; });
+          } else { fontsReady = true; }
+          var logo = el.querySelector(".intro__logo img");
+          if (logo && logo.complete && logo.naturalWidth) logo.parentNode.classList.add("is-loaded");
+          var bar = el.querySelector(".intro__progress i");
+          var count = el.querySelector(".intro__count b");
+          var status = el.querySelector(".intro__status");
+          var shownStep = 0;
+
+          function exit() {
+            exiting = true;
+            setTimeout(function () {
+              finish();
+              el.classList.add("intro--exit");
+              html.classList.remove("intro-active");
+              setTimeout(function () { el.remove(); }, 950);
+            }, reduce ? 80 : 280);
+          }
+
+          function frame() {
+            if (exiting) return;
+            var elapsed = performance.now() - start;
+            // Progress follows elapsed time (not frame count), so throttled or
+            // background tabs still finish. It holds at 90 until the app has loaded.
+            var t = Math.min(elapsed / minTime, 1);
+            var eased = 1 - Math.pow(1 - t, 3);
+            var logoReady = !logo || (logo.complete && logo.naturalWidth > 0);
+            var cap = intro.loaded && fontsReady && logoReady ? 100 : 90;
+            // Stop waiting after 7s so the page is never stuck behind the loader.
+            if (elapsed > 7000) cap = 100;
+            var value = Math.round(Math.min(cap, eased * 100));
+            if (value <= progress) return;
+            progress = value;
+            bar.style.transform = "scaleX(" + value / 100 + ")";
+            count.textContent = String(value).padStart(3, "0");
+            for (var i = steps.length - 1; i >= 0; i--) {
+              if (value >= steps[i][0]) {
+                if (i !== shownStep) { shownStep = i; status.innerHTML = "&gt; " + steps[i][1]; }
+                break;
+              }
+            }
+            if (value >= 100) exit();
+          }
+          (function loop() {
+            frame();
+            if (!exiting) requestAnimationFrame(loop);
+          })();
+          // Timer backup for when animation frames are paused (background tabs).
+          var backup = setInterval(function () {
+            if (exiting) { clearInterval(backup); return; }
+            frame();
+          }, 250);
+        }
+        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready);
+        else ready();
+      })();
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="intro" aria-hidden="true">
+      <div class="intro__center">
+        <span class="intro__halo"></span>
+        <div class="intro__logo">
+          <img
+            src="/images/brand/sachin-akash-logo-loader.webp"
+            width="360"
+            height="360"
+            alt=""
+            decoding="sync"
+            fetchpriority="high"
+            onload="this.parentNode.classList.add('is-loaded')"
+          />
+        </div>
+        <p class="intro__name">Sachin <b>Akash</b></p>
+      </div>
+      <div class="intro__footer">
+        <p class="intro__status">&gt; booting <span>sachinakash.dev</span></p>
+        <div class="intro__count"><b>000</b><small>%</small></div>
+      </div>
+      <div class="intro__progress"><i></i></div>
+    </div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

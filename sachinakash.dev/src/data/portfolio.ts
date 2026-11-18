@@ -22,6 +22,10 @@ export type SocialLink = {
 export type Project = {
   slug: string;
   number: string;
+  /** Delivery year, shown in listings and used in structured data. */
+  year: string;
+  /** Client's primary market, e.g. "Sri Lanka" or "Australia". */
+  market: string;
   title: string;
   shortTitle: string;
   url: string;
@@ -56,6 +60,8 @@ export type Experience = {
 };
 
 export type Service = {
+  /** Matches a page in src/data/services.ts. */
+  slug: string;
   title: string;
   description: string;
   skills: string[];
@@ -76,21 +82,21 @@ export type Book = {
 export const profile = {
   name: "Sachin Akash",
   monogram: "SA",
-  eyebrow: "Software Engineer · Product Builder · Entrepreneur",
+  eyebrow: "Software Engineer · Fullstack Web Developer · Entrepreneur",
   title: "Software Engineer, Product Builder, and Entrepreneur ",
   headline:
     "I design and ship software that turns ideas into reliable digital products.",
   summary:
-    "I’m a Software Engineer and Co-Founder & Director at Evantra Labs, with experience building web platforms, mobile applications, APIs, developer tools, cloud solutions, and production-ready software for businesses.",
+    "I’m a software engineer based in Colombo, Sri Lanka. I build websites, web applications, mobile apps, e-commerce stores, APIs, and cloud solutions for businesses in Sri Lanka, Australia, and worldwide.",
   location: "Colombo, Sri Lanka",
   email: "hello@sachinakash.dev",
-  phone: "YOUR_PHONE_NUMBER",
+  phone: "+94 78 343 9022",
   availability:
-    "Open to thoughtful engineering roles and product collaborations",
+    "Open to software engineering roles and freelance projects",
   websiteUrl: "https://www.sachinakash.dev",
   resumeUrl: "/documents/sachin-akash-resume.pdf",
   brandLogo: "/images/brand/sachin-akash-logo.png",
-  profileImage: "/images/profile/sachin-self-portrait.png",
+  profileImage: "/images/profile/sachin-self-portrait.webp",
   profileImagePosition: "53% center",
   socials: [
     { label: "GitHub", href: "https://github.com/SachinAkash01" },
@@ -181,7 +187,7 @@ export const experiences: Experience[] = [
   {
     role: "Software Engineer",
     company: "WSO2",
-    period: "2024 - 2026",
+    period: "2024 - 2025",
     summary:
       "Shipped developer tooling, runtime capabilities, and integration product experiences across Ballerina and Devant (now WSO2 Integration Platform), with a strong focus on reliability and adoption.",
     highlights: [
@@ -205,10 +211,317 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const projects: Project[] = [
+export const projects: Project[] = ([
+  {
+    slug: "365-lanka-holidays",
+    year: "2026",
+    market: "Sri Lanka & Europe",
+    shortTitle: "365 Lanka Holidays",
+    title: "365 Lanka Holidays Travel Website & Booking Platform",
+    url: "https://365lankaholidays.com/",
+    image: "/images/projects/365-lanka-holidays.webp",
+    imageAlt:
+      "365 Lanka Holidays home page with a coastal hero and a trip finder for inbound and outbound tours",
+    gallery: [
+      {
+        image: "/images/projects/365-lanka-holidays-tours.webp",
+        imageAlt:
+          "365 Lanka Holidays tours page with duration, theme, budget, and season filters beside itinerary cards",
+      },
+      {
+        image: "/images/projects/365-lanka-holidays-about.webp",
+        imageAlt:
+          "365 Lanka Holidays about page explaining year-round travel in Sri Lanka, with licensing and trust badges",
+      },
+      {
+        image: "/images/projects/365-lanka-holidays-itinerary.webp",
+        imageAlt:
+          "Tour itinerary page with an interactive Sri Lanka route map, best travel months, and a booking card",
+      },
+    ],
+    category: "Travel & Tourism · WordPress Booking Platform",
+    industry: "Inbound and outbound travel",
+    summary:
+      "A travel website and online booking platform for inbound Sri Lanka tours and outbound holidays from Colombo, designed in React and delivered as a custom WordPress theme.",
+    objective:
+      "Help travellers find the right trip, understand every detail of the itinerary, and book online, while giving the client a site they can manage themselves in WordPress.",
+    problem:
+      "The business sells two different products, private tours around Sri Lanka and short holidays abroad, each with its own pricing in USD and LKR. The client also needed a self-managed CMS and a real booking flow rather than a static brochure.",
+    solution:
+      "A trip finder, 11 detailed itineraries with route maps and flight details, and a WP Travel Engine booking flow with a book now, pay later option. The site was prototyped in React, then generated as a custom WordPress theme with a one-click importer for pages, trips, and photos.",
+    role: "UX design, React prototyping, custom WordPress theme development, booking flow configuration, technical SEO, and launch.",
+    features: [
+      "Trip finder by duration, theme, budget, and season",
+      "“Where it’s sunny this month” monsoon guide",
+      "11 itineraries with animated route maps and flight paths",
+      "Prices in USD and LKR",
+      "Online booking with a book now, pay later option",
+      "Enquiry forms and WhatsApp contact",
+      "Custom WordPress theme with one-click content importer",
+      "Structured data, sitemap, and GDPR cookie consent",
+    ],
+    designApproach:
+      "Editorial serif headlines, warm gold accents, and full-bleed travel photography give the brand a premium feel, while the trip finder sits directly in the hero so visitors can start planning straight away.",
+    technicalApproach:
+      "The interface was built and approved as a React and Vite prototype, then exported into a server-rendered custom WordPress theme in PHP. WP Travel Engine powers trips and bookings, with Rank Math SEO, WP Mail SMTP for reliable email, and UpdraftPlus for automated backups.",
+    technologies: [
+      "React",
+      "Vite",
+      "JavaScript",
+      "WordPress",
+      "PHP",
+      "WP Travel Engine",
+      "Rank Math SEO",
+      "WP Mail SMTP",
+      "UpdraftPlus",
+      "cPanel",
+      "Vercel",
+    ],
+    challenges: [
+      "Supporting two very different products, inbound tours and outbound holidays, in one clear structure",
+      "Matching a hand-crafted React design one-to-one in a theme the client can edit",
+      "Explaining Sri Lanka's two monsoon seasons simply so travellers pick the right dates",
+    ],
+    outcome:
+      "A bookable travel platform that the client manages day to day in WordPress, with search-ready itineraries and an online path from inspiration to reservation.",
+    accent: "#e0a93b",
+  },
+  {
+    slug: "quaso",
+    year: "2026",
+    market: "Sri Lanka",
+    shortTitle: "Quaso",
+    title: "Quaso Croissant Bakery E-Commerce Website",
+    url: "https://quasolk.vercel.app/",
+    image: "/images/projects/quaso.webp",
+    imageAlt:
+      "Quaso home page featuring the Mixed Berry Croissant on a 3D-style plate with an orbiting product carousel and add-to-bag card",
+    gallery: [
+      {
+        image: "/images/projects/quaso-shop.webp",
+        imageAlt:
+          "Quaso shop page with category tabs, product search, sorting, and dessert croissant cards with prices",
+      },
+      {
+        image: "/images/projects/quaso-product.webp",
+        imageAlt:
+          "Quaso product page for the Strawberry Cheesecake Croissant with image thumbnails, price, quantity selector, and add-to-bag button",
+      },
+      {
+        image: "/images/projects/quaso-bag.webp",
+        imageAlt:
+          "Quaso slide-out shopping bag with quantity controls, a free-delivery progress bar, and checkout buttons",
+      },
+      {
+        image: "/images/projects/quaso-checkout.webp",
+        imageAlt:
+          "Quaso checkout page with delivery or pickup options, delivery details form, and bank-transfer order summary",
+      },
+    ],
+    category: "E-commerce · Food and Bakery",
+    industry: "Bakery, food retail, and online ordering",
+    summary:
+      "A premium, highly interactive online store for a Sri Lankan croissant bakery, with a 3D-style product hero, a complete ordering flow, and zone-based delivery.",
+    objective:
+      "Create an online store that feels as rich and indulgent as the product, and makes ordering fresh croissants for delivery or pickup effortless.",
+    problem:
+      "Food brands live or die on appetite appeal, but heavy visual effects can make a store slow and confusing. Quaso needed a memorable brand experience and a practical checkout that works with bank transfers and local delivery zones.",
+    solution:
+      "A playful, motion-rich storefront with a draggable 3D-style menu, an animated shop-front carousel, and a distinct hero on every page, paired with search, a cart drawer, delivery or pickup with zone-based fees, and bank-transfer checkout with order numbers and WhatsApp or email confirmation.",
+    role: "Brand-led UI/UX design, interactive frontend engineering, ordering and checkout flows, product image pipeline, SEO, and deployment.",
+    features: [
+      "Interactive 3D-style croissant hero with drag to spin",
+      "Shop-front product carousel with drag and swipe",
+      "Product search and cart drawer",
+      "Delivery or pickup with zone-based delivery fees",
+      "Bank-transfer checkout with order numbers",
+      "WhatsApp and email order confirmation",
+      "Open Graph and Twitter share cards",
+      "Python image pipeline for consistent product photos",
+    ],
+    designApproach:
+      "Glassmorphism, pointer-tracked lighting, gloss highlights, and rising steam bring the product to life, while a warm cream and deep red palette and bold type keep the brand instantly recognisable.",
+    technicalApproach:
+      "React 19 and TypeScript with Motion for animation and modern CSS (3D transforms, backdrop-filter, and viewport units) tuned for real laptop, monitor, and phone viewports. Product photos were cut out and plated consistently with Python, OpenCV, Pillow, and NumPy.",
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "React Router",
+      "Motion",
+      "Modern CSS",
+      "Python",
+      "OpenCV",
+      "Pillow",
+      "Vercel",
+    ],
+    challenges: [
+      "Delivering rich 3D-style motion without hurting usability or speed",
+      "Keeping product imagery consistent across a growing menu",
+      "Designing a simple checkout around bank transfers and delivery zones",
+    ],
+    outcome:
+      "A distinctive bakery storefront that turns browsing into a playful experience and gives customers a clear, reliable path from craving to confirmed order.",
+    accent: "#c8242f",
+  },
+  {
+    slug: "ttree-lanka-holidays",
+    year: "2026",
+    market: "Sri Lanka",
+    shortTitle: "T-tree Lanka Holidays",
+    title: "T-tree Lanka Holidays Travel & Tourism Website",
+    url: "https://www.ttreelankaholidays.com/",
+    image: "/images/projects/ttree-lanka-holidays.webp",
+    imageAlt:
+      "T-tree Lanka Holidays home page with a tea country hero slideshow, tour package buttons, and a tour finder",
+    gallery: [
+      {
+        image: "/images/projects/ttree-lanka-holidays-packages.webp",
+        imageAlt:
+          "T-tree Lanka Holidays tour packages page with search, length and interest filters, and package cards",
+      },
+      {
+        image: "/images/projects/ttree-lanka-holidays-tailor-made.webp",
+        imageAlt:
+          "Multi-step tailor-made trip planner with destination picker and a live trip summary",
+      },
+      {
+        image: "/images/projects/ttree-lanka-holidays-route.webp",
+        imageAlt:
+          "Tour package page with an interactive Sri Lanka route map and a free quote request form",
+      },
+      {
+        image: "/images/projects/ttree-lanka-holidays-day-tours.webp",
+        imageAlt:
+          "T-tree Lanka Holidays day tours page with Colombo, Kandy, and Galle tour cards and WhatsApp enquiry buttons",
+      },
+    ],
+    category: "Travel & Tourism · Web Application",
+    industry: "Travel, tourism, and tour operations",
+    summary:
+      "The official website for a Sri Lankan travel agency, with 12 tour packages, 27 destination guides, a multi-step tailor-made trip planner, and SEO built in from day one.",
+    objective:
+      "Give international travellers an inspiring, trustworthy way to explore Sri Lanka and turn that interest into qualified tour enquiries for T-tree Lanka Holidays.",
+    problem:
+      "A tour operator's offer is large and layered: packages, destinations, activities, day tours, and fully custom trips. Travellers needed to browse all of it easily, especially on phones, and the business needed enquiries that arrive with enough detail to quote from.",
+    solution:
+      "A fast, mobile-first React site with day-by-day itineraries on animated route maps, filterable destination and activity guides, a guided tailor-made trip planner, and validated enquiry and quote forms backed by a serverless email endpoint.",
+    role: "UI/UX design, frontend engineering, interactive route maps, form and serverless email engineering, technical SEO, and production deployment.",
+    features: [
+      "12 tour packages with day-by-day itineraries",
+      "Animated, interactive Sri Lanka route maps",
+      "27 destination guides, 14 activities, and 13 day tours",
+      "Multi-step tailor-made trip planner",
+      "Enquiry and quote forms with international phone input",
+      "Serverless email delivery endpoint",
+      "Full-screen video hero with iOS autoplay fallback",
+      "Structured data, sitemap, and per-page meta tags",
+    ],
+    designApproach:
+      "Lush, photography-led layouts and a confident green palette echo the island itself, while draggable carousels, scroll-triggered animations, and a branded loading screen add polish without slowing the path to an enquiry.",
+    technicalApproach:
+      "React 19 and TypeScript with code-split routes, WebP images, and lazy loading. Each route is prerendered with its own meta tags, Open Graph cards, and structured data (TravelAgency, TouristTrip, TouristDestination, BlogPosting, and breadcrumbs), and the sitemap is generated at build time.",
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS v4",
+      "Framer Motion",
+      "React Router",
+      "Vercel Functions",
+      "Resend",
+      "libphonenumber-js",
+      "FFmpeg",
+      "SVG",
+    ],
+    challenges: [
+      "Presenting a large catalogue of tours, destinations, and activities without overwhelming visitors",
+      "Collecting detailed custom-trip requirements without making the planner feel like a long form",
+      "Shipping video, maps, and animation while keeping mobile performance and search visibility strong",
+    ],
+    outcome:
+      "A search-ready, conversion-focused travel platform that helps travellers plan a Sri Lanka holiday on their own terms and gives the team well-structured enquiries to respond to.",
+    accent: "#8cc63f",
+  },
+  {
+    slug: "rimark-australia",
+    year: "2026",
+    market: "Australia",
+    shortTitle: "Rimark Australia",
+    title: "Rimark Australia Construction & Steel Fabrication Website",
+    url: "https://rimark.com.au/",
+    image: "/images/projects/rimark-australia.webp",
+    imageAlt:
+      "Rimark Australia home page presenting civil and outdoor works with a request a quote button",
+    gallery: [
+      {
+        image: "/images/projects/rimark-australia-projects.webp",
+        imageAlt:
+          "Rimark Australia project showcase filtered by division, with residential fencing, driveway, and landscaping projects in Melbourne",
+      },
+      {
+        image: "/images/projects/rimark-australia-landscaping.webp",
+        imageAlt:
+          "Rimark Australia landscaping service page explaining the site planning and groundwork process with project photos",
+      },
+      {
+        image: "/images/projects/rimark-australia-services.webp",
+        imageAlt:
+          "Civil construction division page listing eight services including landscaping, concreting, retaining walls, and decking",
+      },
+      {
+        image: "/images/projects/rimark-australia-about.webp",
+        imageAlt:
+          "Rimark Australia about page introducing its three divisions with key facts and construction and steel photos",
+      },
+    ],
+    category: "Construction · Corporate WordPress Website",
+    industry: "Civil construction, steel fabrication, and steel trading",
+    summary:
+      "A redesigned corporate website for an Australian civil construction, structural steel fabrication, and steel trading business, built to make services clear and turn visitors into quote requests.",
+    objective:
+      "Establish a strong digital presence for Rimark Australia, present its service offering clearly, and improve how prospective customers explore services and submit project enquiries.",
+    problem:
+      "Rimark runs three distinct divisions with more than twenty services between them. Customers needed to find the right service quickly, trust the company's capability, and send requirements in a form the team could quote from.",
+    solution:
+      "A responsive WordPress website that organises services into dedicated divisions with detailed service pages, showcases completed projects, and routes visitors to enquiry and quotation request forms.",
+    role: "Website redesign, WordPress development, information architecture, content structuring, performance optimisation, and staging-to-production delivery.",
+    features: [
+      "Three service divisions with detailed service pages",
+      "Civil construction, steel fabrication, and steel trading",
+      "Project showcase of completed work",
+      "Quotation centre for drawings, photos, and requirements",
+      "Enquiry forms and clear calls to action",
+      "Responsive layouts for desktop and mobile",
+      "SiteGround Speed Optimizer and caching",
+      "Staging environment before production deployment",
+    ],
+    designApproach:
+      "A bold, industrial aesthetic with strong condensed headlines, charcoal backgrounds, and red calls to action reflects the trade, while a structured layout and intuitive navigation keep more than twenty services easy to browse.",
+    technicalApproach:
+      "Built and refined in a WordPress staging environment on SiteGround before production deployment, with SiteGround Speed Optimizer and caching configured for fast load times and a content structure designed for both users and search engines.",
+    technologies: [
+      "WordPress",
+      "SiteGround",
+      "SiteGround Speed Optimizer",
+      "Caching",
+      "Responsive design",
+      "Content structuring",
+      "Staging environment",
+    ],
+    challenges: [
+      "Organising three divisions and more than twenty services into navigation people understand",
+      "Capturing enough project detail in quote requests without discouraging submissions",
+      "Changing a live business website safely through a staging workflow",
+    ],
+    outcome:
+      "A professional, well-organised corporate website that presents Rimark's capabilities clearly and gives Australian customers a direct path to request a quote.",
+    accent: "#e3262c",
+  },
   {
     slug: "sherees-cakes",
-    number: "01",
+    year: "2026",
+    market: "Sri Lanka",
     shortTitle: "Sheree’s Cakes",
     title: "Sheree’s Cakes E-Commerce Platform",
     url: "https://www.shereescakes.lk/",
@@ -271,8 +584,90 @@ export const projects: Project[] = [
     accent: "#d49b5b",
   },
   {
+    slug: "funk-island",
+    year: "2026",
+    market: "Sri Lanka & international",
+    shortTitle: "Funk Island",
+    title: "Funk Island Official Band Website",
+    url: "https://dev.funkislandmusic.com/",
+    image: "/images/projects/funk-island.webp",
+    imageAlt:
+      "Funk Island official band website home page with a bold wordmark, showreel button, and a tilted live performance video card",
+    gallery: [
+      {
+        image: "/images/projects/funk-island-night-arc.webp",
+        imageAlt:
+          "Funk Island scroll-driven night timeline showing how the band builds energy from sunset to late night",
+      },
+      {
+        image: "/images/projects/funk-island-band.webp",
+        imageAlt:
+          "Funk Island band section introducing the seven players with black-and-white performance photos",
+      },
+      {
+        image: "/images/projects/funk-island-where-we-play.webp",
+        imageAlt:
+          "Funk Island where we play section with a map of Sri Lanka and the Maldives showing the Colombo base and destination events",
+      },
+      {
+        image: "/images/projects/funk-island-highlights.webp",
+        imageAlt:
+          "Funk Island featured highlights grid with resort, corporate, festival, and wedding performances in Sri Lanka and the Maldives",
+      },
+      {
+        image: "/images/projects/funk-island-corporate.webp",
+        imageAlt:
+          "Funk Island corporate events page with an example run sheet showing timings and room energy levels",
+      },
+    ],
+    category: "Entertainment · Server-Rendered Web App",
+    industry: "Live music and event entertainment",
+    summary:
+      "A fast, mobile-first booking website for a Sri Lankan live band that plays weddings, corporate events, and resorts in Sri Lanka and abroad.",
+    objective:
+      "Turn the band's live energy into a website that convinces couples, event planners, and hotel teams to check availability and book.",
+    problem:
+      "Event buyers want proof before they enquire: what the band sounds like, how a night flows, and where they have played. That proof had to load quickly on phones and be easy to share in WhatsApp chats.",
+    solution:
+      "A server-rendered React app with dedicated pages for weddings, corporate events, and hotels and resorts, a video library, a venue archive, an interactive “One Night” timeline, and an enquiry form that hands off to WhatsApp.",
+    role: "UI/UX design, server-rendered React engineering, motion design, technical SEO, and deployment.",
+    features: [
+      "Server-side rendering with page-by-page SEO",
+      "Branded link previews for WhatsApp and social media",
+      "Pinned “One Night” timeline with an animated energy curve",
+      "Video library with hover previews and category filters",
+      "Venue carousels and a filterable venue archive",
+      "Experience pages for weddings, corporate events, and resorts",
+      "Enquiry form with date picker and WhatsApp hand-off",
+      "Keyboard navigation and reduced-motion support",
+    ],
+    designApproach:
+      "A dark stage-like canvas, hot pink and orange accents, and expressive type capture the feel of a live show, while layouts are fitted to screen height so key sections stay fully visible from 13-inch laptops to large monitors.",
+    technicalApproach:
+      "TanStack Start and TanStack Router provide server rendering and type-safe routing on Vercel, with structured data, a sitemap, and Open Graph images for every page. Accessibility is built in with keyboard navigation, reduced-motion support, and touch-friendly interactions.",
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "TanStack Start",
+      "TanStack Router",
+      "Vite",
+      "Tailwind CSS v4",
+      "Server-side rendering",
+      "Vercel",
+    ],
+    challenges: [
+      "Communicating the energy of a live show on a phone screen",
+      "Keeping video-heavy pages fast to load and pleasant to scroll",
+      "Speaking to couples, corporate planners, and hotel teams without diluting the message",
+    ],
+    outcome:
+      "A shareable, search-friendly home for the band that moves event buyers from first impression to availability check in a few taps.",
+    accent: "#ff4f8b",
+  },
+  {
     slug: "winchild",
-    number: "02",
+    year: "2026",
+    market: "Sri Lanka",
     shortTitle: "Winchild",
     title: "Winchild Daycare and Preschool Website",
     url: "https://www.winchild.lk/",
@@ -338,7 +733,8 @@ export const projects: Project[] = [
   },
   {
     slug: "capital-bridge",
-    number: "03",
+    year: "2026",
+    market: "Sri Lanka",
     shortTitle: "Capital Bridge",
     title: "Capital Bridge Microfinance Company Website",
     url: "https://capitalbridge.lk/",
@@ -404,7 +800,8 @@ export const projects: Project[] = [
   },
   {
     slug: "nutri",
-    number: "04",
+    year: "2026",
+    market: "Sri Lanka",
     shortTitle: "Nutri",
     title: "Nutri High-Protein Meal Ordering Website",
     url: "https://nutri-seven-beta.vercel.app/",
@@ -466,7 +863,8 @@ export const projects: Project[] = [
   },
   {
     slug: "evantra-labs",
-    number: "05",
+    year: "2026",
+    market: "Global",
     shortTitle: "Evantra Labs",
     title: "Evantra Labs Official Website",
     url: "https://www.evantralabs.com/",
@@ -528,7 +926,10 @@ export const projects: Project[] = [
       "A professional digital front door that makes Evantra Labs' capabilities easier to understand and gives potential clients a clear route from interest to conversation.",
     accent: "#1ca7b6",
   },
-];
+] satisfies Omit<Project, "number">[]).map((project, index) => ({
+  ...project,
+  number: String(index + 1).padStart(2, "0"),
+}));
 
 export const skillGroups = [
   {
@@ -601,6 +1002,7 @@ export const skillGroups = [
 
 export const services: Service[] = [
   {
+    slug: "website-development",
     title: "Website development",
     description:
       "Modern, responsive, fast, and search-friendly websites designed around real business goals.",
@@ -608,6 +1010,7 @@ export const services: Service[] = [
     icon: PanelsTopLeft,
   },
   {
+    slug: "web-application-development",
     title: "Web applications",
     description:
       "Custom portals, dashboards, and business platforms built for usability and sustainable growth.",
@@ -615,6 +1018,7 @@ export const services: Service[] = [
     icon: Layers3,
   },
   {
+    slug: "mobile-app-development",
     title: "Mobile applications",
     description:
       "Cross-platform mobile products using React Native and modern mobile engineering practices.",
@@ -622,6 +1026,7 @@ export const services: Service[] = [
     icon: Smartphone,
   },
   {
+    slug: "ecommerce-development",
     title: "E-commerce",
     description:
       "Stores with product discovery, carts, checkout, payments, ordering, and customer-focused journeys.",
@@ -629,6 +1034,7 @@ export const services: Service[] = [
     icon: ShoppingBag,
   },
   {
+    slug: "api-integration",
     title: "API & system integration",
     description:
       "Secure APIs, third-party integrations, service connections, and business automation.",
@@ -636,6 +1042,7 @@ export const services: Service[] = [
     icon: Braces,
   },
   {
+    slug: "software-consulting",
     title: "Consulting & architecture",
     description:
       "Technology selection, system planning, performance improvements, and delivery guidance.",

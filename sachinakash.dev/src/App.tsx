@@ -7,6 +7,8 @@ import { ProjectsPage } from "./pages/ProjectsPage";
 import { ProjectPage } from "./pages/ProjectPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ResumePage } from "./pages/ResumePage";
+import { ServicesPage } from "./pages/ServicesPage";
+import { ServicePage } from "./pages/ServicePage";
 
 const PortfolioTerminal = lazy(() => import("./components/PortfolioTerminal"));
 
@@ -52,6 +54,11 @@ function useScrollReveal(pathname: string) {
       ".case-gallery__item",
       ".next-project > *",
       ".case-contact > .shell",
+      ".service-hub > article",
+      ".process-list > li",
+      ".deliverable-grid > article",
+      ".related-projects > article",
+      ".resume-section article",
     ].join(",");
     const elements = Array.from(
       document.querySelectorAll<HTMLElement>(selectors),
@@ -139,6 +146,8 @@ function App() {
         <Route path="/" element={<HomePage onOpenTerminal={openTerminal} />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:slug" element={<ProjectPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/services/:slug" element={<ServicePage />} />
         <Route path="/resume" element={<ResumePage />} />
         <Route
           path="/404"
@@ -150,9 +159,12 @@ function App() {
         />
       </Routes>
       <Footer onOpenTerminal={openTerminal} />
-      <Suspense fallback={null}>
-        <PortfolioTerminal open={terminalOpen} onClose={closeTerminal} />
-      </Suspense>
+      {/* The lazy terminal is browser-only so prerendering never suspends. */}
+      {typeof window !== "undefined" && (
+        <Suspense fallback={null}>
+          <PortfolioTerminal open={terminalOpen} onClose={closeTerminal} />
+        </Suspense>
+      )}
     </>
   );
 }
