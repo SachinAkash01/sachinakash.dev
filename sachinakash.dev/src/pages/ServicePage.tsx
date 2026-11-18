@@ -1,5 +1,8 @@
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { FaqList } from "../components/FaqList";
+import { ProcessSteps } from "../components/ProcessSteps";
+import { ProjectCarousel } from "../components/ProjectCarousel";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { Seo } from "../components/Seo";
 import { projects } from "../data/portfolio";
@@ -63,9 +66,11 @@ export function ServicePage() {
           <Link className="button" to="/#contact">
             Discuss your project <ArrowUpRight size={17} />
           </Link>
-          <a className="button button--ghost" href="#work">
-            See related work <ArrowRight size={17} />
-          </a>
+          {related.length > 0 && (
+            <a className="button button--ghost" href="#work">
+              See related work <ArrowRight size={17} />
+            </a>
+          )}
         </div>
       </header>
 
@@ -111,15 +116,7 @@ export function ServicePage() {
           <p className="mono-label">03 / PROCESS</p>
           <h2>From first call to launch.</h2>
         </div>
-        <ol className="process-list">
-          {deliveryProcess.map((step, index) => (
-            <li key={step.title}>
-              <span>0{index + 1}</span>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </li>
-          ))}
-        </ol>
+        <ProcessSteps steps={deliveryProcess} />
       </section>
 
       {related.length > 0 && (
@@ -129,36 +126,41 @@ export function ServicePage() {
               <p className="mono-label">04 / RELATED WORK</p>
               <h2>Recent {inSentence(service.name)} projects.</h2>
             </div>
-            <div className="related-projects">
-              {related.map((project) => (
-                <article key={project.slug}>
-                  <Link to={`/projects/${project.slug}`}>
-                    <ProjectVisual project={project} compact />
-                  </Link>
-                  <h3>
-                    <Link to={`/projects/${project.slug}`}>{project.title}</Link>
-                  </h3>
-                  <p>{project.summary}</p>
-                </article>
-              ))}
-            </div>
+            {related.length > 3 ? (
+              <ProjectCarousel
+                projects={related}
+                label={`Recent ${inSentence(service.name)} projects`}
+              />
+            ) : (
+              <div className="related-projects">
+                {related.map((project) => (
+                  <article
+                    key={project.slug}
+                    className={related.length < 3 ? "is-half" : undefined}
+                  >
+                    <Link to={`/projects/${project.slug}`}>
+                      <ProjectVisual project={project} compact />
+                    </Link>
+                    <h3>
+                      <Link to={`/projects/${project.slug}`}>{project.title}</Link>
+                    </h3>
+                    <p>{project.summary}</p>
+                  </article>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}
 
       <section className="shell case-section service-faq">
         <div className="case-title">
-          <p className="mono-label">05 / FAQ</p>
+          <p className="mono-label">
+            {related.length > 0 ? "05" : "04"} / FAQ
+          </p>
           <h2>Common questions.</h2>
         </div>
-        <div>
-          {service.faqs.map((faq) => (
-            <details key={faq.question}>
-              <summary>{faq.question}</summary>
-              <p>{faq.answer}</p>
-            </details>
-          ))}
-        </div>
+        <FaqList faqs={service.faqs} />
       </section>
 
       <section className="shell case-section other-services">

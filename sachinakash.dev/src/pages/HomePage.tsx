@@ -19,7 +19,6 @@ import {
   GraduationCap,
   Mail,
   MapPin,
-  TerminalSquare,
   X,
 } from "lucide-react";
 import type { IconType } from "react-icons";
@@ -309,7 +308,7 @@ function ReadingFactDialog({
   );
 }
 
-export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
+export function HomePage() {
   const reducedMotion = useReducedMotion();
   const [copied, setCopied] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
@@ -318,6 +317,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
   const [portraitReady, setPortraitReady] = useState(false);
   const location = useLocation();
   const closeReadingFact = useCallback(() => setReadingFactOpen(false), []);
+
   const socialUrl = (label: string) =>
     profile.socials.find((social) => social.label === label)?.href ?? "#";
 
@@ -368,7 +368,7 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
               <span className="hero-name">{profile.name}</span>
               <span className="hero-headline">{profile.headline}</span>
             </h1>
-            <p className="hero-summary">{profile.summary}</p>
+            <p className="hero-summary">{profile.intro}</p>
             <div className="hero-actions">
               <a className="button" href="#projects">
                 View my work <ArrowDownRight size={18} />
@@ -376,31 +376,37 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
               <a className="button button--ghost" href="#contact">
                 Contact me <ArrowRight size={18} />
               </a>
-              <a className="text-link" href={profile.resumeUrl} download>
-                Download CV <Download size={16} />
-              </a>
             </div>
-            <div className="hero-meta">
-              <a
-                href={socialUrl("GitHub")}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SiGithub size={16} /> GitHub
-              </a>
-              <a
-                href={socialUrl("LinkedIn")}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin size={16} /> LinkedIn
-              </a>
-              <button onClick={onOpenTerminal}>
-                <TerminalSquare size={16} /> Open terminal
-              </button>
-              <span>
-                <MapPin size={16} /> {profile.location}
-              </span>
+            <ul className="hero-proof" aria-label="Highlights">
+              <li>
+                <strong>20+</strong>
+                <span>Live Client Projects</span>
+              </li>
+              <li>
+                <strong>Ex-WSO2</strong>
+                <span>Software Engineer</span>
+              </li>
+              <li>
+                <strong>First Class</strong>
+                <span>BSc (Hons) CS & SE</span>
+              </li>
+              <li>
+                <strong>Co-Founder</strong>
+                <span>Evantra Labs</span>
+              </li>
+            </ul>
+            <div className="hero-paths">
+              <p>
+                <span>Hiring?</span>
+                <Link to="/resume">View my résumé</Link>
+                <a href={profile.resumeUrl} download>
+                  Download CV <Download size={14} />
+                </a>
+              </p>
+              <p>
+                <span>Need a website?</span>
+                <Link to="/services">See my services</Link>
+              </p>
             </div>
           </motion.div>
           <motion.div
@@ -409,10 +415,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.75, delay: 0.15 }}
           >
-            <div className="portrait-coordinates portrait-coordinates--top">
-              06.9271° N<br />
-              79.8612° E
-            </div>
             <div className="portrait-frame">
               <div className="portrait-scan" />
               <div className="portrait-glow" />
@@ -453,9 +455,6 @@ export function HomePage({ onOpenTerminal }: { onOpenTerminal: () => void }) {
                 <br />
                 from idea to production.
               </strong>
-            </div>
-            <div className="portrait-status">
-              <i /> SYSTEMS ONLINE
             </div>
           </motion.div>
         </div>

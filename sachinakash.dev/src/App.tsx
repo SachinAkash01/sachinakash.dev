@@ -55,7 +55,6 @@ function useScrollReveal(pathname: string) {
       ".next-project > *",
       ".case-contact > .shell",
       ".service-hub > article",
-      ".process-list > li",
       ".deliverable-grid > article",
       ".related-projects > article",
       ".resume-section article",
@@ -143,7 +142,7 @@ function App() {
       <Header onOpenTerminal={openTerminal} />
       <ScrollManager />
       <Routes location={location}>
-        <Route path="/" element={<HomePage onOpenTerminal={openTerminal} />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:slug" element={<ProjectPage />} />
         <Route path="/services" element={<ServicesPage />} />

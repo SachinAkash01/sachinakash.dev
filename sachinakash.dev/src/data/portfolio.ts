@@ -82,10 +82,12 @@ export type Book = {
 export const profile = {
   name: "Sachin Akash",
   monogram: "SA",
-  eyebrow: "Software Engineer · Fullstack Web Developer · Entrepreneur",
+  eyebrow: "Software Engineer · Fullstack Web Developer",
   title: "Software Engineer, Product Builder, and Entrepreneur ",
-  headline:
-    "I design and ship software that turns ideas into reliable digital products.",
+  headline: "I build software that real businesses run on.",
+  /** Short hero introduction; the longer summary is used by the terminal. */
+  intro:
+    "Full-stack software engineer in Colombo, Sri Lanka. At WSO2 I built API and integration tooling used by developers worldwide; today I design and ship web apps, mobile apps, online stores, and the APIs behind them.",
   summary:
     "I’m a software engineer based in Colombo, Sri Lanka. I build websites, web applications, mobile apps, e-commerce stores, APIs, and cloud solutions for businesses in Sri Lanka, Australia, and worldwide.",
   location: "Colombo, Sri Lanka",

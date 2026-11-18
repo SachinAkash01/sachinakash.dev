@@ -1,5 +1,7 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { FaqList } from "../components/FaqList";
+import { ProcessSteps } from "../components/ProcessSteps";
 import { Seo } from "../components/Seo";
 import { profile, projects } from "../data/portfolio";
 import { deliveryProcess, inSentence, servicePages } from "../data/services";
@@ -101,15 +103,7 @@ export function ServicesPage() {
             <p className="mono-label">HOW WE WORK</p>
             <h2>A simple, transparent process.</h2>
           </div>
-          <ol className="process-list">
-            {deliveryProcess.map((step, index) => (
-              <li key={step.title}>
-                <span>0{index + 1}</span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </li>
-            ))}
-          </ol>
+          <ProcessSteps steps={deliveryProcess} />
         </div>
       </section>
 
@@ -143,14 +137,7 @@ export function ServicesPage() {
           <p className="mono-label">FAQ</p>
           <h2>Questions clients and recruiters ask.</h2>
         </div>
-        <div>
-          {hubFaqs.map((faq) => (
-            <details key={faq.question}>
-              <summary>{faq.question}</summary>
-              <p>{faq.answer}</p>
-            </details>
-          ))}
-        </div>
+        <FaqList faqs={hubFaqs} />
       </section>
 
       <section className="case-contact">

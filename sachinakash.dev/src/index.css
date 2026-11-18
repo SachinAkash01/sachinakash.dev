@@ -590,8 +590,7 @@ h3 {
   margin-bottom: 31px;
   font-size: clamp(0.98rem, 1.5vw, 1.1rem);
 }
-.hero-actions,
-.hero-meta {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -600,26 +599,69 @@ h3 {
 .hero-actions .text-link {
   margin-left: 7px;
 }
-.hero-meta {
-  margin-top: 31px;
-  gap: 20px;
+.hero-proof {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 680px;
+  margin: 34px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
-.hero-meta a,
-.hero-meta button,
-.hero-meta span {
+.hero-proof li {
+  display: grid;
+  gap: 5px;
+  padding: 15px 14px 15px 0;
+}
+.hero-proof li + li {
+  padding-left: 16px;
+  border-left: 1px solid var(--line);
+}
+.hero-proof strong {
+  color: var(--text);
+  font-size: 1.02rem;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+}
+.hero-proof span {
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+.hero-paths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 34px;
+  margin-top: 20px;
+  font-size: 0.82rem;
+}
+.hero-paths p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 0;
+}
+.hero-paths span {
+  color: var(--text-faint);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-paths a {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  border: 0;
-  padding: 0;
-  background: none;
+  gap: 6px;
   color: var(--text-soft);
-  font-size: 0.74rem;
-  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 4px;
 }
-.hero-meta a:hover,
-.hero-meta button:hover {
+.hero-paths a:hover {
   color: var(--amber-bright);
+  text-decoration-color: currentColor;
 }
 .portrait-stage {
   position: relative;
@@ -3318,11 +3360,10 @@ h3 {
   }
 }
 
-/* Use the wider, more compact headline treatment only on short laptops. */
+/* A more compact headline on short laptop screens. */
 @media (min-width: 821px) and (max-height: 850px) {
   .hero-copy h1 {
-    margin-right: -200px;
-    font-size: clamp(2.55rem, 5.3vw, 3.9rem);
+    font-size: clamp(2.4rem, 4.6vw, 3.7rem);
   }
 }
 
@@ -3559,17 +3600,16 @@ h3 {
     margin: 7px 0 0;
     justify-content: center;
   }
-  .hero-meta {
-    display: grid;
+  .hero-proof {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px 12px;
-    margin-top: 26px;
+    margin-top: 28px;
   }
-  .hero-meta a,
-  .hero-meta button,
-  .hero-meta span {
-    min-width: 0;
-    font-size: 0.78rem;
+  .hero-proof li:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .hero-proof li:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
   }
   .portrait-stage {
     width: 100%;
@@ -4110,9 +4150,7 @@ h3 {
   .hero-actions .button {
     flex-basis: 100%;
   }
-  .hero-meta {
-    grid-template-columns: 1fr;
-  }
+
   .portrait-expertise__item {
     width: 31px;
     height: 31px;
@@ -4220,8 +4258,111 @@ h3 {
   list-style: none;
 }
 .process-list li {
-  padding-top: 22px;
+  position: relative;
+  padding-top: 26px;
   border-top: 1px solid var(--line-strong);
+  transition: border-color var(--motion-base) ease;
+}
+/* Gold line that runs through the steps; drawn on scroll and on hover. */
+.process-list li::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--amber), var(--amber-bright));
+  box-shadow: 0 0 12px rgba(224, 183, 126, 0.55);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+.process-list__node {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.process-list li:hover::before {
+  transform: scaleX(1);
+}
+.process-list li:hover .process-list__node,
+.process-list.is-active .process-list__node {
+  background: var(--amber-bright);
+  border-color: var(--amber-bright);
+  box-shadow: 0 0 0 4px rgba(224, 183, 126, 0.14), 0 0 16px rgba(224, 183, 126, 0.6);
+}
+.process-list li:hover span {
+  color: var(--amber-bright);
+}
+.process-list li > span {
+  display: inline-block;
+  transition: color var(--motion-fast) ease;
+}
+/* Scroll-in sequence: each step waits for the line to reach it (--step). */
+.process-list--animate li > span,
+.process-list--animate h3,
+.process-list--animate p {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.process-list--animate .process-list__node {
+  transform: scale(0.4);
+  opacity: 0;
+}
+.process-list--animate.is-active li::before {
+  transform: scaleX(1);
+  transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1) calc(var(--step) * 0.45s);
+}
+.process-list--animate.is-active .process-list__node {
+  transform: scale(1);
+  opacity: 1;
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--step) * 0.45s),
+    opacity 0.2s ease calc(var(--step) * 0.45s),
+    background-color 0.3s ease calc(var(--step) * 0.45s),
+    border-color 0.3s ease calc(var(--step) * 0.45s),
+    box-shadow 0.3s ease calc(var(--step) * 0.45s);
+  animation: process-node-pulse 2.6s ease-out calc(var(--step) * 0.45s + 0.5s) 1;
+}
+.process-list--animate.is-active li > span,
+.process-list--animate.is-active h3,
+.process-list--animate.is-active p {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.55s ease,
+    transform 0.6s var(--ease-out),
+    color var(--motion-fast) ease;
+}
+.process-list--animate.is-active li > span {
+  transition-delay: calc(var(--step) * 0.45s + 0.15s);
+}
+.process-list--animate.is-active h3 {
+  transition-delay: calc(var(--step) * 0.45s + 0.22s);
+}
+.process-list--animate.is-active p {
+  transition-delay: calc(var(--step) * 0.45s + 0.3s);
+}
+/* After the sequence, the line on each step follows hover again. */
+.process-list--animate.is-active li:hover::before {
+  transition-delay: 0s;
+}
+@keyframes process-node-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(224, 183, 126, 0.55), 0 0 16px rgba(224, 183, 126, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(224, 183, 126, 0), 0 0 16px rgba(224, 183, 126, 0.6);
+  }
 }
 .process-list span,
 .deliverable-grid span {
@@ -4280,58 +4421,236 @@ h3 {
 }
 .related-projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 40px 30px;
 }
-.related-projects h3 {
+.related-projects > article {
+  grid-column: span 2;
+  min-width: 0;
+}
+.related-projects > article.is-half {
+  grid-column: span 3;
+}
+@media (max-width: 820px) {
+  .related-projects {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .related-projects > article,
+  .related-projects > article.is-half {
+    grid-column: auto;
+  }
+}
+.related-projects h3,
+.project-carousel__slide h3 {
   margin: 20px 0 10px;
   font-size: 1.15rem;
 }
-.related-projects h3 a:hover {
+.related-projects h3 a:hover,
+.project-carousel__slide h3 a:hover {
   color: var(--amber-bright);
 }
-.related-projects p {
+.related-projects p,
+.project-carousel__slide p {
   margin: 0;
   color: var(--text-soft);
   font-size: 0.88rem;
+}
+/* Looping carousel for services with more than three related projects. */
+.project-carousel {
+  --visible: 3;
+  --gap: 30px;
+  position: relative;
+  container-type: inline-size;
+}
+.project-carousel__viewport {
+  overflow: hidden;
+  /* Room for card shadows and focus rings without clipping. */
+  padding-block: 4px;
+  margin-block: -4px;
+}
+.project-carousel__track {
+  display: flex;
+  gap: var(--gap);
+  transform: translateX(calc(var(--index) * -1 * (100% + var(--gap)) / var(--visible)));
+  transition: transform 0.65s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.project-carousel__slide {
+  flex: 0 0 calc((100% - (var(--visible) - 1) * var(--gap)) / var(--visible));
+  min-width: 0;
+}
+.project-carousel__arrow {
+  position: absolute;
+  z-index: 2;
+  /* Vertically centred on the 2:1 project image of each card. */
+  top: calc((100cqw - (var(--visible) - 1) * var(--gap)) / var(--visible) / 4);
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: rgba(9, 11, 13, 0.88);
+  color: var(--text);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    border-color var(--motion-fast) ease,
+    color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease;
+}
+.project-carousel__arrow:hover,
+.project-carousel__arrow:focus-visible {
+  border-color: var(--amber);
+  background: var(--amber);
+  color: #0b0d0f;
+}
+.project-carousel__arrow:focus-visible {
+  outline: 1px solid var(--amber-bright);
+  outline-offset: 3px;
+}
+.project-carousel__arrow--prev {
+  left: -23px;
+}
+.project-carousel__arrow--next {
+  right: -23px;
+}
+.project-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 34px;
+}
+.project-carousel__dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line-strong);
+  transition:
+    width 0.35s var(--ease-out),
+    background-color 0.35s ease;
+}
+.project-carousel__dots i.is-active {
+  width: 22px;
+  background: var(--amber);
+}
+@media (max-width: 1100px) {
+  .project-carousel {
+    --visible: 2;
+  }
+}
+@media (max-width: 820px) {
+  .project-carousel__arrow--prev {
+    left: 6px;
+  }
+  .project-carousel__arrow--next {
+    right: 6px;
+  }
+}
+@media (max-width: 640px) {
+  .project-carousel {
+    --visible: 1;
+    --gap: 16px;
+  }
 }
 .service-faq {
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
   gap: 60px;
 }
-.service-faq details {
+.faq-item {
   border-top: 1px solid var(--line);
 }
-.service-faq details:last-child {
+.faq-item:last-child {
   border-bottom: 1px solid var(--line);
 }
-.service-faq summary {
-  cursor: pointer;
-  padding: 22px 30px 22px 0;
+.faq-item__heading {
+  margin: 0;
+  font: inherit;
+}
+.faq-item__heading button {
   position: relative;
-  list-style: none;
+  display: block;
+  width: 100%;
+  padding: 22px 40px 22px 0;
+  border: 0;
+  background: none;
+  color: var(--text);
   font-size: 1.05rem;
   font-weight: 500;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--motion-fast) ease;
 }
-.service-faq summary::-webkit-details-marker {
-  display: none;
+.faq-item__heading button:hover,
+.faq-item.is-open .faq-item__heading button {
+  color: var(--amber-bright);
 }
-.service-faq summary::after {
-  content: "+";
+.faq-item__heading button:focus-visible {
+  outline: 1px solid var(--amber);
+  outline-offset: 4px;
+}
+/* Plus that turns into a cross. */
+.faq-item__icon {
   position: absolute;
-  right: 0;
-  top: 20px;
-  color: var(--amber);
-  font: 1.2rem monospace;
-  transition: transform var(--motion-fast) ease;
+  top: 50%;
+  right: 4px;
+  width: 13px;
+  height: 13px;
+  transform: translateY(-50%);
+  transition: transform 0.4s var(--ease-out);
 }
-.service-faq details[open] summary::after {
-  transform: rotate(45deg);
+.faq-item__icon::before,
+.faq-item__icon::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 13px;
+  height: 1px;
+  background: var(--amber);
 }
-.service-faq details p {
-  margin: 0 0 24px;
+.faq-item__icon::after {
+  transform: rotate(90deg);
+}
+.faq-item.is-open .faq-item__icon {
+  transform: translateY(-50%) rotate(135deg);
+}
+/* Height animates via grid rows (0fr to 1fr), so no fixed heights are needed. */
+.faq-item__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease-out);
+}
+.faq-item.is-open .faq-item__panel {
+  grid-template-rows: 1fr;
+}
+.faq-item__panel > div {
+  min-height: 0;
+  overflow: hidden;
+}
+.faq-item__panel p {
+  margin: 0;
+  padding: 0 40px 24px 0;
   color: var(--text-soft);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s var(--ease-out);
+}
+.faq-item.is-open .faq-item__panel p {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.08s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-item__panel,
+  .faq-item__panel p,
+  .faq-item__icon {
+    transition: none;
+  }
 }
 .service-proof {
   display: grid;

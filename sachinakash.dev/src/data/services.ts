@@ -72,6 +72,7 @@ export const servicePages: ServicePage[] = [
       "funk-island",
       "rimark-australia",
       "capital-bridge",
+      "winchild",
     ],
     faqs: [
       {
@@ -142,7 +143,13 @@ export const servicePages: ServicePage[] = [
       "Docker",
       "GitHub Actions",
     ],
-    relatedProjects: ["ttree-lanka-holidays", "funk-island", "quaso"],
+    relatedProjects: [
+      "ttree-lanka-holidays",
+      "funk-island",
+      "quaso",
+      "365-lanka-holidays",
+      "rimark-australia",
+    ],
     faqs: [
       {
         question: "What kind of web applications do you build?",
@@ -198,7 +205,8 @@ export const servicePages: ServicePage[] = [
       "Firebase",
       "REST APIs",
     ],
-    relatedProjects: ["quaso", "sherees-cakes"],
+    // No client mobile app to showcase yet; the Recent work section is hidden.
+    relatedProjects: [],
     faqs: [
       {
         question: "Why React Native instead of separate native apps?",
@@ -255,7 +263,7 @@ export const servicePages: ServicePage[] = [
       "Shopify",
       "Vercel",
     ],
-    relatedProjects: ["sherees-cakes", "quaso", "nutri"],
+    relatedProjects: ["sherees-cakes", "quaso", "nutri", "365-lanka-holidays"],
     faqs: [
       {
         question: "Can you integrate local Sri Lankan payment options?",
@@ -375,7 +383,12 @@ export const servicePages: ServicePage[] = [
       "FTP / SFTP",
       "Webhooks",
     ],
-    relatedProjects: ["sherees-cakes", "ttree-lanka-holidays"],
+    relatedProjects: [
+      "sherees-cakes",
+      "ttree-lanka-holidays",
+      "365-lanka-holidays",
+      "quaso",
+    ],
     faqs: [
       {
         question: "Do you work with Ballerina and WSO2 products?",
