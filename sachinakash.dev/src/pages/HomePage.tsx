@@ -363,8 +363,10 @@ export function HomePage() {
             variants={reveal}
             transition={{ duration: 0.55 }}
           >
-            <p className="hero-eyebrow">{profile.eyebrow}</p>
+            {/* The role label sits inside the h1 so search engines read the
+                job title as part of the main heading; it looks unchanged. */}
             <h1>
+              <span className="hero-eyebrow">{profile.eyebrow}</span>
               <span className="hero-name">{profile.name}</span>
               <span className="hero-headline">{profile.headline}</span>
             </h1>

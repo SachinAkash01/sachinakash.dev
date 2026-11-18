@@ -561,6 +561,7 @@ h3 {
   box-shadow: 0 0 10px rgba(127, 159, 114, 0.6);
 }
 .hero-eyebrow {
+  display: block;
   margin-bottom: 18px;
   color: var(--amber-bright);
   font: 0.88rem/1.5 monospace;
