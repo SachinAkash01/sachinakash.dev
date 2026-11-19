@@ -26,6 +26,7 @@ import { FaAws, FaJava, FaLinkedin } from "react-icons/fa6";
 import {
   SiCloudflare,
   SiGithub,
+  SiGoogle,
   SiInstagram,
   SiMongodb,
   SiNodedotjs,
@@ -942,6 +943,19 @@ export function HomePage() {
                 <div>
                   <span>Instagram</span>
                   <strong>@sachinakash_</strong>
+                </div>
+                <ArrowUpRight size={17} />
+              </a>
+              <a
+                className="contact-route"
+                href={socialUrl("Google")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <SiGoogle size={19} />
+                <div>
+                  <span>Google</span>
+                  <strong>Business profile &amp; reviews</strong>
                 </div>
                 <ArrowUpRight size={17} />
               </a>
