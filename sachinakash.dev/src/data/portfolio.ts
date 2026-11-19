@@ -107,6 +107,7 @@ export const profile = {
       href: "https://www.linkedin.com/in/sachin-akash-6514aa227/",
     },
     { label: "Instagram", href: "https://www.instagram.com/sachinakash_" },
+    { label: "Google", href: "https://share.google/zHIsi41L7VYZe1kqM" },
   ] satisfies SocialLink[],
 };
 

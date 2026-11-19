@@ -4,7 +4,7 @@ import {
   TerminalSquare,
 } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa6";
-import { SiGithub, SiInstagram } from "react-icons/si";
+import { SiGithub, SiGoogle, SiInstagram } from "react-icons/si";
 import { Link, useLocation } from "react-router-dom";
 import { profile } from "../data/portfolio";
 import { servicePages } from "../data/services";
@@ -87,6 +87,13 @@ export function Footer({ onOpenTerminal }: { onOpenTerminal: () => void }) {
               rel="noopener noreferrer"
             >
               <SiInstagram size={14} /> Instagram
+            </a>
+            <a
+              href={socialUrl("Google")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiGoogle size={14} /> Google Business Profile
             </a>
             <a href={`mailto:${profile.email}`}>
               <Mail size={14} /> Email

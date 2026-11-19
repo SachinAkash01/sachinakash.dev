@@ -58,7 +58,7 @@ export function ResumePage() {
             <Mail size={15} /> {profile.email}
           </a>
           {profile.socials
-            .filter((social) => social.label !== "Instagram")
+            .filter((social) => social.label === "GitHub" || social.label === "LinkedIn")
             .map((social) => (
               <a
                 key={social.label}
